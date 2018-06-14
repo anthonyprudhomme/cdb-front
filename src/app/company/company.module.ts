@@ -4,7 +4,7 @@ import { CompanyComponent } from './company.component';
 import { CompaniesComponent } from './companies/companies.component';
 import { CompanyCreateComponent } from './company-create/company-create.component';
 import { CompanyUpdateComponent } from './company-update/company-update.component';
-import {CustomMaterialModule} from '../custom-material/custom-material.module';
+import { CustomMaterialModule } from '../custom-material/custom-material.module';
 
 @NgModule({
   imports: [
