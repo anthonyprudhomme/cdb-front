@@ -4,8 +4,9 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import {CompanyComponent} from './company/company.component';
-import {CustomMaterialModule} from './custom-material/custom-material.module';
+import { CompanyComponent } from './company/company.component';
+import { CustomMaterialModule } from './custom-material/custom-material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {CustomMaterialModule} from './custom-material/custom-material.module';
   ],
   imports: [
     BrowserModule,
-    CustomMaterialModule
+    CustomMaterialModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
