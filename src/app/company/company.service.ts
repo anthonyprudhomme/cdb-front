@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CompanyService {
 
-  private _baseUrl = 'http://10.0.1.55:8080/api/v1/recipes';
+  private _baseUrl = 'http://localhost:8080/webservice/computer';
   id: number;
   constructor(private http: HttpClient) { }
 
@@ -20,15 +20,15 @@ export class CompanyService {
     return this.http.get<Company>(`${ this._baseUrl }/${ id }`);
   }
 
-  postCompany(recipe: Company): Observable<Company> {
-    return this.http.post<Company>(this._baseUrl, recipe);
+  postCompany(company: Company): Observable<Company> {
+    return this.http.post<Company>(this._baseUrl, company);
   }
 
   updateCompany(company: Company): Observable<Company> {
     return this.http.post<Company>(this._baseUrl, company);
   }
 
-  deleteCompany(recipe: Company): Observable<Company> {
-    return this.http.delete<Company>(`${ this._baseUrl }/${ recipe.id }`);
+  deleteCompany(company: Company): Observable<Company> {
+    return this.http.delete<Company>(`${ this._baseUrl }/${ company.id }`);
   }
 }
