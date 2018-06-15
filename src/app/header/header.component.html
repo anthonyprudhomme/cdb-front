@@ -1,13 +1,14 @@
 <mat-toolbar color="primary">
-  <span class="navBarItem"><a href="/company">CDBICON</a></span>
+    <mat-icon class="example-icon">
+        <a href="/company">computer</a>
+    </mat-icon>
+
   <span class="navBarItem"><a href="/company">Companies</a></span>
   <span class="navBarItem"><a href="/computer">Computers</a></span>
+
   <span class="example-spacer"></span>
 
-
-  <button *ngIf="isLoggedIn">Log out</button>
-
-
-  <mat-icon class="example-icon">flag</mat-icon>
-  <mat-icon class="example-icon">flag</mat-icon>
+  <button mat-button *ngIf="isLoggedIn">Log out</button>
+  <mat-icon class="example-icon"><a href=""><img src="assets/france.svg" alt="France flag"></a></mat-icon>
+  <mat-icon class="example-icon"><a href=""><img src="assets/united-kingdom.svg" alt="UK flag"></a></mat-icon>
 </mat-toolbar>
