@@ -1,13 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { Company } from '../company.model';
 import { CompanyService } from '../company.service';
-import { MatTableModule } from '@angular/material';
 import { Page } from '../../page.model';
+import { trigger, style, transition, animate, query, stagger } from '@angular/animations';
 
 @Component({
   selector: 'app-companies',
   templateUrl: './companies.component.html',
-  styleUrls: ['./companies.component.scss']
+  styleUrls: ['./companies.component.scss'],
+  animations: [
+
+    trigger('staggerAnim', [
+      transition('void => *', [
+        query('.row',
+          style({ opacity: 0, transform: 'translateX(-40px)' })
+        ),
+
+        query('.row', stagger('250ms', [
+          animate('400ms 0.6s ease-out', style({ opacity: 1, transform: 'translateX(0)' })),
+        ])),
+
+        query('.row', [
+          animate(500, style('*'))
+        ])
+      ])
+    ])
+  ]
 })
 export class CompaniesComponent implements OnInit {
   companies: Company[];

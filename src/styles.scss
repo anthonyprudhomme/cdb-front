@@ -5,13 +5,13 @@ body { margin: 5px; }
 .customTable {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  width: 100%;
 }
 
 .customTable td, #customers th {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
+  width: 100%;
 }
 
 .customTable tr:nth-child(even){background-color: #f2f2f2;}

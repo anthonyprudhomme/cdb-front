@@ -1,4 +1,4 @@
-<div class="container" *ngIf="companies">
+<div class="container" *ngIf="companies" @staggerAnim>
   <mat-card  color="primary" class="example-card">
     <mat-form-field class="example-full-width">
       <input matInput placeholder="Search" [(ngModel)]="searchValue">
@@ -6,19 +6,19 @@
     <mat-checkbox>Companies</mat-checkbox>&nbsp;
     <mat-checkbox>Computers</mat-checkbox>&nbsp;
     <button mat-raised-button color="primary" (click)="search()">Search</button>
+    &nbsp;
     <button mat-raised-button color="primary" (click)="create()">Create a new company</button>
   </mat-card>
   <br>
-  <table class="customTable">
+  <table class="customTable" class="row">
     <thead>
-        <th>Id</th>
         <th>Name</th>
         <th>See computers</th>
         <th>Delete</th>
     </thead>
     <tr *ngFor=" let company of companies"
       app-company [company] = "company"
-      (delete)="recipeDeleted(company)">
+      (delete)="recipeDeleted(company)" >
     </tr>
   </table>
 </div>
