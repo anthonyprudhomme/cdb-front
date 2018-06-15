@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { CompanyCreateComponent } from './company/company-create/company-create.component';
 import { CompanyUpdateComponent } from './company/company-update/company-update.component';
-import { ComputerComponent } from './computer/computer.component';
 import { ComputerCreateComponent } from './computer/computer-create/computer-create.component';
 import { ComputerUpdateComponent } from './computer/computer-update/computer-update.component';
 import { LoginComponent } from './login/login.component';
