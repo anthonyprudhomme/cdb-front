@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Company } from '../company.model';
 import { CompanyService } from '../company.service';
-import { Page } from '../../page.model';
 import { trigger, style, transition, animate, query, stagger } from '@angular/animations';
+import {PageEvent} from '@angular/material';
 
 @Component({
   selector: 'app-companies',
@@ -31,16 +31,23 @@ import { trigger, style, transition, animate, query, stagger } from '@angular/an
 })
 export class CompaniesComponent implements OnInit {
   companies: Company[];
-  page: Page<Company>;
   searchValue: string;
 
-  constructor(private companyService: CompanyService) {}
+  pageEvent: PageEvent;
+  pageSizeOptions = [10, 25, 100];
+
+ constructor(private companyService: CompanyService) {}
 
   ngOnInit() {
-    this.companyService.getCompaniesAtPage(1, 10).subscribe(page => {
-      this.page = page;
-      this.companies = this.page.results;
+    this.pageEvent = new PageEvent();
+
+    this.companyService.getCompaniesAtPage(1, 10).subscribe(companies => {
+      this.companies = companies;
+      this.pageEvent.pageIndex = 1;
+      this.pageEvent.pageSize = 10;
     }, err => {console.log(err); });
+
+    this.companyService.countCompanies().subscribe(length => this.pageEvent.length = length);
   }
 
   recipeDeleted(company: Company) {
