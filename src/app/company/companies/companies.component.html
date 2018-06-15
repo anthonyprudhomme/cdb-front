@@ -1,3 +1,25 @@
-<p>
-  companies works!
-</p>
+<div class="container" *ngIf="companies">
+  <mat-card  color="primary" class="example-card">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Search" [(ngModel)]="searchValue">
+    </mat-form-field>&nbsp;
+    <mat-checkbox>Companies</mat-checkbox>&nbsp;
+    <mat-checkbox>Computers</mat-checkbox>&nbsp;
+    <button mat-raised-button color="primary" (click)="search()">Search</button>
+    <button mat-raised-button color="primary" (click)="create()">Create a new company</button>
+  </mat-card>
+  <br>
+  <table class="customTable">
+    <thead>
+        <th>Id</th>
+        <th>Name</th>
+        <th>See computers</th>
+        <th>Delete</th>
+    </thead>
+    <tr *ngFor=" let company of companies"
+      app-company [company] = "company"
+      (delete)="recipeDeleted(company)">
+    </tr>
+  </table>
+</div>
+

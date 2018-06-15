@@ -11,6 +11,11 @@ import { CustomMaterialModule } from '../custom-material/custom-material.module'
     CommonModule,
     CustomMaterialModule
   ],
-  declarations: [CompanyComponent, CompaniesComponent, CompanyCreateComponent, CompanyUpdateComponent]
+  declarations: [
+    CompanyComponent,
+    CompaniesComponent,
+    CompanyCreateComponent,
+    CompanyUpdateComponent
+  ]
 })
 export class CompanyModule { }

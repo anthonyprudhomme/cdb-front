@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { CompanyComponent } from './company/company.component';
 import { CompanyCreateComponent } from './company/company-create/company-create.component';
 import { CompanyUpdateComponent } from './company/company-update/company-update.component';
 import { ComputerComponent } from './computer/computer.component';
 import { ComputerCreateComponent } from './computer/computer-create/computer-create.component';
 import { ComputerUpdateComponent } from './computer/computer-update/computer-update.component';
 import { LoginComponent } from './login/login.component';
+import { CompaniesComponent } from './company/companies/companies.component';
+import { ComputersComponent } from './computer/computers/computers.component';
 
 const routes: Routes = [
   {
@@ -16,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: 'company',
-    component: CompanyComponent
+    component: CompaniesComponent
   },
   {
     path: 'company/add',
@@ -28,7 +29,7 @@ const routes: Routes = [
   },
   {
     path: 'computer',
-    component: ComputerComponent
+    component: ComputersComponent
   },
   {
     path: 'computer/add',

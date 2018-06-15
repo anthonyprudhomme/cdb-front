@@ -1,1 +1,14 @@
-sdfsdf
+<td>{{company.id}}</td>
+<td>{{company.name}}</td>
+<td>
+  <button mat-raised-button color="primary">
+    <mat-icon>computer</mat-icon>
+    List computers
+  </button>
+</td>
+<td>
+  <button mat-raised-button color="alert" (click)="deleteCompany(company)">
+    <mat-icon>delete</mat-icon>
+    Delete company
+  </button>
+</td>

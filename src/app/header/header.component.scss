@@ -1,8 +1,9 @@
-.example-icon {
-  padding: 0 14px;
+.logo {
+  margin-left: 16px;
+  margin-right: 16px;
 }
 
-.example-spacer {
+.spacer {
   flex: 1 1 auto;
 }
 
@@ -17,4 +18,8 @@ a {
 
 a:hover{
   color: #CCCCCC;
+}
+
+.flag {
+  margin-bottom: 14px;
 }
