@@ -8,6 +8,7 @@ import { CustomMaterialModule } from './custom-material/custom-material.module';
 import { AppRoutingModule } from './/app-routing.module';
 import { CompanyModule } from './company/company.module';
 import { ComputerModule } from './computer/computer.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ComputerModule } from './computer/computer.module';
     CustomMaterialModule,
     AppRoutingModule,
     CompanyModule,
-    ComputerModule
+    ComputerModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
