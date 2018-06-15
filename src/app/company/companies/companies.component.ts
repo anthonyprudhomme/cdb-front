@@ -12,16 +12,18 @@ import { trigger, style, transition, animate, query, stagger } from '@angular/an
 
     trigger('staggerAnim', [
       transition('void => *', [
-        query('.row',
-          style({ opacity: 0, transform: 'translateX(-40px)' })
+        query('mat-card, td',
+          style({ opacity: 0, transform: 'translateX(0px)' })
         ),
 
-        query('.row', stagger('250ms', [
-          animate('400ms 0.6s ease-out', style({ opacity: 1, transform: 'translateX(0)' })),
+        query('mat-card, td', stagger('100ms', [
+          animate('200ms 0.2s ease-out', style({ opacity: 1, transform: 'translateX(0)' })),
+          animate('200ms 0.2s ease-out', style({ opacity: 1, transform: 'translateX(-10px)' })),
+          animate('200ms 0.2s ease-out', style({ opacity: 1, transform: 'translateX(0)' })),
         ])),
 
-        query('.row', [
-          animate(500, style('*'))
+        query('mat-card, td', [
+          animate(100, style('*'))
         ])
       ])
     ])
