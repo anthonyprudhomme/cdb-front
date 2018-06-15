@@ -1,10 +1,14 @@
 <div class="container" *ngIf="companies">
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Search" [(ngModel)]="searchValue">
-  </mat-form-field>&nbsp;
-  <mat-checkbox>Companies</mat-checkbox>&nbsp;
-  <mat-checkbox>Computers</mat-checkbox>&nbsp;
-  <button mat-raised-button color="primary" (click)="search()">Search</button>
+  <mat-card  color="primary" class="example-card">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Search" [(ngModel)]="searchValue">
+    </mat-form-field>&nbsp;
+    <mat-checkbox>Companies</mat-checkbox>&nbsp;
+    <mat-checkbox>Computers</mat-checkbox>&nbsp;
+    <button mat-raised-button color="primary" (click)="search()">Search</button>
+    <button mat-raised-button color="primary" (click)="create()">Create a new company</button>
+  </mat-card>
+  <br>
   <table class="customTable">
     <thead>
         <th>Id</th>

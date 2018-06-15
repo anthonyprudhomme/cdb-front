@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Company } from '../company.model';
 import { CompanyService } from '../company.service';
 import { MatTableModule } from '@angular/material';
+import { Page } from '../../page.model';
 
 @Component({
   selector: 'app-companies',
@@ -10,11 +11,16 @@ import { MatTableModule } from '@angular/material';
 })
 export class CompaniesComponent implements OnInit {
   companies: Company[];
+  page: Page<Company>;
   searchValue: string;
+
   constructor(private companyService: CompanyService) {}
 
   ngOnInit() {
-    this.companyService.getCompaniesAtPage(1, 10).subscribe(companies => this.companies = companies, err => {console.log(err); });
+    this.companyService.getCompaniesAtPage(1, 10).subscribe(page => {
+      this.page = page;
+      this.companies = this.page.results;
+    }, err => {console.log(err); });
   }
 
   recipeDeleted(company: Company) {
@@ -24,6 +30,10 @@ export class CompaniesComponent implements OnInit {
 
   search() {
     // this.companyService.searchBy(searchValue).subscribe(companies => this.companies = companies, err => {console.log(err); });
+  }
+
+  create() {
+
   }
 
 }

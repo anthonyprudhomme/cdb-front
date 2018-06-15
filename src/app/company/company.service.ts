@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Company } from './company.model';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { Page } from '../page.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,11 +17,11 @@ export class CompanyService {
     return this.http.get<Company[]>(this._baseUrl);
   }
 
-  getCompaniesAtPage(page: number, results: number): Observable<Company[]> {
+  getCompaniesAtPage(page: number, results: number): Observable<Page<Company>> {
     let params = new HttpParams();
     params = params.append('page', String(page));
     params = params.append('results', String(results));
-    return this.http.get<Company[]>(this._baseUrl, {params: params});
+    return this.http.get<Page<Company>>(this._baseUrl, {params: params});
   }
 
   getCompany(id: string): Observable<Company> {
