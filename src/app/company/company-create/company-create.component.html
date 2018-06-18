@@ -1,3 +1,25 @@
-<p>
-  company-create works!
-</p>
+<div class="container">
+  <!-- <mat-card class="example-card"> -->
+    <div class="example-container modal-theme">
+      <form class="example-container" [formGroup]=companyAddForm>
+        <mat-form-field>
+          <input matInput placeholder="Name" required formControlName="name" name="name" />
+          <mat-error>
+            Name of company is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Url de l'image" formControlName="picture" name="picture">
+          <mat-error>
+            URL should be correct [http(s):// (...) .(img|...|png)]
+          </mat-error>
+        </mat-form-field>
+
+        <!-- <div>Add computer <mat-icon style="-webkit-text-fill-color: #6ba945" aria-label="Add a company" class="mat-icon material-icons" role="img" aria-hidden="true">add_circle</mat-icon></div> -->
+
+        <button mat-raised-button class="confirm" (click)=submit()>Confirmer</button>
+      </form>
+    </div>
+  <!-- </mat-card> -->
+</div>

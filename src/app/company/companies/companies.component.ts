@@ -1,9 +1,12 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { Company } from '../company.model';
 import { CompanyService } from '../company.service';
 import { trigger, style, transition, animate, query, stagger } from '@angular/animations';
 import {MatPaginator, PageEvent} from '@angular/material';
-import {isNullOrUndefined} from 'util';
+import {PageEvent} from '@angular/material';
+import { MatDialog } from '@angular/material';
+import { CompanyCreateComponent } from '../company-create/company-create.component';
+import { isUndefined } from 'util';
 
 @Component({
   selector: 'app-companies',
@@ -40,14 +43,13 @@ export class CompaniesComponent implements OnInit {
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
 
-  constructor(private companyService: CompanyService) {}
+  constructor(private companyService: CompanyService, private dialog: MatDialog) {}
 
   ngOnInit() {
     this.pageEvent = new PageEvent();
     this.companyService.getCompaniesAtPage(1, 10).subscribe(companies => {
       this.companies = companies;
-      this.pageEvent.pageIndex = 0;
-      this.pageEvent.pageSize = 10;
+      this.resetPaginator();
     }, err => {console.log(err); });
 
     this.companyService.countCompanies().subscribe(length => this.pageEvent.length = length);
@@ -55,25 +57,24 @@ export class CompaniesComponent implements OnInit {
 
   recipeDeleted(company: Company) {
     const index = this.companies.indexOf(company);
-    this.companies.splice(index);
+    this.companies.splice(index, 1);
   }
 
   search() {
-    this.pageEvent.pageIndex = 0;
-    this.pageEvent.pageSize = 10;
-
-    // To bypass pageEvent.pageindex api bug
-    this.paginator._pageIndex = 0;
-
+    this.resetPaginator()
     this.changePage(this.pageEvent);
-
     this.companyService.countSearchedCompanies(this.searchValue).subscribe(length => {
       this.pageEvent.length = length;
     });
   }
 
   create() {
-
+    const dialogRef = this.dialog.open(CompanyCreateComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (!isUndefined(result)) {
+        this.changePage(this.pageEvent);
+      }
+    });
   }
 
   changePage(event?: PageEvent): PageEvent {
@@ -91,10 +92,16 @@ export class CompaniesComponent implements OnInit {
 
   clearSearch() {
     this.searchValue = '';
+    this.resetPaginator();
+    this.changePage(this.pageEvent);
+  }
+
+  resetPaginator() {
     this.pageEvent.pageIndex = 0;
     this.pageEvent.pageSize = 10;
+
+    // To bypass pageEvent.pageindex api bug
     this.paginator._pageIndex = 0;
-    this.changePage(this.pageEvent);
   }
 
 }

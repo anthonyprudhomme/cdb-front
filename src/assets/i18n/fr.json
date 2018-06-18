@@ -5,12 +5,37 @@
     "LOG_OUT": "Se déconnecter"
   },
   "COMPANY":{
-
+    "SEARCH": "Rechercher",
+    "COMPANIES": "Entreprises",
+    "COMPUTERS": "Ordinateurs",
+    "CREATE": "Créer une nouvelle entreprise",
+    "NAME": "Nom",
+    "SEE": "Voir les ordinateurs",
+    "DELETE": "Supprimer",
+    "LIST": "Lister les ordinateurs",
+    "DEL_COMPANY": "Supprimer l'entreprise"
   },
   "COMPUTER":{
-
+    "SEARCH": "Rechercher",
+    "COMPUTERS": "Ordinateurs",
+    "CREATE": "Créer un nouvel ordinateur",
+    "NAME": "Nom",
+    "INTRODUCED": "Introduit",
+    "DISCONTINUED": "Retiré",
+    "COMPANY": "Entreprise",
+    "DEL_COMPUTER": "Suprimmer l'ordinateur"
   },
   "LOGIN":{
+    "LOG_IN": "Se connecter",
+    "LOGIN": "Identifiant",
+    "PASSWORD": "Mot de passe",
+    "CONFIRM_PASSWORD": "Confirmation du mot de passe"
+  },
+  "GENERAL":{
+    "CREATE": "Créer",
+    "CANCEL": "Annuler"
+  },
+  "ERROR": {
 
   }
 }

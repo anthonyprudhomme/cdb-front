@@ -5,12 +5,37 @@
     "LOG_OUT": "Log out"
   },
   "COMPANY":{
-
+    "SEARCH": "Search",
+    "COMPANIES": "Companies",
+    "COMPUTERS": "Computers",
+    "CREATE": "Create a new company",
+    "NAME": "Name",
+    "SEE": "See computers",
+    "DELETE": "Delete",
+    "LIST": "List computers",
+    "DEL_COMPANY": "Delete company"
   },
   "COMPUTER":{
-
+    "SEARCH": "Search",
+    "COMPUTERS": "Computers",
+    "CREATE": "Create a new computer",
+    "NAME": "Name",
+    "INTRODUCED": "Introduced",
+    "DISCONTINUED": "Discontinued",
+    "COMPANY": "Company",
+    "DEL_COMPUTER": "Delete computer"
   },
   "LOGIN":{
+    "LOG_IN": "Log in",
+    "LOGIN": "Login",
+    "PASSWORD": "Password",
+    "CONFIRM_PASSWORD": "Confirm your password"
+  },
+  "GENERAL":{
+    "CREATE": "Create",
+    "CANCEL": "Cancel"
+  },
+  "ERROR": {
 
   }
 }
