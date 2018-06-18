@@ -43,7 +43,7 @@ export class CompaniesComponent implements OnInit {
 
     this.companyService.getCompaniesAtPage(1, 10).subscribe(companies => {
       this.companies = companies;
-      this.pageEvent.pageIndex = 1;
+      this.pageEvent.pageIndex = 0;
       this.pageEvent.pageSize = 10;
     }, err => {console.log(err); });
 
@@ -61,6 +61,13 @@ export class CompaniesComponent implements OnInit {
 
   create() {
 
+  }
+
+  changePage(event?: PageEvent): PageEvent {
+   this.companyService.getCompaniesAtPage(event.pageIndex + 1, event.pageSize).subscribe(companies => {
+     this.companies = companies;
+   });
+   return event;
   }
 
 }

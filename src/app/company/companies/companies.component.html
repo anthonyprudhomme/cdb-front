@@ -31,7 +31,7 @@
     <mat-paginator *ngIf="pageEvent" [length]="pageEvent.length"
                    [pageSize]="pageEvent.pageSize"
                    [pageSizeOptions]="pageSizeOptions"
-                   (page)="pageEvent = $event">
+                   (page)="pageEvent = changePage($event)">
     </mat-paginator>
 
   </mat-toolbar-row>
