@@ -45,7 +45,7 @@ export class CompaniesComponent implements OnInit {
 
   recipeDeleted(company: Company) {
     const index = this.companies.indexOf(company);
-    this.companies.splice(index);
+    this.companies.splice(index, 1);
   }
 
   search() {

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormGroup, FormBuilder } from '@angular/forms';
-import { ValidationService } from '../validation.service';
+import { Validators, FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-login-create',
@@ -17,15 +16,27 @@ export class LoginCreateComponent implements OnInit {
     this.createForm();
   }
 
-  createForm() {
-    this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', [Validators.required, ValidationService.passwordValidator]],
-      passwordConfirmation: ['', [Validators.required, ValidationService.passwordValidator]]
-    });
+  ngOnInit() {
   }
 
-  ngOnInit() {
+  createForm() {
+    this.loginForm = this.formBuilder.group({
+      username: ['', [Validators.pattern(/^\S+[a-zA-Z0-9]{5,}$/), Validators.required]],
+      password: ['', [Validators.pattern(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9!@#$%^&*]{8,}$/), Validators.required]],
+      passwordConfirmation: ['', Validators.required]
+    }, {validator: this.checkIfMatchingPasswords('password', 'passwordConfirmation')});
+  }
+
+  checkIfMatchingPasswords(passwordKey: string, passwordConfirmationKey: string) {
+    return (group: FormGroup) => {
+      const passwordInput = group.controls[passwordKey],
+          passwordConfirmationInput = group.controls[passwordConfirmationKey];
+      if (passwordInput.value !== passwordConfirmationInput.value) {
+        return passwordConfirmationInput.setErrors({notEquivalent: true});
+      } else {
+          return passwordConfirmationInput.setErrors(null);
+      }
+    };
   }
 
   createAccount() {
