@@ -1,10 +1,9 @@
 <mat-toolbar color="primary">
-    <mat-icon class="logo">
-        <a href="/company">computer</a>
-    </mat-icon>
-
-  <span class="navBarItem" ><a href="/company">{{ 'HEADER.COMPANIES' | translate }}</a></span>
-  <span class="navBarItem" ><a href="/computer">{{ 'HEADER.COMPUTERS' | translate }}</a></span>
+  <button mat-button [routerLink]="['/company']">
+    <mat-icon class="logo" >computer</mat-icon>
+  </button>
+  <button mat-button [routerLink]="['/company']">{{ 'HEADER.COMPANIES' | translate }}</button>
+  <button mat-button [routerLink]="['/computer']">{{ 'HEADER.COMPUTERS' | translate }}</button>
 
   <span class="spacer"></span>
 
@@ -12,3 +11,4 @@
   <mat-icon class="navBarItem flag"><img src="assets/france.svg" alt="France flag" (click)="switchTo('fr')"></mat-icon>
   <mat-icon class="navBarItem flag"><img src="assets/united-kingdom.svg" alt="UK flag" (click)="switchTo('en')"></mat-icon>
 </mat-toolbar>
+

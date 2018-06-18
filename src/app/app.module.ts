@@ -13,10 +13,12 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { RouterModule} from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material';
-import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { LoginCreateComponent } from './login/login-create/login-create.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ControlMessageComponent } from './control-message/control-message.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -28,7 +30,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    LoginCreateComponent,
+    ControlMessageComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +46,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     MatTableModule,
     FormsModule,
     MatIconModule,
+    ReactiveFormsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
