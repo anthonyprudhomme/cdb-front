@@ -1,6 +1,7 @@
+body { margin: 5px; }
+
 @import '~@angular/material/prebuilt-themes/pink-bluegrey.css';
 $primary: rgb(22, 90, 168);
-body { margin: 5px; }
 
 .customTable {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
@@ -25,6 +26,7 @@ body { margin: 5px; }
   background-color: $primary;
   color: white;
 }
+
 
 /*!
  * Bootstrap v4.1.1 (https://getbootstrap.com/)
