@@ -37,7 +37,7 @@
     <div id="footer-copyright">Computer Database 2018&nbsp;&#169;</div>
     <span class="example-spacer"></span>
 
-    <mat-paginator *ngIf="pageEvent" [length]="pageEvent.length"
+    <mat-paginator #paginator *ngIf="pageEvent" [length]="pageEvent.length"
                    [pageSize]="pageEvent.pageSize"
                    [pageSizeOptions]="pageSizeOptions"
                    (page)="pageEvent = changePage($event)">

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import { Company } from '../company.model';
 import { CompanyService } from '../company.service';
 import { trigger, style, transition, animate, query, stagger } from '@angular/animations';
-import {PageEvent} from '@angular/material';
+import {MatPaginator, PageEvent} from '@angular/material';
+import {isNullOrUndefined} from 'util';
 
 @Component({
   selector: 'app-companies',
@@ -36,11 +37,13 @@ export class CompaniesComponent implements OnInit {
   pageEvent: PageEvent;
   pageSizeOptions = [10, 25, 100];
 
- constructor(private companyService: CompanyService) {}
+  @ViewChild(MatPaginator)
+  paginator: MatPaginator;
+
+  constructor(private companyService: CompanyService) {}
 
   ngOnInit() {
     this.pageEvent = new PageEvent();
-
     this.companyService.getCompaniesAtPage(1, 10).subscribe(companies => {
       this.companies = companies;
       this.pageEvent.pageIndex = 0;
@@ -56,7 +59,17 @@ export class CompaniesComponent implements OnInit {
   }
 
   search() {
-    // this.companyService.searchBy(searchValue).subscribe(companies => this.companies = companies, err => {console.log(err); });
+    this.pageEvent.pageIndex = 0;
+    this.pageEvent.pageSize = 10;
+
+    // To bypass pageEvent.pageindex api bug
+    this.paginator._pageIndex = 0;
+
+    this.changePage(this.pageEvent);
+
+    this.companyService.countSearchedCompanies(this.searchValue).subscribe(length => {
+      this.pageEvent.length = length;
+    });
   }
 
   create() {
@@ -64,10 +77,16 @@ export class CompaniesComponent implements OnInit {
   }
 
   changePage(event?: PageEvent): PageEvent {
-   this.companyService.getCompaniesAtPage(event.pageIndex + 1, event.pageSize).subscribe(companies => {
-     this.companies = companies;
-   });
-   return event;
+    if (!this.searchValue || 0 === this.searchValue.length) {
+      this.companyService.getCompaniesAtPage(event.pageIndex + 1, event.pageSize).subscribe(companies => {
+        this.companies = companies;
+      });
+    } else {
+      this.companyService.searchCompanies(this.searchValue, event.pageIndex + 1, event.pageSize).subscribe(companies => {
+        this.companies = companies;
+      });
+    }
+    return event;
   }
 
 }
