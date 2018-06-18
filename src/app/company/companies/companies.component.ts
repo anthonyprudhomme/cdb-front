@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Company } from '../company.model';
 import { CompanyService } from '../company.service';
-import { Page } from '../../page.model';
 import { trigger, style, transition, animate, query, stagger } from '@angular/animations';
+import {PageEvent} from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
+import { CompanyCreateComponent } from '../company-create/company-create.component';
+import { isUndefined } from 'util';
 
 @Component({
   selector: 'app-companies',
@@ -31,21 +34,28 @@ import { trigger, style, transition, animate, query, stagger } from '@angular/an
 })
 export class CompaniesComponent implements OnInit {
   companies: Company[];
-  page: Page<Company>;
   searchValue: string;
 
-  constructor(private companyService: CompanyService) {}
+  pageEvent: PageEvent;
+  pageSizeOptions = [10, 25, 100];
+
+  constructor(private companyService: CompanyService, private dialog: MatDialog) {}
 
   ngOnInit() {
-    this.companyService.getCompaniesAtPage(1, 10).subscribe(page => {
-      this.page = page;
-      this.companies = this.page.results;
+    this.pageEvent = new PageEvent();
+
+    this.companyService.getCompaniesAtPage(1, 10).subscribe(companies => {
+      this.companies = companies;
+      this.pageEvent.pageIndex = 0;
+      this.pageEvent.pageSize = 10;
     }, err => {console.log(err); });
+
+    this.companyService.countCompanies().subscribe(length => this.pageEvent.length = length);
   }
 
   recipeDeleted(company: Company) {
     const index = this.companies.indexOf(company);
-    this.companies.splice(index);
+    this.companies.splice(index, 1);
   }
 
   search() {
@@ -53,7 +63,22 @@ export class CompaniesComponent implements OnInit {
   }
 
   create() {
+    const dialogRef = this.dialog.open(CompanyCreateComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (!isUndefined(result)) {
+        this.companyService.getCompaniesAtPage(1, 10).subscribe(page => {
+          this.page = page;
+          this.companies = this.page.results;
+        }, err => {console.log(err); });
+      }
+    });
+  }
 
+  changePage(event?: PageEvent): PageEvent {
+   this.companyService.getCompaniesAtPage(event.pageIndex + 1, event.pageSize).subscribe(companies => {
+     this.companies = companies;
+   });
+   return event;
   }
 
 }

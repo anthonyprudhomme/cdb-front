@@ -8,11 +8,16 @@ import { ComputerUpdateComponent } from './computer/computer-update/computer-upd
 import { LoginComponent } from './login/login.component';
 import { CompaniesComponent } from './company/companies/companies.component';
 import { ComputersComponent } from './computer/computers/computers.component';
+import { LoginCreateComponent } from './login/login-create/login-create.component';
 
 const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'login/add',
+    component: LoginCreateComponent
   },
   {
     path: 'company',
