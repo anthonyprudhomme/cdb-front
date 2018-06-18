@@ -3,6 +3,9 @@ import { Company } from '../company.model';
 import { CompanyService } from '../company.service';
 import { Page } from '../../page.model';
 import { trigger, style, transition, animate, query, stagger } from '@angular/animations';
+import { MatDialog, MatDialogRef } from '@angular/material';
+import { CompanyCreateComponent } from '../company-create/company-create.component';
+import { isUndefined } from 'util';
 
 @Component({
   selector: 'app-companies',
@@ -34,7 +37,7 @@ export class CompaniesComponent implements OnInit {
   page: Page<Company>;
   searchValue: string;
 
-  constructor(private companyService: CompanyService) {}
+  constructor(private companyService: CompanyService, private dialog: MatDialog) {}
 
   ngOnInit() {
     this.companyService.getCompaniesAtPage(1, 10).subscribe(page => {
@@ -53,7 +56,15 @@ export class CompaniesComponent implements OnInit {
   }
 
   create() {
-
+    const dialogRef = this.dialog.open(CompanyCreateComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (!isUndefined(result)) {
+        this.companyService.getCompaniesAtPage(1, 10).subscribe(page => {
+          this.page = page;
+          this.companies = this.page.results;
+        }, err => {console.log(err); });
+      }
+    });
   }
 
 }

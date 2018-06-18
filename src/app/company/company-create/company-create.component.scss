@@ -1,0 +1,24 @@
+.container {
+  margin-top: 9%;
+ }
+
+.example-container > * {
+  width: 100%;
+}
+
+.example-container form {
+  margin-bottom: 20px;
+}
+
+.example-container form > * {
+  margin: 5px 0;
+}
+
+.example-card {
+  max-width: 600px;
+  margin:auto;
+}
+
+.confirm {
+  background-color:#3f51b5;
+}
