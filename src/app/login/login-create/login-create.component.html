@@ -1,0 +1,40 @@
+<div class="container">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>Login</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form class="example-form" [formGroup]="loginForm">
+        <table class="example-full-width" cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Username" formControlName="username" required>
+                <mat-error>There is an error</mat-error>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Password" type="password" formControlName="password" required>
+                <mat-error>There is an error 2</mat-error>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Confirm password" type="password" formControlName="passwordConfirmation" required>
+                  <mat-error>There is an error 3</mat-error>
+                </mat-form-field>
+              </td>
+            </tr>
+        </table>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button (click)="createAccount()" color="primary">Login</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

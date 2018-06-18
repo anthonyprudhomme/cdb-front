@@ -1,0 +1,16 @@
+{
+  "HEADER": {
+    "COMPANIES": "Companies",
+    "COMPUTERS": "Computers",
+    "LOG_OUT": "Log out"
+  },
+  "COMPANY":{
+
+  },
+  "COMPUTER":{
+
+  },
+  "LOGIN":{
+
+  }
+}
