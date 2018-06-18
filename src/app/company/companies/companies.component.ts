@@ -2,9 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import { Company } from '../company.model';
 import { CompanyService } from '../company.service';
 import { trigger, style, transition, animate, query, stagger } from '@angular/animations';
-import {MatPaginator, PageEvent} from '@angular/material';
-import {PageEvent} from '@angular/material';
-import { MatDialog } from '@angular/material';
+import { MatPaginator, PageEvent, MatDialog} from '@angular/material';
 import { CompanyCreateComponent } from '../company-create/company-create.component';
 import { isUndefined } from 'util';
 
@@ -51,21 +49,16 @@ export class CompaniesComponent implements OnInit {
       this.companies = companies;
       this.resetPaginator();
     }, err => {console.log(err); });
-
     this.companyService.countCompanies().subscribe(length => this.pageEvent.length = length);
   }
 
-  recipeDeleted(company: Company) {
-    const index = this.companies.indexOf(company);
-    this.companies.splice(index, 1);
+  companyDeleted(company: Company) {
+    this.changePage(this.pageEvent);
   }
 
   search() {
-    this.resetPaginator()
+    this.resetPaginator();
     this.changePage(this.pageEvent);
-    this.companyService.countSearchedCompanies(this.searchValue).subscribe(length => {
-      this.pageEvent.length = length;
-    });
   }
 
   create() {
@@ -82,10 +75,12 @@ export class CompaniesComponent implements OnInit {
       this.companyService.getCompaniesAtPage(event.pageIndex + 1, event.pageSize).subscribe(companies => {
         this.companies = companies;
       });
+      this.companyService.countCompanies().subscribe(length => this.pageEvent.length = length);
     } else {
       this.companyService.searchCompanies(this.searchValue, event.pageIndex + 1, event.pageSize).subscribe(companies => {
         this.companies = companies;
       });
+      this.companyService.countSearchedCompanies(this.searchValue).subscribe(length => this.pageEvent.length = length);
     }
     return event;
   }

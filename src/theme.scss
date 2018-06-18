@@ -21,9 +21,113 @@ $theme: mat-light-theme($primary, $accent, $warn);
 @import "~@angular/material/theming";
 @include mat-core();
 
-$md-primary: mat-palette($mat-gray, 800, 100, 700);
-$md-accent: mat-palette($mat-purple, 500, 300, 800);
-$md-warn: mat-palette($mat-red, 500, 300, 900);
+/* For use in src/lib/core/theming/_palette.scss */
+$mat-primary-custom: (
+    50 : #eaf8f9,
+    100 : #cbedef,
+    200 : #a9e1e4,
+    300 : #87d5d9,
+    400 : #6dccd1,
+    500 : #53c3c9,
+    600 : #4cbdc3,
+    700 : #42b5bc,
+    800 : #39aeb5,
+    900 : #29a1a9,
+    A100 : #eafeff,
+    A200 : #b7faff,
+    A400 : #84f7ff,
+    A700 : #6af5ff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+
+/* For use in src/lib/core/theming/_palette.scss */
+$mat-basic-custom: (
+    50 : #e6e7e8,
+    100 : #c1c3c5,
+    200 : #989b9e,
+    300 : #6e7277,
+    400 : #4f545a,
+    500 : #30363d,
+    600 : #2b3037,
+    700 : #24292f,
+    800 : #1e2227,
+    900 : #13161a,
+    A100 : #60a0ff,
+    A200 : #2d81ff,
+    A400 : #0064f9,
+    A700 : #0059e0,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #ffffff,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+/* For use in src/lib/core/theming/_palette.scss */
+$mat-warn-custom: (
+    50 : #ffeded,
+    100 : #ffd1d1,
+    200 : #ffb3b3,
+    300 : #ff9494,
+    400 : #ff7d7d,
+    500 : #ff6666,
+    600 : #ff5e5e,
+    700 : #ff5353,
+    800 : #ff4949,
+    900 : #ff3838,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #ffe1e1,
+    A700 : #ffc8c8,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+
+$md-primary: mat-palette($mat-primary-custom, 400, 900, 800);
+$md-warn: mat-palette($mat-warn-custom, 400, 500, 900);
+$md-accent: mat-palette($mat-basic-custom,500,300,800);
 
 $my-theme-foreground: (
   base: black ,
@@ -36,7 +140,7 @@ $my-theme-foreground: (
   secondary-text: $dark-secondary-text,
   icon: rgba(red, 0.54),
   icons: rgba(red, 0.54),
-  text: rgba(black, 0.87),
+  text: white,
   slider-min: rgba(red, 0.87),
   slider-off: rgba(red, 0.26),
   slider-off-active: rgba(red, 0.38),
@@ -81,3 +185,4 @@ $theme: (
 .background-color-primary {
   background-color:  mat-color($md-primary);
 }
+
