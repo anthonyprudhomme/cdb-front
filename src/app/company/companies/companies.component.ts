@@ -89,4 +89,12 @@ export class CompaniesComponent implements OnInit {
     return event;
   }
 
+  clearSearch() {
+    this.searchValue = '';
+    this.pageEvent.pageIndex = 0;
+    this.pageEvent.pageSize = 10;
+    this.paginator._pageIndex = 0;
+    this.changePage(this.pageEvent);
+  }
+
 }
