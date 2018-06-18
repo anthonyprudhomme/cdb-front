@@ -41,4 +41,18 @@ export class CompanyService {
   countCompanies(): Observable<number> {
     return this.http.get<number>(this._baseUrl + '/count');
   }
+
+  searchCompanies(search: string, page: number, results: number): Observable<Company[]> {
+    let params = new HttpParams();
+    params = params.append('search', search);
+    params = params.append('page', String(page));
+    params = params.append('results', String(results));
+    return this.http.get<Company[]>(this._baseUrl, {params: params});
+  }
+
+  countSearchedCompanies(search: string): Observable<number> {
+    let params = new HttpParams();
+    params = params.append('search', search);
+    return this.http.get<number>(this._baseUrl + '/count', {params: params});
+  }
 }

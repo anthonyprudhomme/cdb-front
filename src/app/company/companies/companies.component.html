@@ -8,10 +8,13 @@
         <input matInput placeholder="Search" [(ngModel)]="searchValue">
       </mat-form-field>
 
-        <mat-checkbox class="checkbox">Companies</mat-checkbox>
-        <mat-checkbox class="checkbox">Computers</mat-checkbox>
+      <mat-checkbox class="checkbox">Companies</mat-checkbox>
+      <mat-checkbox class="checkbox">Computers</mat-checkbox>
 
-        <button mat-raised-button color="primary" (click)="search()">Search</button>
+      <button mat-raised-button color="primary" (click)="search()">Search</button>
+      <button mat-icon-button (click)="clearSearch()">
+        <mat-icon aria-label="Clear search" color="warn">clear</mat-icon>
+      </button>
     </div>
 
     <div class="controlBarRight">
@@ -23,25 +26,24 @@
 
   <table class="customTable">
     <thead>
-      <th>Name</th>
-      <th>See computers</th>
-      <th>Delete</th>
+    <th>Name</th>
+    <th>See computers</th>
+    <th>Delete</th>
     </thead>
     <tr *ngFor=" let company of companies" app-company [company]="company" (delete)="recipeDeleted(company)">
     </tr>
   </table>
+
+  <mat-paginator #paginator *ngIf="pageEvent" [length]="pageEvent.length"
+                 [pageSize]="pageEvent.pageSize"
+                 [pageSizeOptions]="pageSizeOptions"
+                 (page)="pageEvent = changePage($event)"
+                 [showFirstLastButtons]="true">
+  </mat-paginator>
 </div>
 
 <mat-toolbar color="primary" class="footer">
-  <mat-toolbar-row>
-    <div id="footer-copyright">Computer Database 2018&nbsp;&#169;</div>
-    <span class="example-spacer"></span>
-
-    <mat-paginator *ngIf="pageEvent" [length]="pageEvent.length"
-                   [pageSize]="pageEvent.pageSize"
-                   [pageSizeOptions]="pageSizeOptions"
-                   (page)="pageEvent = changePage($event)">
-    </mat-paginator>
-
-  </mat-toolbar-row>
+  <span class="example-spacer"></span>
+  <div id="footer-copyright">Computer Database 2018&nbsp;&#169;</div>
+  <span class="example-spacer"></span>
 </mat-toolbar>
