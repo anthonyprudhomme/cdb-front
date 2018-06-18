@@ -1,3 +1,25 @@
-<p>
-  computers works!
-</p>
+<div class="container" @staggerAnim>
+
+  <div class="controlBar background-color-primary">
+    <div>
+
+      <mat-form-field>
+        <mat-icon matPrefix>search</mat-icon>
+        <input matInput placeholder="Search">
+      </mat-form-field>
+
+      <mat-checkbox class="checkbox">Companies</mat-checkbox>
+      <mat-checkbox class="checkbox">Computers</mat-checkbox>
+
+      <button mat-raised-button color="primary">Search</button>
+      <button mat-icon-button>
+        <mat-icon aria-label="Clear search" color="warn">clear</mat-icon>
+      </button>
+    </div>
+
+    <div class="controlBarRight">
+      <button mat-raised-button color="primary">Create a new computer</button>
+    </div>
+
+  </div>
+</div>
