@@ -8,7 +8,6 @@
         <input matInput placeholder="Search" [(ngModel)]="searchValue">
       </mat-form-field>
 
-      <!-- TODO : align -->
         <mat-checkbox class="checkbox">Companies</mat-checkbox>
         <mat-checkbox class="checkbox">Computers</mat-checkbox>
 
@@ -32,3 +31,17 @@
     </tr>
   </table>
 </div>
+
+<mat-toolbar color="primary" class="footer">
+  <mat-toolbar-row>
+    <div id="footer-copyright">Computer Database 2018&nbsp;&#169;</div>
+    <span class="example-spacer"></span>
+
+    <mat-paginator *ngIf="pageEvent" [length]="pageEvent.length"
+                   [pageSize]="pageEvent.pageSize"
+                   [pageSizeOptions]="pageSizeOptions"
+                   (page)="pageEvent = changePage($event)">
+    </mat-paginator>
+
+  </mat-toolbar-row>
+</mat-toolbar>
