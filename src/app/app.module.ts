@@ -17,7 +17,9 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LoginCreateComponent } from './login/login-create/login-create.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { FooterComponent } from './footer/footer.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -45,6 +47,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     FormsModule,
     MatIconModule,
     ReactiveFormsModule,
+    FlexLayoutModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

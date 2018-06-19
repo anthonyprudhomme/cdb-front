@@ -12,6 +12,10 @@
   min-width: 1%;
 }
 
+button{
+  margin: 1%;
+}
+
 .container {
   margin-bottom: 25px;
 }
@@ -22,11 +26,12 @@
 
 .controlBar {
   width: 100%;
-  padding-left: 24px;
+  margin-left: 0px;
+  //padding-left: 24px;
   margin-bottom: 15px;
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
+  //flex-wrap: nowrap;
   justify-content: space-between;
 }
 
