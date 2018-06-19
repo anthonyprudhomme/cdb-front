@@ -1,3 +1,21 @@
-<p>
-  company-update works!
-</p>
+<div class="container">;
+  <div class="example-container">
+    <form class="example-container" [formGroup]=companyAddForm>
+      <mat-form-field>
+        <input matInput placeholder="Name" required formControlName="name" name="name" />
+        <mat-error>
+          Name of company is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Url de l'image" formControlName="picture" name="picture">
+        <mat-error>
+          URL should be correct [http(s):// (...) .(img|...|png)]
+        </mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)=submit()>Confirmer</button>
+
+    </form>
+  </div>
+</div>

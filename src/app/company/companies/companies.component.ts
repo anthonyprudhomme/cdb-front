@@ -102,7 +102,9 @@ export class CompaniesComponent implements OnInit {
     this.pageEvent.pageSize = 10;
 
     // To bypass pageEvent.pageindex api bug
-    this.paginator._pageIndex = 0;
+    if (null != this.paginator) {
+      this.paginator._pageIndex = 0;
+    }
   }
 
 }
