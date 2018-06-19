@@ -1,38 +1,38 @@
 <div class="container" *ngIf="companies" @staggerAnim>
 
-  <div class="controlBar">
+  <div class="controlBar shadow">
     <div>
-
       <mat-form-field>
-        <mat-icon matPrefix>search</mat-icon>
-        <input matInput placeholder="Search" [(ngModel)]="searchValue">
+          <mat-icon *ngIf="searchValue"
+                    matPrefix
+                    class="clearSearchIcon"
+                    aria-label="Clear search"
+                    (click)="clearSearch()"
+                    color="warn">clear</mat-icon>
+
+          <mat-icon *ngIf="!searchValue"
+                    matPrefix>search</mat-icon>
+
+          <input matInput placeholder="Search" [(ngModel)]="searchValue">
       </mat-form-field>
 
-      <button mat-icon-button (click)="clearSearch()">
-        <mat-icon aria-label="Clear search" color="warn">clear</mat-icon>
-      </button>
-
-      <button mat-raised-button color="primary" (click)="search()">Search</button>
-
+      <button mat-raised-button class="searchButton" color="primary" (click)="search()">Search</button>
     </div>
 
     <div class="controlBarRight">
       <button mat-raised-button color="primary" (click)="create()">Create a new company</button>
     </div>
-
   </div>
 
-  <div class="row">
-  <table class="customTable table table-bordered">
+  <table class="customTable table table-bordered col-12 shadow">
     <thead>
-    <th style="width: 66.6%">Name</th>
-    <th style="width: 16.6%">See computers</th>
-    <th style="width: 16.6%">Delete</th>
+    <th class="col-8">Name</th>
+    <th class="col-2">See computers</th>
+    <th class="col-2">Delete</th>
     </thead>
     <tr *ngFor=" let company of companies" app-company [company]="company" (delete)="companyDeleted(company)">
     </tr>
   </table>
-  </div>
 
   <mat-paginator color="primary" #paginator *ngIf="pageEvent" [length]="pageEvent.length"
                  [pageSize]="pageEvent.pageSize"
