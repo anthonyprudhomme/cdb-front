@@ -34,7 +34,7 @@
   </table>
   </div>
 
-  <mat-paginator #paginator *ngIf="pageEvent" [length]="pageEvent.length"
+  <mat-paginator color="primary" #paginator *ngIf="pageEvent" [length]="pageEvent.length"
                  [pageSize]="pageEvent.pageSize"
                  [pageSizeOptions]="pageSizeOptions"
                  (page)="pageEvent = changePage($event)"
