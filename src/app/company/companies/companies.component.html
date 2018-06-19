@@ -2,7 +2,6 @@
 
   <div class="controlBar">
     <div>
-
       <mat-form-field>
         <mat-icon matPrefix>search</mat-icon>
         <input matInput placeholder="Search" [(ngModel)]="searchValue">
@@ -13,16 +12,14 @@
       </button>
 
       <button mat-raised-button color="primary" (click)="search()">Search</button>
-
     </div>
 
     <div class="controlBarRight">
       <button mat-raised-button color="primary" (click)="create()">Create a new company</button>
     </div>
-
   </div>
 
-  <div class="row">
+
   <table class="customTable table table-bordered col-12">
     <thead>
     <th class="col-8">Name</th>
@@ -32,7 +29,6 @@
     <tr *ngFor=" let company of companies" app-company [company]="company" (delete)="companyDeleted(company)">
     </tr>
   </table>
-  </div>
 
   <mat-paginator #paginator *ngIf="pageEvent" [length]="pageEvent.length"
                  [pageSize]="pageEvent.pageSize"
