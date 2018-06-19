@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import {MatButtonModule, MatPaginatorModule, MatToolbarModule} from '@angular/material';
+import {MatBadgeModule, MatButtonModule, MatPaginatorModule, MatToolbarModule} from '@angular/material';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule, MatDialogModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
@@ -22,7 +22,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatIconModule,
     MatPaginatorModule,
     MatFormFieldModule,
-    MatDialogModule
+    MatDialogModule,
+    MatBadgeModule
   ],
   exports: [
     MatInputModule,
@@ -35,7 +36,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatIconModule,
     MatPaginatorModule,
     MatFormFieldModule,
-    MatDialogModule
+    MatDialogModule,
+    MatBadgeModule
   ],
   declarations: []
 })
