@@ -1,25 +1,19 @@
 <div class="container" *ngIf="companies" @staggerAnim>
 
-  <div class="controlBar">
-    <div>
+  <div class="row align-items-center controlBar">
+      <span class="col-md-3">
+        <mat-form-field>
+          <mat-icon matPrefix>search</mat-icon>
+          <input matInput placeholder="Search" [(ngModel)]="searchValue">
+        </mat-form-field>
 
-      <mat-form-field>
-        <mat-icon matPrefix>search</mat-icon>
-        <input matInput placeholder="Search" [(ngModel)]="searchValue">
-      </mat-form-field>
-
-      <button mat-icon-button (click)="clearSearch()">
-        <mat-icon aria-label="Clear search" color="warn">clear</mat-icon>
-      </button>
-
-      <button mat-raised-button color="primary" (click)="search()">Search</button>
-
-    </div>
-
-    <div class="controlBarRight">
-      <button mat-raised-button color="primary" (click)="create()">Create a new company</button>
-    </div>
-
+        <button mat-icon-button (click)="clearSearch()">
+          <mat-icon aria-label="Clear search" color="warn">clear</mat-icon>
+        </button>
+      </span>
+      <button class="col-md-3" mat-raised-button color="primary" (click)="search()">Search</button>
+      <span class="col-md-2"></span>
+      <button class="col-md-3"mat-raised-button color="primary" (click)="create()">Create a new company</button>
   </div>
 
   <div class="row">
