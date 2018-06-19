@@ -1,6 +1,8 @@
 <td (click)="updateCompany()">{{company.name}}</td>
 <td class="text-center" >
-  <button mat-raised-button color="primary">
+  <button mat-raised-button color="primary"
+          matBadge="{{company.numberOfComputers}}" matBadgePosition="after"
+          matBadgeColor="{{company.numberOfComputers == 0 ? 'warn' : 'accent'}}">
     <mat-icon>computer</mat-icon>
   </button>
 </td>

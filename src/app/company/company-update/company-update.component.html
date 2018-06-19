@@ -8,12 +8,14 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field>
-        <input matInput placeholder="Url de l'image" formControlName="picture" name="picture">
+      <mat-form-field hintLabel="Max 255 characters">
+        <input matInput #input placeholder="Url de l'image" formControlName="picture" name="picture">
+        <mat-hint align="end">{{input.value?.length || 0}}/255</mat-hint>
         <mat-error>
           URL should be correct [http(s):// (...) .(img|...|png)]
         </mat-error>
       </mat-form-field>
+
       <button mat-raised-button color="primary" (click)=submit()>Confirmer</button>
 
     </form>

@@ -1,8 +1,7 @@
 <div class="container" *ngIf="companies" @staggerAnim>
 
-  <div class="controlBar shadow">
-    <div>
-      <mat-form-field>
+  <div class="row align-items-center controlBar shadow">
+      <mat-form-field class="col-md-3 col-sm-12">
           <mat-icon *ngIf="searchValue"
                     matPrefix
                     class="clearSearchIcon"
@@ -16,19 +15,16 @@
           <input matInput placeholder="Search" [(ngModel)]="searchValue">
       </mat-form-field>
 
-      <button mat-raised-button class="searchButton" color="primary" (click)="search()">Search</button>
-    </div>
-
-    <div class="controlBarRight">
-      <button mat-raised-button color="primary" (click)="create()">Create a new company</button>
-    </div>
+      <button class="col-md-1" mat-raised-button color="primary" (click)="search()">Search</button>
+      <span class="col-md-3"></span>
+      <button class="col-md-3 col-lg-2" mat-raised-button color="primary" (click)="create()">Create a new company</button>
   </div>
 
-  <table class="customTable table table-bordered col-12 shadow">
+  <table class="customTable table table-bordered shadow">
     <thead>
-    <th class="col-8">Name</th>
-    <th class="col-2">See computers</th>
-    <th class="col-2">Delete</th>
+    <th style="width: 66.6%">Name</th>
+    <th style="width: 16.6%">See computers</th>
+    <th style="width: 16.6%">Delete</th>
     </thead>
     <tr *ngFor=" let company of companies" app-company [company]="company" (delete)="companyDeleted(company)">
     </tr>
@@ -41,9 +37,3 @@
                  [showFirstLastButtons]="true">
   </mat-paginator>
 </div>
-
-<mat-toolbar color="accent" class="footer">
-  <span class="example-spacer"></span>
-  <div id="footer-copyright">Computer Database 2018&nbsp;&#169;</div>
-  <span class="example-spacer"></span>
-</mat-toolbar>
