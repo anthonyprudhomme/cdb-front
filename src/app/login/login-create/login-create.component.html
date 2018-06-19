@@ -1,40 +1,38 @@
-<div class="container">
-  <mat-card class="example-card">
-    <mat-card-header>
-      <mat-card-title color="primary">Account creation</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
+<div class="cardContainer">
+
+  <mat-card class="card">
+    <div class="center">
+      <h1>Account creation</h1>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="width-75">
       <form class="example-form" [formGroup]="loginForm">
-        <table class="example-full-width" cellspacing="0">
-          <tr>
-            <td>
-              <mat-form-field class="example-full-width">
-                <input matInput placeholder="Username" formControlName="username" required>
-                <mat-error>Username must be at least 5 characters long and musn't contain whitespaces.</mat-error>
-              </mat-form-field>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <mat-form-field class="example-full-width">
-                <input matInput placeholder="Password" type="password" formControlName="password" required>
-                <mat-error>Password must be at least 8 characters long and contain at least one digit, one lowercase character and one uppercase character.</mat-error>
-              </mat-form-field>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <mat-form-field class="example-full-width">
-                <input matInput placeholder="Confirm password" type="password" formControlName="passwordConfirmation" required>
-                <mat-error>Password confirmation doesn't match the passwrd.</mat-error>
-              </mat-form-field>
-            </td>
-          </tr>
-        </table>
+
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Username" formControlName="username" required>
+          <mat-error>Username must be at least 5 characters long and musn't contain whitespaces.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Password" type="password" formControlName="password" required>
+          <mat-error>Password must be at least 8 characters long and contain at least one digit, one lowercase character and one uppercase
+            character.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Confirm password" type="password" formControlName="passwordConfirmation" required>
+          <mat-error>Password confirmation doesn't match the passwrd.</mat-error>
+        </mat-form-field>
+
       </form>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button (click)="createAccount()" color="primary">Login</button>
-    </mat-card-actions>
+    </div>
+
+    <div class="center">
+      <button id="registerButton" mat-raised-button (click)="createAccount()" color="primary">Register</button>
+    </div>
+
   </mat-card>
 </div>
