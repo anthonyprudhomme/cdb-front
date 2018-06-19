@@ -1,31 +1,37 @@
-<div class="container">
-  <mat-card class="example-card">
-    <mat-card-header>
-      <mat-card-title>Login</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <form class="example-form" [formGroup]="loginForm">
-        <table class="example-full-width" cellspacing="0">
-          <tr>
-            <td>
-              <mat-form-field class="example-full-width">
-              <input matInput placeholder="Username" formControlName="username" required>
-              </mat-form-field>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <mat-form-field class="example-full-width">
-                <input matInput placeholder="Password" type="password" formControlName="password" required>
-              </mat-form-field>
-            </td>
-          </tr>
-        </table>
+<div class="cardContainer">
+
+  <mat-card class="card">
+    <div class="row margin-bottom">
+      <div class="col-2">
+        <img src="assets/computer_database.png" alt="Login">
+      </div>
+      <div class="col-8 offset-2">
+        <h1>Login</h1>
+      </div>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="width-75">
+      <form [formGroup]="loginForm">
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Username" formControlName="username" required>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Password" type="password" formControlName="password" required>
+        </mat-form-field>
       </form>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button (click)="login()" color="primary">Login</button>
-    </mat-card-actions>
-    New to CDB ? <button mat-raised-button [routerLink]="['/login/add']" color="primary" style="margin-left: 20px;">Create an account</button>
+    </div>
+
+    <div id="loginButtonContainer" class="center">
+      <button id="loginButton" mat-raised-button (click)="login()" color="primary">Login</button>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div id="accountButtonContainer" class="right">
+      New to CDB ?
+      <button id="accountButton" mat-raised-button [routerLink]="['/login/add']" color="primary">Create an account</button>
+    </div>
   </mat-card>
 </div>
