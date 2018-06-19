@@ -1,7 +1,3 @@
-.example-spacer {
-  flex: 1 1 auto;
-}
-
 #footer-copyright {
   font-size: small;
 }
@@ -44,3 +40,10 @@
   margin-right: 24px;
 }
 
+.clearSearchIcon:hover {
+  cursor:pointer;
+}
+
+.searchButton {
+  margin:10px;
+}
