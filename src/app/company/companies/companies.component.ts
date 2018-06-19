@@ -52,7 +52,13 @@ export class CompaniesComponent implements OnInit {
     this.companyService.countCompanies().subscribe(length => this.pageEvent.length = length);
   }
 
-  companyDeleted(company: Company) {
+  companyDeleted() {
+    if (this.pageEvent.pageIndex === (this.pageEvent.length - 1) / this.pageEvent.pageSize
+     && (this.pageEvent.length - 1) % this.pageEvent.pageSize === 0
+     && this.pageEvent.pageIndex > 0) {
+      this.pageEvent.pageIndex--;
+      this.paginator._pageIndex--;
+    }
     this.changePage(this.pageEvent);
   }
 
@@ -96,7 +102,9 @@ export class CompaniesComponent implements OnInit {
     this.pageEvent.pageSize = 10;
 
     // To bypass pageEvent.pageindex api bug
-    this.paginator._pageIndex = 0;
+    if (null != this.paginator) {
+      this.paginator._pageIndex = 0;
+    }
   }
 
 }
