@@ -88,7 +88,13 @@ export class CompaniesComponent implements OnInit {
       });
       this.companyService.countSearchedCompanies(this.searchValue).subscribe(length => this.pageEvent.length = length);
     }
+    this.scrollToTop();
     return event;
+  }
+
+  scrollToTop() {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
   }
 
   clearSearch() {
