@@ -30,6 +30,10 @@
     </tr>
   </table>
 
+  <button (click)="scrollToTop()" id="scrollButton" title="Go to top">
+      <mat-icon>arrow_upward</mat-icon>
+  </button>
+
   <mat-paginator color="primary" #paginator *ngIf="pageEvent" [length]="pageEvent.length"
                  [pageSize]="pageEvent.pageSize"
                  [pageSizeOptions]="pageSizeOptions"
