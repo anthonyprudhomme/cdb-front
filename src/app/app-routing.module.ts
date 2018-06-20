@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { CompaniesComponent } from './company/companies/companies.component';
 import { ComputersComponent } from './computer/computers/computers.component';
 import { LoginCreateComponent } from './login/login-create/login-create.component';
+import { AuthenticationFilterComponent } from './authentication-filter/authentication-filter.component';
 
 const routes: Routes = [
   {
@@ -21,7 +22,8 @@ const routes: Routes = [
   },
   {
     path: 'company',
-    component: CompaniesComponent
+    component: CompaniesComponent,
+    canActivate: [AuthenticationFilterComponent]
   },
   {
     path: 'company/add',
@@ -33,7 +35,8 @@ const routes: Routes = [
   },
   {
     path: 'computer',
-    component: ComputersComponent
+    component: ComputersComponent,
+    canActivate: [AuthenticationFilterComponent]
   },
   {
     path: 'computer/add',

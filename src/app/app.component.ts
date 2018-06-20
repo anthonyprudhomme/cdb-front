@@ -20,4 +20,5 @@ export class AppComponent {
     console.log(language);
     this.translate.use(language);
   }
+
 }

@@ -125,7 +125,7 @@ $mat-warn-custom: (
 );
 
 
-$md-primary: mat-palette($mat-primary-custom, 400, 900, 800);
+$md-primary: mat-palette($mat-primary-custom, 400, 400, 800);
 $md-warn: mat-palette($mat-warn-custom, 400, 500, 900);
 $md-accent: mat-palette($mat-basic-custom,500,300,800);
 
@@ -140,7 +140,7 @@ $my-theme-foreground: (
   secondary-text: $dark-secondary-text,
   icon: rgba(red, 0.54),
   icons: rgba(red, 0.54),
-  text: white,
+  text: rgba(black, 0.87),
   slider-min: rgba(red, 0.87),
   slider-off: rgba(red, 0.26),
   slider-off-active: rgba(red, 0.38),

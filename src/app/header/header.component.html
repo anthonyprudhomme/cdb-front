@@ -7,7 +7,7 @@
 
   <span class="spacer"></span>
 
-  <button mat-button *ngIf="isLoggedIn">{{ 'HEADER.LOG_OUT' | translate }}</button>
+  <button mat-button (click)=logout() *ngIf="isLoggedIn">{{ 'HEADER.LOG_OUT' | translate }}</button>
   <mat-icon class="navBarItem flag"><img src="assets/france.svg" alt="France flag" (click)="switchTo('fr')"></mat-icon>
   <mat-icon class="navBarItem flag"><img src="assets/united-kingdom.svg" alt="UK flag" (click)="switchTo('en')"></mat-icon>
 </mat-toolbar>
