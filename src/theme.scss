@@ -186,3 +186,21 @@ $theme: (
   background-color:  mat-color($md-primary);
 }
 
+.success-snackbar {
+  background: rgb(107, 177, 107);
+  color: azure;
+}
+
+.success-snackbar .mat-simple-snackbar-action {
+  color: azure;
+}
+
+.fail-snackbar {
+  background: rgb(107, 177, 107);
+  color: azure;
+}
+
+.fail-snackbar .mat-simple-snackbar-action {
+  color: azure;
+}
+
