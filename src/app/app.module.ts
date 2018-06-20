@@ -19,6 +19,10 @@ import { LoginCreateComponent } from './login/login-create/login-create.componen
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthenticationFilterComponent } from './authentication-filter/authentication-filter.component';
 
+import { FooterComponent } from './footer/footer.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
+
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
 }
@@ -30,6 +34,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     HeaderComponent,
     LoginComponent,
     LoginCreateComponent,
+    FooterComponent,
     AuthenticationFilterComponent,
   ],
   imports: [
@@ -45,6 +50,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     FormsModule,
     MatIconModule,
     ReactiveFormsModule,
+    FlexLayoutModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

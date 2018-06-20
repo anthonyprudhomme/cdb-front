@@ -2,9 +2,10 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import { Company } from '../company.model';
 import { CompanyService } from '../company.service';
 import { trigger, style, transition, animate, query, stagger } from '@angular/animations';
-import { MatPaginator, PageEvent, MatDialog} from '@angular/material';
+import { MatPaginator, PageEvent, MatDialog, MatSnackBar, MatSnackBarConfig } from '@angular/material';
 import { CompanyCreateComponent } from '../company-create/company-create.component';
 import { isUndefined } from 'util';
+
 
 @Component({
   selector: 'app-companies',
@@ -41,7 +42,7 @@ export class CompaniesComponent implements OnInit {
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
 
-  constructor(private companyService: CompanyService, private dialog: MatDialog) {}
+  constructor(private companyService: CompanyService, private dialog: MatDialog, private snackBar: MatSnackBar) {}
 
   ngOnInit() {
     this.pageEvent = new PageEvent();
@@ -52,8 +53,15 @@ export class CompaniesComponent implements OnInit {
     this.companyService.countCompanies().subscribe(length => this.pageEvent.length = length);
   }
 
-  companyDeleted(company: Company) {
+  companyDeleted() {
+    if (this.pageEvent.pageIndex === (this.pageEvent.length - 1) / this.pageEvent.pageSize
+     && (this.pageEvent.length - 1) % this.pageEvent.pageSize === 0
+     && this.pageEvent.pageIndex > 0) {
+      this.pageEvent.pageIndex--;
+      this.paginator._pageIndex--;
+    }
     this.changePage(this.pageEvent);
+    this.openSnackBar('Company successfully deleted', 'success-snackbar');
   }
 
   search() {
@@ -66,6 +74,7 @@ export class CompaniesComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (!isUndefined(result)) {
         this.changePage(this.pageEvent);
+        this.openSnackBar('Company successfully created', 'success-snackbar');
       }
     });
   }
@@ -96,7 +105,17 @@ export class CompaniesComponent implements OnInit {
     this.pageEvent.pageSize = 10;
 
     // To bypass pageEvent.pageindex api bug
-    this.paginator._pageIndex = 0;
+    if (null != this.paginator) {
+      this.paginator._pageIndex = 0;
+    }
+  }
+
+  openSnackBar(message: string, className: string) {
+    const config = new MatSnackBarConfig();
+    config.duration = 2000;
+    config.panelClass = [className];
+    config.horizontalPosition = 'end';
+    this.snackBar.open(message, 'OK', config);
   }
 
 }

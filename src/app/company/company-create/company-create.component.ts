@@ -23,20 +23,16 @@ export class CompanyCreateComponent implements OnInit {
     this.companyAddForm = new FormGroup({
       name : new FormControl(this.company.name, [Validators.required]),
       picture: new FormControl('',
-        [Validators.pattern('(https|http).\/\/(.)*'), Validators.required]),
+        [Validators.pattern('(https|http).\/\/(.)*'), Validators.required, Validators.maxLength(255)]),
       description: new FormControl()
     });
   }
 
-  onNoClick() {
-    this.dialog.close();
-  }
-
   submit() {
     if (this.companyAddForm.valid) {
-     // this.company = this.companyAddForm.value; /!\ Quand la picture sera la
       const company = new Company();
       company.name = this.companyAddForm.value.name;
+      company.imageurl = this.companyAddForm.value.picture;
       this.service.postCompany(company).subscribe();
       this.dialog.close({'send': 'OK'});
     }

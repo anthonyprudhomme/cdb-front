@@ -1,14 +1,46 @@
-<mat-toolbar color="accent">
-  <button mat-button [routerLink]="['/company']">
-    <mat-icon class="logo" >computer</mat-icon>
-  </button>
-  <button mat-button [routerLink]="['/company']">{{ 'HEADER.COMPANIES' | translate }}</button>
-  <button mat-button [routerLink]="['/computer']">{{ 'HEADER.COMPUTERS' | translate }}</button>
 
-  <span class="spacer"></span>
+  <mat-toolbar color="accent">
+    <mat-toolbar-row>
+      <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Computer Database</span>
+      <div fxShow="true" fxHide.lt-md="true">
+        <!-- The following menu items will be hidden on both SM and XS screen sizes -->
+        <button mat-button [routerLink]="['/company']">
+          <mat-icon class="logo" >computer</mat-icon>
+        </button>
+        <button mat-button [routerLink]="['/company']">{{ 'HEADER.COMPANIES' | translate }}</button>
+        <button mat-button [routerLink]="['/computer']">{{ 'HEADER.COMPUTERS' | translate }}</button>
+      </div>
+      <span class="spacer"></span>
+      <div fxShow="true" fxHide.lt-md="true">
+        <button mat-button (click)=logout() *ngIf="isLoggedIn">{{ 'HEADER.LOG_OUT' | translate }}</button>
+        <mat-icon class="navBarItem flag"><img src="assets/france.svg" alt="France flag" (click)="switchTo('fr')"></mat-icon>
+        <mat-icon class="navBarItem flag"><img src="assets/united-kingdom.svg" alt="UK flag" (click)="switchTo('en')"></mat-icon>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
 
-  <button mat-button (click)=logout() *ngIf="isLoggedIn">{{ 'HEADER.LOG_OUT' | translate }}</button>
-  <mat-icon class="navBarItem flag"><img src="assets/france.svg" alt="France flag" (click)="switchTo('fr')"></mat-icon>
-  <mat-icon class="navBarItem flag"><img src="assets/united-kingdom.svg" alt="UK flag" (click)="switchTo('en')"></mat-icon>
-</mat-toolbar>
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav>
+      <mat-nav-list>
+        <div><button mat-button [routerLink]="['/company']">{{ 'HEADER.COMPANIES' | translate }}</button></div>
+        <div><button mat-button [routerLink]="['/computer']">{{ 'HEADER.COMPUTERS' | translate }}</button></div>
+        <span class="spacer"></span>
+        <div><button mat-button (click)=logout() *ngIf="isLoggedIn">{{ 'HEADER.LOG_OUT' | translate }}</button></div>
+        <div>
+          <mat-icon class="navBarItem flag"><img src="assets/france.svg" alt="France flag" (click)="switchTo('fr')"></mat-icon>
+          <mat-icon class="navBarItem flag"><img src="assets/united-kingdom.svg" alt="UK flag" (click)="switchTo('en')"></mat-icon>
+        </div>
+        <a (click)="sidenav.toggle()" mat-list-item>
+          <mat-icon>close</mat-icon> Close
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content fxFlexFill>
+      <div class="vertical-space-top"></div>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 
