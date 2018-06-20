@@ -9,6 +9,8 @@ import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSidenavModule, MatListModule } from '@angular/material';
+import { MatSnackBarModule } from '@angular/material';
+
 
 @NgModule({
   imports: [
@@ -27,7 +29,8 @@ import { MatSidenavModule, MatListModule } from '@angular/material';
     MatDividerModule,
     MatSidenavModule,
     MatListModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatSnackBarModule
   ],
   exports: [
     MatInputModule,
@@ -44,7 +47,8 @@ import { MatSidenavModule, MatListModule } from '@angular/material';
     MatDividerModule,
     MatSidenavModule,
     MatListModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatSnackBarModule
   ],
   declarations: []
 })
