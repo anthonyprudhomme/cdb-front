@@ -55,7 +55,7 @@ export class CompaniesComponent implements OnInit {
 
   ngOnInit() {
     this.pageEvent = new PageEvent();
-    this.companyService.getCompaniesAtPage(1, 10).subscribe(companies => {
+    this.companyService.getCompaniesAtPage(1, this.pageSizeOptions[0]).subscribe(companies => {
       this.companies = companies;
       this.resetPaginator();
     }, err => {console.log(err); });
@@ -72,7 +72,7 @@ export class CompaniesComponent implements OnInit {
     } else {
         document.getElementById('scrollButton').style.display = 'none';
     }
-}
+  }
 
   companyDeleted() {
     if (this.pageEvent.pageIndex === (this.pageEvent.length - 1) / this.pageEvent.pageSize
