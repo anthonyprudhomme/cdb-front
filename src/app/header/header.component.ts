@@ -7,14 +7,11 @@ import { Router } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   @Output() switchLanguage: EventEmitter<string> = new EventEmitter();
   isLoggedIn = true;
 
   constructor(private service: LoginService, private route: Router) { }
-
-  ngOnInit() {
-  }
 
   switchTo(locale: string) {
     this.switchLanguage.emit(locale);

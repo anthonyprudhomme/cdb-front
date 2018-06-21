@@ -8,16 +8,13 @@ import { ComputerDeleteComponent } from './computer-delete/computer-delete.compo
   templateUrl: './computer.component.html',
   styleUrls: ['./computer.component.scss']
 })
-export class ComputerComponent implements OnInit {
+export class ComputerComponent {
 
   @Input() computer: Computer;
   @Output() delete: EventEmitter<Computer> = new EventEmitter();
   deleteDialogRef: MatDialogRef<ComputerDeleteComponent, any>;
 
   constructor(private dialog: MatDialog) { }
-
-  ngOnInit() {
-  }
 
   deleteComputer() {
     this.deleteDialogRef = this.dialog.open(ComputerDeleteComponent, {data: this.computer});

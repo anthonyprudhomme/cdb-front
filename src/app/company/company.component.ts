@@ -9,16 +9,13 @@ import { CompanyDeleteComponent } from './company-delete/company-delete.componen
   templateUrl: './company.component.html',
   styleUrls: ['./company.component.scss']
 })
-export class CompanyComponent implements OnInit {
+export class CompanyComponent {
 
   @Input() company: Company;
   @Output() delete: EventEmitter<Company> = new EventEmitter();
   deleteDialogRef: MatDialogRef<CompanyDeleteComponent, any>;
 
   constructor(private dialog: MatDialog) {
-  }
-
-  ngOnInit() {
   }
 
   deleteCompany() {

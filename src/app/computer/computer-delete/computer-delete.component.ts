@@ -8,16 +8,13 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
   templateUrl: './computer-delete.component.html',
   styleUrls: ['./computer-delete.component.scss']
 })
-export class ComputerDeleteComponent implements OnInit {
+export class ComputerDeleteComponent {
   computer: Computer;
 
   constructor(private companyService: ComputerService,
               private dialog: MatDialogRef<ComputerDeleteComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any) {
     this.computer = data;
-  }
-
-  ngOnInit() {
   }
 
   delete() {
