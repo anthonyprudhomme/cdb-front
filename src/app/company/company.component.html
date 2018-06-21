@@ -1,6 +1,9 @@
 <td class="aligned-td" (click)="updateCompany()">
-  <img class="squared" src={{company.imageUrl}}>
-  <span >{{company.name}}</span>
+  <span class="img-hover">
+    <img class="squared {{company.id}}" src={{company.imageUrl}} />
+    <img class="squared" (mouseenter)='showImage(company.id)' (mouseleave)='hideImage(company.id)' src={{company.imageUrl}} />
+  </span>
+  <span>{{company.name}}</span>
 </td>
 <td class="text-center aligned-td" >
   <button mat-raised-button color="primary"
@@ -14,3 +17,5 @@
     <mat-icon>delete</mat-icon>
   </button>
 </td>
+
+

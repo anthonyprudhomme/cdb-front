@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Company } from './company.model';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +31,12 @@ export class CompanyService {
   }
 
   postCompany(company: Company): Observable<Company> {
-    return this.http.post<Company>(this._baseUrl, company);
+    const options = { headers: new HttpHeaders().set('Content-Type', 'application/json'),
+    withCredentials: true};
+    const options3 = new HttpHeaders().set('Content-Type', 'application/json');
+    console.log(company);
+    console.log(JSON.stringify(company));
+    return this.http.post<Company>(this._baseUrl, JSON.stringify(company), {headers: options3 });
   }
 
   updateCompany(company: Company): Observable<Company> {
