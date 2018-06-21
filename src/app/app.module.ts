@@ -11,14 +11,15 @@ import { LoginComponent } from './login/login.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { RouterModule} from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTableModule } from '@angular/material';
+import { MatTableModule, MatPaginatorIntl } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LoginCreateComponent } from './login/login-create/login-create.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthenticationFilterComponent } from './authentication-filter/authentication-filter.component';
-
+import { PaginatorIntlService } from './/paginator-intl';
+import { TranslateService } from '@ngx-translate/core';
 
 import { FooterComponent } from './footer/footer.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -36,7 +37,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     LoginComponent,
     LoginCreateComponent,
     FooterComponent,
-    AuthenticationFilterComponent,
+    AuthenticationFilterComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +52,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     FormsModule,
     MatIconModule,
     ReactiveFormsModule,
-    FlexLayoutModule,
+    FlexLayoutModule
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -60,7 +61,18 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
       }
     })
   ],
-  providers: [AuthenticationFilterComponent],
+  providers: [
+    AuthenticationFilterComponent,
+    {
+      provide: MatPaginatorIntl,
+      useFactory: (translate) => {
+        const service = new PaginatorIntlService();
+        service.injectTranslateService(translate);
+        return service;
+      },
+      deps: [TranslateService]
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

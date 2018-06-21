@@ -4,13 +4,20 @@ import { ComputerComponent } from './computer.component';
 import { ComputersComponent } from './computers/computers.component';
 import { ComputerCreateComponent } from './computer-create/computer-create.component';
 import { ComputerUpdateComponent } from './computer-update/computer-update.component';
-import {CustomMaterialModule} from '../custom-material/custom-material.module';
+import { CustomMaterialModule } from '../custom-material/custom-material.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     CommonModule,
-    CustomMaterialModule
+    CustomMaterialModule,
+    TranslateModule
   ],
-  declarations: [ComputerComponent, ComputersComponent, ComputerCreateComponent, ComputerUpdateComponent]
+  declarations: [
+    ComputerComponent,
+    ComputersComponent,
+    ComputerCreateComponent,
+    ComputerUpdateComponent
+  ]
 })
 export class ComputerModule { }

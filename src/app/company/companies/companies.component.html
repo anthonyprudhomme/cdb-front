@@ -11,18 +11,18 @@
           <mat-icon *ngIf="!searchValue"
                     matPrefix>search</mat-icon>
 
-          <input matInput placeholder="Search" [(ngModel)]="searchValue">
+          <input matInput placeholder="{{ 'COMPANY.SEARCH' | translate }}" [(ngModel)]="searchValue">
       </mat-form-field>
-      <button class="col-md-1" mat-raised-button color="primary" (click)="search()">Search</button>
+      <button class="col-md-1" mat-raised-button color="primary" (click)="search()">{{ 'COMPANY.SEARCH' | translate }}</button>
       <span class="col-md-3"></span>
-      <button class="col-md-3 col-lg-2" mat-raised-button color="primary" (click)="create()">Create a new company</button>
+      <button class="col-md-3 col-lg-2" mat-raised-button color="primary" (click)="create()">{{ 'COMPANY.CREATE' | translate }}</button>
   </div>
 
   <table class="table table-bordered customTable shadow">
     <thead>
-      <th style="width: 66.6%">Company</th>
-      <th style="width: 16.6%">See computers</th>
-      <th style="width: 16.6%">Delete</th>
+      <th style="width: 66.6%">{{ 'COMPANY.COMPANY' | translate }}</th>
+      <th style="width: 16.6%">{{ 'COMPANY.SEE' | translate }}</th>
+      <th style="width: 16.6%">{{ 'COMPANY.DELETE' | translate }}</th>
     </thead>
     <tr *ngFor=" let company of companies" app-company [company]="company" (delete)="companyDeleted(company)">
     </tr>
@@ -32,7 +32,7 @@
       <mat-icon>arrow_upward</mat-icon>
   </button>
 
-  <mat-paginator color="primary" #paginator *ngIf="pageEvent" [length]="pageEvent.length"
+  <mat-paginator id="paginator" color="primary" #paginator *ngIf="pageEvent" [length]="pageEvent.length"
                  [pageSize]="pageEvent.pageSize"
                  [pageSizeOptions]="pageSizeOptions"
                  (page)="pageEvent = changePage($event)"

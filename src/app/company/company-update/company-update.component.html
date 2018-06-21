@@ -1,27 +1,27 @@
 <div class="cardContainer">
   <div>
-    <h1>Update computer</h1>
+    <h1>{{ 'COMPANY.UPDATE_COMPANY' | translate }}</h1>
 
     <mat-divider></mat-divider>
 
     <form [formGroup]=companyAddForm>
       <mat-form-field class="full-width">
-        <input matInput placeholder="Name" required formControlName="name" name="name" />
+        <input matInput placeholder="{{ 'COMPANY.NAME' | translate }}" required formControlName="name" name="name" />
         <mat-error>
-          Name of company is required
+            {{ 'COMPANY.ERROR.NAME' | translate }}
         </mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width" hintLabel="Max 255 characters">
-        <input matInput #input placeholder="Url de l'image" formControlName="imageUrl" name="imageUrl">
+        <input matInput #input placeholder="{{ 'COMPANY.URL' | translate }}" formControlName="imageUrl" name="imageUrl">
         <mat-hint align="end">{{input.value?.length || 0}}/255</mat-hint>
         <mat-error>
-          URL should be correct [http(s):// (...) .(img|...|png)]
+            {{ 'COMPANY.ERROR.URL' | translate }} [http(s):// (...) .(img|...|png)]
         </mat-error>
       </mat-form-field>
 
       <div>
-        <button mat-raised-button color="primary" (click)=submit()>Confirmer</button>
+        <button mat-raised-button color="primary" (click)=submit()>{{ 'GENERAL.CONFIRM' | translate }}</button>
       </div>
     </form>
   </div>

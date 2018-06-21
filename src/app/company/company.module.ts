@@ -7,12 +7,14 @@ import { CompanyUpdateComponent } from './company-update/company-update.componen
 import { CustomMaterialModule } from '../custom-material/custom-material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CompanyDeleteComponent } from './company-delete/company-delete.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     CommonModule,
     CustomMaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule
   ],
   declarations: [
     CompanyComponent,

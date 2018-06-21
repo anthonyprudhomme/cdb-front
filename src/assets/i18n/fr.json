@@ -7,18 +7,29 @@
   "COMPANY":{
     "SEARCH": "Rechercher",
     "COMPANIES": "Entreprises",
+    "COMPANY": "Entreprise",
     "COMPUTERS": "Ordinateurs",
-    "CREATE": "Créer une nouvelle entreprise",
+    "CREATE": "Créer une entreprise",
     "NAME": "Nom",
+    "URL": "URL de l'image",
     "SEE": "Voir les ordinateurs",
     "DELETE": "Supprimer",
-    "LIST": "Lister les ordinateurs",
-    "DEL_COMPANY": "Supprimer l'entreprise"
+    "DELETE_COMPANY": "Supprimer une entreprise",
+    "CONFIRM_DELETION": "Êtes-vous sûr de vouloir supprimer {{name}} ? Cela va aussi supprimer ses {{number}} ordinateurs.",
+    "UPDATE_COMPANY": "Éditer une entreprise",
+    "DELETE_SUCCESS": "Entreprise supprimée avec succès",
+    "CREATE_SUCCESS": "Entreprise créée avec succès",
+    "UPDATE_SUCCESS": "Entreprise éditée avec succès",
+    "ERROR":{
+      "NAME": "Le nom de l'entreprise est requis",
+      "URL": "L'URL doit être correct "
+    }
   },
   "COMPUTER":{
     "SEARCH": "Rechercher",
     "COMPUTERS": "Ordinateurs",
-    "CREATE": "Créer un nouvel ordinateur",
+    "COMPUTER": "Ordinateur",
+    "CREATE": "Créer un ordinateur",
     "NAME": "Nom",
     "INTRODUCED": "Introduit",
     "DISCONTINUED": "Retiré",
@@ -26,16 +37,34 @@
     "DEL_COMPUTER": "Suprimmer l'ordinateur"
   },
   "LOGIN":{
+    "CREATE": "Création de compte",
+    "CREATE_ACCOUNT": "Créer un compte",
+    "LOGIN": "Se connecter",
     "LOG_IN": "Se connecter",
-    "LOGIN": "Identifiant",
     "PASSWORD": "Mot de passe",
-    "CONFIRM_PASSWORD": "Confirmation du mot de passe"
+    "CONFIRM_PASSWORD": "Confirmation du mot de passe",
+    "USERNAME": "Identifiant",
+    "REGISTER": "S'enregistrer",
+    "NEW": "Nouveau sur CDB ?",
+    "ERROR": {
+      "USERNAME": "L'identifiant doit être long d'au moins 5 caractères et ne doit pas contenir d'espaces.",
+      "PASSWORD": "Le mot de passe doit contenir au moins 8 caractères et avoir au moins une minuscule, une majuscule et un chiffre.",
+      "PASSWORD_CONFIRM": "La confirmation du mot de passe ne correspond pas au mot de passe."
+    }
   },
   "GENERAL":{
     "CREATE": "Créer",
-    "CANCEL": "Annuler"
+    "CANCEL": "Annuler",
+    "CONFIRM": "Confirmer",
+    "NO": "Non",
+    "YES": "Oui"
   },
-  "ERROR": {
-
+  "PAGINATOR": {
+    "ITEMS":"Lignes par page",
+    "NEXT": "Page suivante",
+    "PREVIOUS": "Page précédente",
+    "OF": "sur",
+    "FIRST": "Première page",
+    "LAST": "Dernière page"
   }
 }

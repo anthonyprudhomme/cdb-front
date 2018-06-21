@@ -1,12 +1,11 @@
 <div class="cardContainer">
-
   <mat-card class="card">
     <div class="row margin-bottom">
       <div class="col-2">
         <img src="assets/computer_database.png" alt="Login">
       </div>
       <div class="col-8 offset-2">
-        <h1>Login</h1>
+        <h1>{{ 'LOGIN.LOGIN' | translate }}</h1>
       </div>
     </div>
 
@@ -15,23 +14,23 @@
     <div class="width-75">
       <form [formGroup]="loginForm">
         <mat-form-field class="full-width">
-          <input matInput placeholder="Username" formControlName="username" required>
+          <input matInput placeholder="{{ 'LOGIN.USERNAME' | translate }}" formControlName="username" required>
         </mat-form-field>
         <mat-form-field class="full-width">
-          <input matInput placeholder="Password" type="password" formControlName="password" required>
+          <input matInput placeholder="{{ 'LOGIN.PASSWORD' | translate }}" type="password" formControlName="password" required>
         </mat-form-field>
       </form>
     </div>
 
     <div id="loginButtonContainer" class="center">
-      <button id="loginButton" mat-raised-button (click)="login()" color="primary">Login</button>
+      <button id="loginButton" mat-raised-button (click)="login()" color="primary">{{ 'LOGIN.LOGIN' | translate }}</button>
     </div>
 
     <mat-divider></mat-divider>
 
     <div id="accountButtonContainer" class="right">
-      New to CDB ?
-      <button id="accountButton" mat-raised-button [routerLink]="['/login/add']" color="primary">Create an account</button>
+        {{ 'LOGIN.NEW' | translate }}
+      <button id="accountButton" mat-raised-button [routerLink]="['/login/add']" color="primary">{{ 'LOGIN.CREATE_ACCOUNT' | translate }}</button>
     </div>
   </mat-card>
 </div>

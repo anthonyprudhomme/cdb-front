@@ -4,6 +4,7 @@ import { Company } from '../company.model';
 import { CompanyService } from '../company.service';
 import { MAT_DIALOG_DATA, MatDialogRef, MatSnackBar, MatSnackBarConfig } from '@angular/material';
 import { CompanyCreateComponent } from '../company-create/company-create.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-company-update',
@@ -19,7 +20,8 @@ export class CompanyUpdateComponent implements OnInit {
   constructor(private companyService: CompanyService,
               private dialog: MatDialogRef<CompanyCreateComponent>,
               @Inject(MAT_DIALOG_DATA) public data: Company,
-              private snackBar: MatSnackBar) {
+              private snackBar: MatSnackBar,
+              private translate: TranslateService) {
     this.company = data;
   }
 
@@ -38,6 +40,7 @@ export class CompanyUpdateComponent implements OnInit {
       this.company.imageUrl = this.companyAddForm.value.imageUrl;
       this.companyService.updateCompany(this.company).subscribe();
       this.dialog.close({'send': 'OK'});
+      this.openSnackBar(this.translate.instant('COMPANY.UPDATE_SUCCESS'), 'success-snackbar');
       this.openSnackBar('Company successfully updated', 'success-snackbar');
     }
   }

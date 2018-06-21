@@ -1,37 +1,38 @@
 <div class="cardContainer">
-
   <mat-card class="card">
     <div class="center">
-      <h1>Account creation</h1>
+      <h1>{{ 'LOGIN.CREATE' | translate }}</h1>
     </div>
 
     <mat-divider></mat-divider>
 
-    <div class="width-75">
+    <div class="width-85">
       <form class="example-form" [formGroup]="loginForm">
 
         <mat-form-field class="full-width">
-          <input matInput placeholder="Username" formControlName="username" required>
-          <mat-error>Username must be at least 5 characters long and musn't contain whitespaces.</mat-error>
+          <input matInput placeholder="{{ 'LOGIN.USERNAME' | translate }}" formControlName="username" required>
+          <mat-error>{{ 'LOGIN.ERROR.USERNAME' | translate }}</mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width">
-          <input matInput placeholder="Password" type="password" formControlName="password" required>
-          <mat-error>Password must be at least 8 characters long and contain at least one digit, one lowercase character and one uppercase
-            character.
+          <input matInput placeholder="{{ 'LOGIN.PASSWORD' | translate }}" type="password" formControlName="password" required>
+          <mat-error>
+              {{ 'LOGIN.ERROR.PASSWORD' | translate }}
           </mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width">
-          <input matInput placeholder="Confirm password" type="password" formControlName="passwordConfirmation" required>
-          <mat-error>Password confirmation doesn't match the passwrd.</mat-error>
+          <input matInput placeholder="{{ 'LOGIN.CONFIRM_PASSWORD' | translate }}" type="password" formControlName="passwordConfirmation" required>
+          <mat-error>
+              {{ 'LOGIN.ERROR.PASSWORD_CONFIRM' | translate }}
+          </mat-error>
         </mat-form-field>
 
       </form>
     </div>
 
     <div class="center">
-      <button id="registerButton" mat-raised-button (click)="createAccount()" color="primary">Register</button>
+      <button id="registerButton" mat-raised-button (click)="createAccount()" color="primary">{{ 'LOGIN.REGISTER' | translate }}</button>
     </div>
 
   </mat-card>

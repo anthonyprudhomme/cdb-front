@@ -5,7 +5,7 @@ import { trigger, style, transition, animate, query, stagger } from '@angular/an
 import { MatPaginator, PageEvent, MatDialog, MatSnackBar, MatSnackBarConfig } from '@angular/material';
 import { CompanyCreateComponent } from '../company-create/company-create.component';
 import { isUndefined } from 'util';
-
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-companies',
@@ -42,7 +42,11 @@ export class CompaniesComponent implements OnInit {
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
 
-  constructor(private companyService: CompanyService, private dialog: MatDialog, private snackBar: MatSnackBar) {}
+  constructor(private companyService: CompanyService,
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar,
+    private translate: TranslateService) {
+    }
 
   ngOnInit() {
     this.pageEvent = new PageEvent();
@@ -73,7 +77,7 @@ export class CompaniesComponent implements OnInit {
       this.paginator._pageIndex--;
     }
     this.changePage(this.pageEvent);
-    this.openSnackBar('Company successfully deleted', 'success-snackbar');
+    this.openSnackBar(this.translate.instant('COMPANY.DELETE_SUCCESS'), 'success-snackbar');
   }
 
   search() {
@@ -86,7 +90,7 @@ export class CompaniesComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (!isUndefined(result)) {
         this.changePage(this.pageEvent);
-        this.openSnackBar('Company successfully created', 'success-snackbar');
+        this.openSnackBar(this.translate.instant('COMPANY.CREATE_SUCCESS'), 'success-snackbar');
       }
     });
   }
