@@ -52,7 +52,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     FormsModule,
     MatIconModule,
     ReactiveFormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

@@ -34,7 +34,12 @@
     "INTRODUCED": "Introduit",
     "DISCONTINUED": "Retiré",
     "COMPANY": "Entreprise",
-    "DEL_COMPUTER": "Suprimmer l'ordinateur"
+    "DEL_COMPUTER": "Suprimmer l'ordinateur",
+    "DELETE_COMPUTER": "Supprimer un ordinateur",
+    "CONFIRM_DELETION": "Êtes-vous sûr de vouloir supprimer {{name}} ?",
+    "DELETE_SUCCESS": "Ordinateur supprimé avec succès",
+    "CREATE_SUCCESS": "Ordinateur créé avec succès",
+    "UPDATE_SUCCESS": "Ordinateur édité avec succès"
   },
   "LOGIN":{
     "CREATE": "Création de compte",

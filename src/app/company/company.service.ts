@@ -22,6 +22,10 @@ export class CompanyService {
     return this.http.get<Company[]>(this._baseUrl, options);
   }
 
+  getCompanies(): Observable<Company[]> {
+    return this.http.get<Company[]>(this._baseUrl);
+  }
+
   getCompany(id: string): Observable<Company> {
     return this.http.get<Company>(`${ this._baseUrl }/${ id }`);
   }
@@ -54,5 +58,41 @@ export class CompanyService {
     let params = new HttpParams();
     params = params.append('search', search);
     return this.http.get<number>(this._baseUrl + '/count', {params: params});
+  }
+
+  sortCompanies(sort: string, page: number, results: number): Observable<Company[]> {
+    let params = this.constructParams(sort);
+    params = params.append('page', String(page));
+    params = params.append('results', String(results));
+    return this.http.get<Company[]>(this._baseUrl + '/sort', {params: params});
+  }
+
+  sortSearchedCompanies(search: string, sort: string, page: number, results: number): Observable<Company[]> {
+    let params = this.constructParams(sort);
+    params = params.append('search', search);
+    params = params.append('page', String(page));
+    params = params.append('results', String(results));
+    return this.http.get<Company[]>(this._baseUrl + '/sort', {params: params});
+  }
+
+  constructParams(sort: string): HttpParams {
+    let params = new HttpParams();
+    if (sort === 'name_asc') {
+      params = params.append('sort', 'name');
+      params = params.append('asc', 'true');
+    }
+    if (sort === 'name_desc') {
+      params = params.append('sort', 'name');
+      params = params.append('asc', 'false');
+    }
+    if (sort === 'number_of_computers_asc') {
+      params = params.append('sort', 'number_of_computers');
+      params = params.append('asc', 'true');
+    }
+    if (sort === 'number_of_computers_desc') {
+      params = params.append('sort', 'number_of_computers');
+      params = params.append('asc', 'false');
+    }
+    return params;
   }
 }

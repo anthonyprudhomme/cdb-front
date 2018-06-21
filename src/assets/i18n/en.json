@@ -34,7 +34,12 @@
     "INTRODUCED": "Introduced",
     "DISCONTINUED": "Discontinued",
     "COMPANY": "Company",
-    "DEL_COMPUTER": "Delete computer"
+    "DEL_COMPUTER": "Delete computer",
+    "DELETE_COMPUTER": "Delete a computer",
+    "CONFIRM_DELETION": "Are you sure you want to delete {{name}} ?",
+    "DELETE_SUCCESS": "Computer successfully deleted",
+    "CREATE_SUCCESS": "Computer successfully created",
+    "UPDATE_SUCCESS": "Computer successfully updated"
   },
   "LOGIN":{
     "CREATE": "Account creation",

@@ -1,3 +1,16 @@
-<p>
-  computer works!
-</p>
+<td (click)="updateComputer()">{{computer.name}}</td>
+
+<td class="text-center" *ngIf="computer.manufacturer">{{computer.manufacturer}}</td>
+<td class="text-center" *ngIf="!computer.manufacturer">-</td>
+
+<td class="text-center" *ngIf="computer.introduced">{{computer.introduced}}</td>
+<td class="text-center" *ngIf="!computer.introduced">-</td>
+
+<td class="text-center" *ngIf="computer.discontinued">{{computer.discontinued}}</td>
+<td class="text-center" *ngIf="!computer.discontinued">-</td>
+
+<td class="text-center">
+  <button mat-raised-button color="warn" (click)="deleteComputer()">
+    <mat-icon>delete</mat-icon>
+  </button>
+</td>
