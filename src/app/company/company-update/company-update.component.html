@@ -1,23 +1,28 @@
-<div class="container">
-  <div class="example-container">
-    <form class="example-container" [formGroup]=companyAddForm>
-      <mat-form-field>
+<div class="cardContainer">
+  <div>
+    <h1>Update computer</h1>
+
+    <mat-divider></mat-divider>
+
+    <form [formGroup]=companyAddForm>
+      <mat-form-field class="full-width">
         <input matInput placeholder="Name" required formControlName="name" name="name" />
         <mat-error>
           Name of company is required
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field hintLabel="Max 255 characters">
-        <input matInput #input placeholder="Url de l'image" formControlName="picture" name="picture">
+      <mat-form-field class="full-width" hintLabel="Max 255 characters">
+        <input matInput #input placeholder="Url de l'image" formControlName="imageUrl" name="imageUrl">
         <mat-hint align="end">{{input.value?.length || 0}}/255</mat-hint>
         <mat-error>
           URL should be correct [http(s):// (...) .(img|...|png)]
         </mat-error>
       </mat-form-field>
 
-      <button mat-raised-button color="primary" (click)=submit()>Confirmer</button>
-
+      <div>
+        <button mat-raised-button color="primary" (click)=submit()>Confirmer</button>
+      </div>
     </form>
   </div>
 </div>

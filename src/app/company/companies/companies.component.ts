@@ -52,7 +52,19 @@ export class CompaniesComponent implements OnInit {
     }, err => {console.log(err); });
 
     this.companyService.countCompanies().subscribe(length => this.pageEvent.length = length);
+    window.onscroll = () => this.onScroll();
   }
+
+  onScroll() {
+    const scrolledFromTop = document.body.scrollTop > 20 || document.documentElement.scrollTop > 20;
+    const isOnLargePage = this.paginator.pageSize > this.pageSizeOptions[0];
+
+    if (scrolledFromTop && isOnLargePage) {
+        document.getElementById('scrollButton').style.display = 'block';
+    } else {
+        document.getElementById('scrollButton').style.display = 'none';
+    }
+}
 
   companyDeleted() {
     if (this.pageEvent.pageIndex === (this.pageEvent.length - 1) / this.pageEvent.pageSize
@@ -92,7 +104,13 @@ export class CompaniesComponent implements OnInit {
       });
       this.companyService.countSearchedCompanies(this.searchValue).subscribe(length => this.pageEvent.length = length);
     }
+    this.scrollToTop();
     return event;
+  }
+
+  scrollToTop() {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
   }
 
   clearSearch() {
