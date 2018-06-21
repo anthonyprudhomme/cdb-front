@@ -63,7 +63,7 @@ export class CompaniesComponent implements OnInit {
     } else {
         document.getElementById('scrollButton').style.display = 'none';
     }
-}
+  }
 
   companyDeleted() {
     if (this.pageEvent.pageIndex === (this.pageEvent.length - 1) / this.pageEvent.pageSize
