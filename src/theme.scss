@@ -196,11 +196,24 @@ $theme: (
 }
 
 .fail-snackbar {
-  background: rgb(107, 177, 107);
-  color: azure;
+  background: #ff7d7d;
+ // color: #24292f;
+  color: #2b3037;
+
 }
 
 .fail-snackbar .mat-simple-snackbar-action {
-  color: azure;
+  color: #2b3037;
+}
+
+.img-hover img:first-child {
+  position: fixed;
+  opacity: 0;
+  width: 400px;
+  height: 400px;
+  left: 50%;
+  top: 50%;
+  transition: opacity .5s, top .5s;
+  transform: translate(-50%, -50%);
 }
 

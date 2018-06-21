@@ -31,8 +31,14 @@ export class CompanyComponent {
     this.dialog.open(CompanyUpdateComponent, {data: this.company});
   }
 
-  showImage() {
+  showImage(image) {
+    const img: HTMLElement = document.getElementsByClassName(image)[0] as HTMLElement;
+    img.style.opacity = '1';
+  }
 
+  hideImage(image) {
+    const img: HTMLElement = document.getElementsByClassName(image)[0] as HTMLElement;
+    img.style.opacity = '0';
   }
 
 }

@@ -32,6 +32,7 @@ export class ComputersComponent implements OnInit {
     {viewValue: '--'},
     {value: 'name_asc', viewValue: 'Name asc'},
     {value: 'name_desc', viewValue: 'Name desc'},
+
     {value: 'introduced_asc', viewValue: 'Increasing introduced date'},
     {value: 'introduced_desc', viewValue: 'Decreasing introduced date'},
     {value: 'discontinued_asc', viewValue: 'Increasing discontinued date'},
@@ -47,20 +48,19 @@ export class ComputersComponent implements OnInit {
       this.computers = computers;
     }, err => {console.log(err); });
     this.computerService.countComputers().subscribe(length => this.pageEvent.length = length);
-    window.onscroll = () => this.onScroll();
-    this.searchType = this.searchOptions[0];
+     // window.onscroll = () => this.onScroll();
   }
 
-  onScroll() {
-    const scrolledFromTop = document.body.scrollTop > 20 || document.documentElement.scrollTop > 20;
-    const isOnLargePage = this.paginator.pageSize > this.pageSizeOptions[0];
+  // onScroll() {
+  //   const scrolledFromTop = document.body.scrollTop > 20 || document.documentElement.scrollTop > 20;
+  //   const isOnLargePage = this.paginator.pageSize > this.pageSizeOptions[0];
 
-    if (scrolledFromTop && isOnLargePage) {
-        document.getElementById('scrollButton').style.display = 'block';
-    } else {
-        document.getElementById('scrollButton').style.display = 'none';
-    }
-  }
+  //   if (scrolledFromTop && isOnLargePage) {
+  //       document.getElementById('scrollButton').style.display = 'block';
+  //   } else {
+  //       document.getElementById('scrollButton').style.display = 'none';
+  //   }
+  // }
 
   computerDeleted() {
     if (this.pageEvent.pageIndex === (this.pageEvent.length - 1) / this.pageEvent.pageSize

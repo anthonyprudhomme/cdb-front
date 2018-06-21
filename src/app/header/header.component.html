@@ -15,7 +15,7 @@
     </div>
     <span class="spacer"></span>
     <div fxShow="true" fxHide.lt-md="true">
-      <button mat-button *ngIf="isLoggedIn">{{ 'HEADER.LOG_OUT' | translate }}</button>
+      <button (click)=logout() mat-button *ngIf="isLoggedIn">{{ 'HEADER.LOG_OUT' | translate }}</button>
       <mat-icon class="navBarItem flag"><img src="assets/france.svg" alt="France flag" (click)="switchTo('fr')"></mat-icon>
       <mat-icon class="navBarItem flag"><img src="assets/united-kingdom.svg" alt="UK flag" (click)="switchTo('en')"></mat-icon>
     </div>
@@ -28,7 +28,7 @@
       <div><button mat-button [routerLink]="['/company']">{{ 'HEADER.COMPANIES' | translate }}</button></div>
       <div><button mat-button [routerLink]="['/computer']">{{ 'HEADER.COMPUTERS' | translate }}</button></div>
       <span class="spacer"></span>
-      <div><button mat-button *ngIf="isLoggedIn">{{ 'HEADER.LOG_OUT' | translate }}</button></div>
+      <div><button (click)=logout() mat-button *ngIf="isLoggedIn">{{ 'HEADER.LOG_OUT' | translate }}</button></div>
       <div>
         <mat-icon class="navBarItem flag"><img src="assets/france.svg" alt="France flag" (click)="switchTo('fr')"></mat-icon>
         <mat-icon class="navBarItem flag"><img src="assets/united-kingdom.svg" alt="UK flag" (click)="switchTo('en')"></mat-icon>

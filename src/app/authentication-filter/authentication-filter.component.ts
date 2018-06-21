@@ -19,6 +19,10 @@ export class AuthenticationFilterComponent implements CanActivate {
       this.route.navigate(['/login']);
       return false;
     }
+   if (user.length === 0) {
+     console.log('username requis');
+     return false;
+   }
    let valid = false;
    await this.service.getRolesOfUser(user).toPromise().then(res => {
     if (res.includes('USER')) {
@@ -26,7 +30,9 @@ export class AuthenticationFilterComponent implements CanActivate {
     } else {
       this.route.navigate(['/login']);
     }
-  });
+  }).catch(error =>
+    console.log('Cette utilisateur n"existe pas')
+  );
   return valid;
   }
 }

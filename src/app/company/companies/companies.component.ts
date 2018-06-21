@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { Component, OnInit, ViewChild } from '@angular/core';
+=======
+import {Component, OnInit, ViewChild, Input} from '@angular/core';
+>>>>>>> 00e817126f326ec7c020d062b2e93fb0852b163f
 import { Company } from '../company.model';
 import { CompanyService } from '../company.service';
 import { trigger, style, transition, animate, query, stagger } from '@angular/animations';
@@ -21,9 +25,9 @@ import { isNullOrUndefined, isUndefined } from 'util';
         ),
 
         query('mat-card, td', stagger('100ms', [
-          animate('200ms 0.2s ease-out', style({ opacity: 1, transform: 'translateX(0)' })),
-          animate('200ms 0.2s ease-out', style({ opacity: 1, transform: 'translateX(-10px)' })),
-          animate('200ms 0.2s ease-out', style({ opacity: 1, transform: 'translateX(0)' })),
+          animate('100ms 0.2s ease-out', style({ opacity: 1, transform: 'translateX(0px)' })),
+          animate('100ms 0.2s ease-out', style({ opacity: 1, transform: 'translateX(-10px)' })),
+          animate('100ms 0.2s ease-out', style({ opacity: 1, transform: 'translateX(0px)' })),
         ])),
 
         query('mat-card, td', [
@@ -63,7 +67,7 @@ export class CompaniesComponent implements OnInit {
     this.companyService.getCompaniesAtPage(1, this.pageSizeOptions[0]).subscribe(companies => {
       this.companies = companies;
       this.resetPaginator();
-    }, err => {console.log(err); });
+    }, err => {console.log(err); console.log('ICI'); });
     this.companyService.countCompanies().subscribe(length => this.pageEvent.length = length);
     window.onscroll = () => this.onScroll();
   }
@@ -71,11 +75,13 @@ export class CompaniesComponent implements OnInit {
   onScroll() {
     const scrolledFromTop = document.body.scrollTop > 20 || document.documentElement.scrollTop > 20;
     const isOnLargePage = this.paginator.pageSize > this.pageSizeOptions[0];
-
-    if (scrolledFromTop && isOnLargePage) {
-        document.getElementById('scrollButton').style.display = 'block';
-    } else {
-        document.getElementById('scrollButton').style.display = 'none';
+    const scroll = document.getElementById('scrollButton');
+    if (scroll != null) {
+      if (scrolledFromTop && isOnLargePage) {
+        scroll.style.display = 'block';
+      } else {
+        scroll.style.display = 'none';
+      }
     }
   }
 
