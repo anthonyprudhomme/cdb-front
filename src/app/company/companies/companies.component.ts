@@ -7,7 +7,6 @@ import { CompanyCreateComponent } from '../company-create/company-create.compone
 import { TranslateService } from '@ngx-translate/core';
 import { isNullOrUndefined, isUndefined } from 'util';
 
-
 @Component({
   selector: 'app-companies',
   templateUrl: './companies.component.html',
