@@ -26,19 +26,19 @@ export class ComputersComponent implements OnInit {
      private snackBar: MatSnackBar,
      private translate: TranslateService) { }
   searchType: string;
-  searchOptions = ['Computer name', 'Company name'];
+  searchOptions = [this.translate.instant('SELECT.COMPUTER_NAME'), this.translate.instant('SELECT.COMPANY_NAME')];
 
   sortOptions = [
     {viewValue: '--'},
-    {value: 'name_asc', viewValue: 'Name asc'},
-    {value: 'name_desc', viewValue: 'Name desc'},
+    {value: 'name_asc', viewValue: this.translate.instant('SELECT.NAME_ASC')},
+    {value: 'name_desc', viewValue: this.translate.instant('SELECT.NAME_DESC')},
 
-    {value: 'introduced_asc', viewValue: 'Increasing introduced date'},
-    {value: 'introduced_desc', viewValue: 'Decreasing introduced date'},
-    {value: 'discontinued_asc', viewValue: 'Increasing discontinued date'},
-    {value: 'discontinued_desc', viewValue: 'Decreasing discontinued date'},
-    {value: 'company_asc', viewValue: 'Company name asc'},
-    {value: 'company_desc', viewValue: 'Company name desc'}];
+    {value: 'introduced_asc', viewValue: this.translate.instant('SELECT.INC_INTRODUCED')},
+    {value: 'introduced_desc', viewValue: this.translate.instant('SELECT.DEC_INTRODUCED')},
+    {value: 'discontinued_asc', viewValue: this.translate.instant('SELECT.INC_DISCONTINUED')},
+    {value: 'discontinued_desc', viewValue: this.translate.instant('SELECT.DEC_DISCONTINUED')},
+    {value: 'company_asc', viewValue: this.translate.instant('SELECT.COMPANY_ASC')},
+    {value: 'company_desc', viewValue: this.translate.instant('SELECT.COMPANY_DESC')}];
 
   sortSelected: string;
 

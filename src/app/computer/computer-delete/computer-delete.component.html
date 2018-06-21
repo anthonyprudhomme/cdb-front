@@ -4,7 +4,7 @@
     <mat-dialog-content>{{ 'COMPUTER.CONFIRM_DELETION' | translate :{'name': computer.name} }}</mat-dialog-content>
     <mat-dialog-actions align="end">
       <button mat-button mat-dialog-close>{{ 'GENERAL.NO' | translate }}</button>
-      <button mat-button [mat-dialog-close]="true" (click)="delete(computer)">{{ 'GENERAL.YES' | translate }}</button>
+      <button mat-raised-button [mat-dialog-close]="true" (click)="delete(computer)" color="warn">{{ 'GENERAL.YES' | translate }}</button>
     </mat-dialog-actions>
   </div>
 </div>

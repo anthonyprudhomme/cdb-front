@@ -3,13 +3,8 @@
     <h2 mat-dialog-title>{{ 'COMPANY.DELETE_COMPANY' | translate }}</h2>
     <mat-dialog-content>{{ 'COMPANY.CONFIRM_DELETION' | translate :{'name': company.name, 'number':company.numberOfComputers } }}</mat-dialog-content>
     <mat-dialog-actions align="end">
-<<<<<<< HEAD
       <button mat-button mat-dialog-close>{{ 'GENERAL.NO' | translate }}</button>
-      <button mat-button [mat-dialog-close]="true" (click)="delete(company)">{{ 'GENERAL.YES' | translate }}</button>
-=======
-      <button mat-raised-button mat-dialog-close >No</button>
-      <button mat-raised-button [mat-dialog-close]="true" (click)="delete(company)" color="warn">Yes</button>
->>>>>>> 00e817126f326ec7c020d062b2e93fb0852b163f
+      <button mat-raised-button [mat-dialog-close]="true" (click)="delete(company)" color="warn">{{ 'GENERAL.YES' | translate }}</button>
     </mat-dialog-actions>
   </div>
 </div>
