@@ -1,28 +1,34 @@
 <div class="container" *ngIf="companies" @staggerAnim>
-
   <div class="row align-items-center controlBar shadow">
-      <mat-form-field class="col-md-3 col-sm-12">
-          <mat-icon *ngIf="searchValue"
-                    matPrefix
-                    class="clearSearchIcon"
-                    aria-label="Clear search"
-                    (click)="clearSearch()"
-                    color="warn">clear</mat-icon>
+    <mat-form-field class="col-md-3 col-sm-12">
+      <mat-icon *ngIf="searchValue"
+                matPrefix
+                class="clearSearchIcon"
+                aria-label="Clear search"
+                (click)="clearSearch()"
+                color="warn">clear</mat-icon>
 
-          <mat-icon *ngIf="!searchValue"
-                    matPrefix>search</mat-icon>
+      <mat-icon *ngIf="!searchValue"
+                matPrefix>search</mat-icon>
 
-          <input matInput placeholder="Search" [(ngModel)]="searchValue">
-      </mat-form-field>
+      <input matInput placeholder="Search" [(ngModel)]="searchValue">
+    </mat-form-field>
+    <button class="col-md-1" mat-raised-button color="primary" (click)="search()">Search</button>
+    <span class="col-md-3"></span>
+    <mat-form-field>
+      <mat-select placeholder="Sorting options" [(value)]="sortSelected" (selectionChange)="sort()">
+        <mat-option *ngFor="let sort of sortOptions" [value]="sort.value">
+          {{ sort.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-      <button class="col-md-1" mat-raised-button color="primary" (click)="search()">Search</button>
-      <span class="col-md-3"></span>
-      <button class="col-md-3 col-lg-2" mat-raised-button color="primary" (click)="create()">Create a new company</button>
+    <button class="col-md-3 col-lg-2" mat-raised-button color="primary" (click)="create()">Create a new company</button>
   </div>
 
-  <table class="customTable table table-bordered shadow">
+  <table class="table table-bordered customTable shadow">
     <thead>
-    <th style="width: 66.6%">Name</th>
+    <th style="width: 66.6%">Company</th>
     <th style="width: 16.6%">See computers</th>
     <th style="width: 16.6%">Delete</th>
     </thead>
@@ -31,7 +37,7 @@
   </table>
 
   <button (click)="scrollToTop()" id="scrollButton" title="Go to top">
-      <mat-icon>arrow_upward</mat-icon>
+    <mat-icon>arrow_upward</mat-icon>
   </button>
 
   <mat-paginator #paginator *ngIf="pageEvent" color="primary" [length]="pageEvent.length"
