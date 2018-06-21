@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSidenavModule, MatListModule } from '@angular/material';
 import { MatSnackBarModule } from '@angular/material';
+import {MatRadioModule} from '@angular/material/radio';
 import {
   MatBadgeModule,
   MatButtonModule,
@@ -42,7 +43,8 @@ import {
     MatSnackBarModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSelectModule
+    MatSelectModule,
+    MatRadioModule
   ],
   exports: [
     MatInputModule,
@@ -63,7 +65,8 @@ import {
     MatSnackBarModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSelectModule
+    MatSelectModule,
+    MatRadioModule
   ],
   declarations: []
 })
