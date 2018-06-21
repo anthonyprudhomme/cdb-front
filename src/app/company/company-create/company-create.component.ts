@@ -32,7 +32,7 @@ export class CompanyCreateComponent implements OnInit {
     if (this.companyAddForm.valid) {
       const company = new Company();
       company.name = this.companyAddForm.value.name;
-      company.imageurl = this.companyAddForm.value.picture;
+      company.imageUrl = this.companyAddForm.value.picture;
       this.service.postCompany(company).subscribe();
       this.dialog.close({'send': 'OK'});
     }
