@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import { Component, OnInit, ViewChild } from '@angular/core';
-=======
-import {Component, OnInit, ViewChild, Input} from '@angular/core';
->>>>>>> 00e817126f326ec7c020d062b2e93fb0852b163f
 import { Company } from '../company.model';
 import { CompanyService } from '../company.service';
 import { trigger, style, transition, animate, query, stagger } from '@angular/animations';
@@ -10,7 +6,6 @@ import { MatPaginator, PageEvent, MatDialog, MatSnackBar, MatSnackBarConfig } fr
 import { CompanyCreateComponent } from '../company-create/company-create.component';
 import { TranslateService } from '@ngx-translate/core';
 import { isNullOrUndefined, isUndefined } from 'util';
-
 
 @Component({
   selector: 'app-companies',

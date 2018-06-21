@@ -47,7 +47,7 @@
     <mat-icon>arrow_upward</mat-icon>
   </button>
 
-  <mat-paginator #paginator *ngIf="pageEvent" color="primary" [length]="pageEvent.length"
+  <mat-paginator *ngIf="pageEvent" #paginator color="primary" [length]="pageEvent.length"
                  [pageSize]="pageEvent.pageSize"
                  [pageSizeOptions]="pageSizeOptions"
                  (page)="pageEvent = changePage($event)"

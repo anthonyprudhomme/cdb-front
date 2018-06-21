@@ -34,8 +34,6 @@ export class CompanyService {
     const options = { headers: new HttpHeaders().set('Content-Type', 'application/json'),
     withCredentials: true};
     const options3 = new HttpHeaders().set('Content-Type', 'application/json');
-    console.log(company);
-    console.log(JSON.stringify(company));
     return this.http.post<Company>(this._baseUrl, JSON.stringify(company), {headers: options3 });
   }
 
