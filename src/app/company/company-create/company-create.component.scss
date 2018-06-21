@@ -1,20 +1,18 @@
-.container {
-  margin-top: 9%;
- }
-
-.example-container > * {
-  width: 100%;
+.cardContainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align:center;
 }
 
-.example-container form {
-  margin-bottom: 20px;
+.full-width {
+  width:75%;
 }
 
-.example-container form > * {
-  margin: 5px 0;
+button {
+  margin-top:30px;
 }
 
-.example-card {
-  max-width: 600px;
-  margin:auto;
+mat-divider {
+  margin-bottom:30px;
 }

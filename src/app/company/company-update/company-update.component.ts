@@ -26,7 +26,7 @@ export class CompanyUpdateComponent implements OnInit {
   ngOnInit() {
     this.companyAddForm = new FormGroup({
       name : new FormControl(this.company.name, [Validators.required]),
-      picture: new FormControl('',
+      imageUrl: new FormControl(this.company.imageUrl,
         [Validators.pattern('(https|http).\/\/(.)*'), Validators.required, Validators.maxLength(255)]),
       description: new FormControl()
     });
@@ -35,6 +35,7 @@ export class CompanyUpdateComponent implements OnInit {
   submit() {
     if (this.companyAddForm.valid) {
       this.company.name = this.companyAddForm.value.name;
+      this.company.imageUrl = this.companyAddForm.value.imageUrl;
       this.companyService.updateCompany(this.company).subscribe();
       this.dialog.close({'send': 'OK'});
       this.openSnackBar('Company successfully updated', 'success-snackbar');

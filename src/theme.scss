@@ -125,7 +125,7 @@ $mat-warn-custom: (
 );
 
 
-$md-primary: mat-palette($mat-primary-custom, 400, 900, 800);
+$md-primary: mat-palette($mat-primary-custom, 400, 400, 800);
 $md-warn: mat-palette($mat-warn-custom, 400, 500, 900);
 $md-accent: mat-palette($mat-basic-custom,500,300,800);
 

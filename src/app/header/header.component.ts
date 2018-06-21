@@ -1,4 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { LoginService } from '../login/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -9,12 +11,17 @@ export class HeaderComponent implements OnInit {
   @Output() switchLanguage: EventEmitter<string> = new EventEmitter();
   isLoggedIn = true;
 
-  constructor() { }
+  constructor(private service: LoginService, private route: Router) { }
 
   ngOnInit() {
   }
 
   switchTo(locale: string) {
     this.switchLanguage.emit(locale);
+  }
+
+  logout() {
+    this.service.logout().subscribe();
+    this.route.navigate(['/login']);
   }
 }

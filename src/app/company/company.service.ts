@@ -9,17 +9,17 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 export class CompanyService {
 
   private _baseUrl = 'http://localhost:8080/webservice/company';
-  constructor(private http: HttpClient) { }
 
-  getCompanies(): Observable<Company[]> {
-    return this.http.get<Company[]>(this._baseUrl);
-  }
+  constructor(private http: HttpClient) {}
 
   getCompaniesAtPage(page: number, results: number): Observable<Company[]> {
     let params = new HttpParams();
     params = params.append('page', String(page));
     params = params.append('results', String(results));
-    return this.http.get<Company[]>(this._baseUrl, {params: params});
+    const options = {
+     withCredentials: true, params: params
+    };
+    return this.http.get<Company[]>(this._baseUrl, options);
   }
 
   getCompany(id: string): Observable<Company> {
