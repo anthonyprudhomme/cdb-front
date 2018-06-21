@@ -54,7 +54,7 @@ export class CompanyService {
     params = params.append('search', search);
     params = params.append('page', String(page));
     params = params.append('results', String(results));
-    return this.http.get<Company[]>(this._baseUrl, {params: params});
+    return this.http.get<Company[]>(this._baseUrl + '/search', {params: params});
   }
 
   countSearchedCompanies(search: string): Observable<number> {
