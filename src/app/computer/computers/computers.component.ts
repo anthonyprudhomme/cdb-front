@@ -3,7 +3,7 @@ import { Computer } from '../computer.model';
 import { PageEvent, MatPaginator, MatDialog, MatSnackBar, MatSnackBarConfig } from '@angular/material';
 import { ComputerService } from '../computer.service';
 import { ComputerCreateComponent } from '../computer-create/computer-create.component';
-import { isUndefined } from 'util';
+import {isNullOrUndefined, isUndefined} from 'util';
 
 @Component({
   selector: 'app-computers',
@@ -22,6 +22,19 @@ export class ComputersComponent implements OnInit {
 
   searchType: string;
   searchOptions = ['Computer name', 'Company name'];
+
+  sortOptions = [
+    {viewValue: '--'},
+    {value: 'name_asc', viewValue: 'Name asc'},
+    {value: 'name_desc', viewValue: 'Name desc'},
+    {value: 'introduced_asc', viewValue: 'Increasing introduced date'},
+    {value: 'introduced_desc', viewValue: 'Decreasing introduced date'},
+    {value: 'discontinued_asc', viewValue: 'Increasing discontinued date'},
+    {value: 'discontinued_desc', viewValue: 'Decreasing discontinued date'},
+    {value: 'company_asc', viewValue: 'Company name asc'},
+    {value: 'company_desc', viewValue: 'Company name desc'}];
+
+  sortSelected: string;
 
   constructor(private computerService: ComputerService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
@@ -73,17 +86,39 @@ export class ComputersComponent implements OnInit {
   }
 
   changePage(event?: PageEvent): PageEvent {
-    if (!this.searchValue || 0 === this.searchValue.length) {
+
+    // If there is no search and no sort
+    if (isNullOrUndefined(this.searchValue) && isNullOrUndefined(this.sortSelected)) {
       this.computerService.getComputersAtPage(event.pageIndex + 1, event.pageSize).subscribe(computers => {
         this.computers = computers;
       });
       this.computerService.countComputers().subscribe(length => this.pageEvent.length = length);
-    } else {
+    }
+
+    // If there is a search and no sort
+    if (!isNullOrUndefined(this.searchValue) && isNullOrUndefined(this.sortSelected)) {
       this.computerService.searchComputers(this.searchValue, event.pageIndex + 1, event.pageSize, this.searchType).subscribe(computers => {
         this.computers = computers;
       });
       this.computerService.countSearchedComputers(this.searchValue, this.searchType).subscribe(length => this.pageEvent.length = length);
     }
+
+    // If there is no search and a sort
+    if (isNullOrUndefined(this.searchValue) && !isNullOrUndefined(this.sortSelected)) {
+      this.computerService.sortComputers(this.sortSelected, event.pageIndex + 1, event.pageSize).subscribe(computers => {
+        this.computers = computers;
+      });
+      this.computerService.countComputers().subscribe(length => this.pageEvent.length = length);
+    }
+
+    // If there is a search and a sort
+    if (!isNullOrUndefined(this.searchValue) && !isNullOrUndefined(this.sortSelected)) {
+      this.computerService.sortSearchedComputers(this.searchValue, this.sortSelected, event.pageIndex + 1, event.pageSize, this.searchType).subscribe(computers => {
+        this.computers = computers;
+      });
+      this.computerService.countSearchedComputers(this.searchValue, this.searchType).subscribe(length => this.pageEvent.length = length);
+    }
+
     this.scrollToTop();
     return event;
   }
@@ -115,5 +150,10 @@ export class ComputersComponent implements OnInit {
     config.panelClass = [className];
     config.horizontalPosition = 'end';
     this.snackBar.open(message, 'OK', config);
+  }
+
+  sort() {
+    this.resetPaginator();
+    this.changePage(this.pageEvent);
   }
 }

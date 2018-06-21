@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Computer } from './computer.model';
 import { Observable, of } from 'rxjs';
+import {Company} from '../company/company.model';
 
 @Injectable({
   providedIn: 'root'
@@ -64,6 +65,59 @@ export class ComputerService {
       params = params.append('searchByComputerName', 'true');
     } else {
       params = params.append('searchByComputerName', 'false');
+    }
+    return params;
+  }
+
+  sortComputers(sort: string, page: number, results: number): Observable<Computer[]> {
+    let params = this.constructParams(sort);
+    params = params.append('page', String(page));
+    params = params.append('results', String(results));
+    return this.http.get<Computer[]>(this._baseUrl + '/sort', {params: params});
+  }
+
+  sortSearchedComputers(search: string, sort: string, page: number, results: number, searchType: string): Observable<Computer[]> {
+    let params = this.constructParams(sort);
+    params = params.append('search', search);
+    params = params.append('page', String(page));
+    params = params.append('results', String(results));
+    params = this.setupSearchType(searchType, params);
+    return this.http.get<Computer[]>(this._baseUrl + '/sort', {params: params});
+  }
+
+  constructParams(sort: string): HttpParams {
+    let params = new HttpParams();
+    if (sort === 'name_asc') {
+      params = params.append('sort', 'name');
+      params = params.append('asc', 'true');
+    }
+    if (sort === 'name_desc') {
+      params = params.append('sort', 'name');
+      params = params.append('asc', 'false');
+    }
+    if (sort === 'introduced_asc') {
+      params = params.append('sort', 'introduced');
+      params = params.append('asc', 'true');
+    }
+    if (sort === 'introduced_desc') {
+      params = params.append('sort', 'introduced');
+      params = params.append('asc', 'false');
+    }
+    if (sort === 'discontinued_asc') {
+      params = params.append('sort', 'discontinued');
+      params = params.append('asc', 'true');
+    }
+    if (sort === 'discontinued_desc') {
+      params = params.append('sort', 'discontinued');
+      params = params.append('asc', 'false');
+    }
+    if (sort === 'company_asc') {
+      params = params.append('sort', 'company');
+      params = params.append('asc', 'true');
+    }
+    if (sort === 'company_desc') {
+      params = params.append('sort', 'company');
+      params = params.append('asc', 'false');
     }
     return params;
   }
