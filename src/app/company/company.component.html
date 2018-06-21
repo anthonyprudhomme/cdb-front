@@ -1,12 +1,15 @@
-<td (click)="updateCompany()">{{company.name}}</td>
-<td class="text-center" >
+<td class="aligned-td" (click)="updateCompany()">
+  <img class="squared" src={{company.imageUrl}}>
+  <span >{{company.name}}</span>
+</td>
+<td class="text-center aligned-td" >
   <button mat-raised-button color="primary"
           matBadge="{{company.numberOfComputers}}" matBadgePosition="after"
           matBadgeColor="{{company.numberOfComputers == 0 ? 'warn' : 'accent'}}">
     <mat-icon>computer</mat-icon>
   </button>
 </td>
-<td class="text-center">
+<td class="text-center aligned-td">
   <button mat-raised-button color="warn" (click)="deleteCompany()">
     <mat-icon>delete</mat-icon>
   </button>

@@ -6,7 +6,6 @@ import { CompanyCreateComponent } from './company-create/company-create.componen
 import { CompanyUpdateComponent } from './company-update/company-update.component';
 import { CustomMaterialModule } from '../custom-material/custom-material.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
 import { CompanyDeleteComponent } from './company-delete/company-delete.component';
 
 @NgModule({
