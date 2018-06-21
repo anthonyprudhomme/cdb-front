@@ -21,7 +21,7 @@ export class LoginService {
   logout() {
      const options = { withCredentials: true};
      sessionStorage.clear();
-     return this.http.get('http://localhost:8080/webservice/logout'); //  { }, options
+     return this.http.get('http://localhost:8080/webservice/logout', options); //  { }, options
   }
 
   getRolesOfUser(name: string): Observable<string[]> {
