@@ -1,8 +1,8 @@
 export class Computer {
   id: number;
   name: string;
-  introduced: Date;
-  discontinued: Date;
+  introduced: string;
+  discontinued: string;
   manufacturer: string;
-  manufacturerId: number;
+  manufacturer_id: number;
 }

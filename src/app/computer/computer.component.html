@@ -1,3 +1,13 @@
-<p>
-  computer works!
-</p>
+<td (click)="updateComputer()">{{computer.name}}</td>
+<td class="text-center" >
+  <button mat-raised-button color="primary"
+          matBadge="0" matBadgePosition="after"
+          matBadgeColor="warn">
+    <mat-icon>computer</mat-icon>
+  </button>
+</td>
+<td class="text-center">
+  <button mat-raised-button color="warn" (click)="deleteComputer()">
+    <mat-icon>delete</mat-icon>
+  </button>
+</td>

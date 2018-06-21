@@ -35,7 +35,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     LoginComponent,
     LoginCreateComponent,
     FooterComponent,
-    AuthenticationFilterComponent,
+    AuthenticationFilterComponent
   ],
   imports: [
     BrowserModule,

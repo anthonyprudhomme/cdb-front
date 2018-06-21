@@ -1,15 +1,23 @@
+#footer-copyright {
+  font-size: small;
+}
 
+.button-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
 
 .mat-button {
   min-width: 1%;
 }
 
-.container {
-  margin-bottom: 25px;
+button{
+  margin: 1%;
 }
 
-.checkbox {
-  margin: 10px;
+.container {
+  margin-bottom: 25px;
 }
 
 :host /deep/ label {
@@ -17,15 +25,19 @@
 }
 
 .controlBar {
-  padding-left: 24px;
+  width: 100%;
+  margin-left: 0px;
+  //padding-left: 24px;
   margin-bottom: 15px;
-  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-  0 1px 5px 0 rgba(0, 0, 0, 0.12);
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
+  //flex-wrap: nowrap;
   justify-content: space-between;
-  background-color:#ddd;
+}
+
+.shadow {
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
 .controlBarRight {
@@ -33,6 +45,30 @@
   margin-right: 24px;
 }
 
-.searchIcon {
-  padding-top: 12px;
+.clearSearchIcon:hover {
+  cursor:pointer;
+}
+
+.searchButton {
+  margin:10px;
+}
+
+.md-table-pagination .md-select:not([disabled]):focus .md-select-value {
+  color:black;
+}
+
+#scrollButton {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size:0;
+  border: none;
+  outline: none;
+  background-color: #4f545a;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 50%;
 }

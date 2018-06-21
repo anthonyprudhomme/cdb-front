@@ -21,8 +21,8 @@ export class CompanyCreateComponent implements OnInit {
   ngOnInit() {
     this.company = new Company();
     this.companyAddForm = new FormGroup({
-      name : new FormControl(this.company.name, [Validators.required]),
-      picture: new FormControl('',
+      name : new FormControl('', [Validators.required]),
+      imageUrl: new FormControl('',
         [Validators.pattern('(https|http).\/\/(.)*'), Validators.required, Validators.maxLength(255)]),
       description: new FormControl()
     });
@@ -32,7 +32,7 @@ export class CompanyCreateComponent implements OnInit {
     if (this.companyAddForm.valid) {
       const company = new Company();
       company.name = this.companyAddForm.value.name;
-      company.imageUrl = this.companyAddForm.value.picture;
+      company.imageUrl = this.companyAddForm.value.imageUrl;
       this.service.postCompany(company).subscribe();
       this.dialog.close({'send': 'OK'});
     }
