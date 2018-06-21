@@ -1,52 +1,53 @@
 <div class="container" *ngIf="computers">
   <div class="row align-items-center controlBar shadow">
-      <mat-form-field class="col-md-3 col-sm-12">
-          <mat-icon *ngIf="searchValue"
-                    matPrefix
-                    class="clearSearchIcon"
-                    aria-label="Clear search"
-                    (click)="clearSearch()"
-                    color="warn">clear</mat-icon>
+    <mat-form-field class="col-md-3 col-sm-12">
+      <mat-icon *ngIf="searchValue"
+                matPrefix
+                class="clearSearchIcon"
+                aria-label="Clear search"
+                (click)="clearSearch()"
+                color="warn">clear</mat-icon>
 
-          <mat-icon *ngIf="!searchValue"
-                    matPrefix>search</mat-icon>
+      <mat-icon *ngIf="!searchValue"
+                matPrefix>search</mat-icon>
 
-          <input matInput placeholder="Search" [(ngModel)]="searchValue">
-      </mat-form-field>
+      <input matInput placeholder="Search" [(ngModel)]="searchValue">
+    </mat-form-field>
 
-      <div class="col-md-1 align-items-center">
-        <mat-checkbox class="checkbox">Companies</mat-checkbox>
-        <mat-checkbox class="checkbox">Computers</mat-checkbox>
-      </div>
+    <mat-radio-group class="example-radio-group" [(ngModel)]="searchType">
+      <mat-radio-button class="example-radio-button" *ngFor="let searchOption of searchOptions" [value]="searchOption">
+        {{ searchOption }}
+      </mat-radio-button>
+    </mat-radio-group>
 
-      <button class="col-md-1" mat-raised-button color="primary" (click)="search()">Search</button>
-      <span class="col-md-3"></span>
-      <button class="col-md-3 col-lg-2" mat-raised-button color="primary" (click)="create()">Create a new computer</button>
+    <button class="col-md-1" mat-raised-button color="primary" (click)="search()">Search</button>
+    <span class="col-md-3"></span>
+    <button class="col-md-3 col-lg-2" mat-raised-button color="primary" (click)="create()">Create a new computer</button>
   </div>
 
-    <table class="customTable table table-bordered shadow">
-      <thead>
-        <th style="width: 50%">Name</th>
-        <th>Company</th>
-        <th>Introduced</th>
-        <th>Discontinued</th>
-        <th>Delete</th>
-      </thead>
-      <tr *ngFor="let computer of computers" app-computer [computer]="computer" (delete)="computerDeleted(computer)">
-      </tr>
-    </table>
+  <table class="customTable table table-bordered shadow">
+    <thead>
+    <th style="width: 50%">Name</th>
+    <th>Company</th>
+    <th>Introduced</th>
+    <th>Discontinued</th>
+    <th>Delete</th>
+    </thead>
+    <tr *ngFor="let computer of computers" app-computer [computer]="computer" (delete)="computerDeleted(computer)">
+    </tr>
+  </table>
 
-    <button (click)="scrollToTop()" id="scrollButton" title="Go to top">
-        <mat-icon>arrow_upward</mat-icon>
-    </button>
+  <button (click)="scrollToTop()" id="scrollButton" title="Go to top">
+    <mat-icon>arrow_upward</mat-icon>
+  </button>
 
-    <mat-paginator #paginator *ngIf="pageEvent" color="primary" [length]="pageEvent.length"
-    [pageSize]="pageEvent.pageSize"
-    [pageSizeOptions]="pageSizeOptions"
-    (page)="pageEvent = changePage($event)"
-    [showFirstLastButtons]="true"
-    class="shadow">
-    </mat-paginator>
+  <mat-paginator #paginator *ngIf="pageEvent" color="primary" [length]="pageEvent.length"
+                 [pageSize]="pageEvent.pageSize"
+                 [pageSizeOptions]="pageSizeOptions"
+                 (page)="pageEvent = changePage($event)"
+                 [showFirstLastButtons]="true"
+                 class="shadow">
+  </mat-paginator>
 
 
 </div>

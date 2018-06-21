@@ -43,18 +43,29 @@ export class ComputerService {
     return this.http.get<number>(this._baseUrl + '/count');
   }
 
-  searchComputers(search: string, page: number, results: number): Observable<Computer[]> {
+  searchComputers(search: string, page: number, results: number, searchType: string): Observable<Computer[]> {
     let params = new HttpParams();
     params = params.append('search', search);
     params = params.append('page', String(page));
     params = params.append('results', String(results));
+    params = this.setupSearchType(searchType, params);
     return this.http.get<Computer[]>(this._baseUrl, {params: params});
   }
 
-  countSearchedComputers(search: string): Observable<number> {
+  countSearchedComputers(search: string, searchType: string): Observable<number> {
     let params = new HttpParams();
     params = params.append('search', search);
+    params = this.setupSearchType(searchType, params);
     return this.http.get<number>(this._baseUrl + '/count', {params: params});
+  }
+
+  setupSearchType(searchType: string, params: HttpParams): HttpParams {
+    if (searchType === 'Computer name') {
+      params = params.append('searchByComputerName', 'true');
+    } else {
+      params = params.append('searchByComputerName', 'false');
+    }
+    return params;
   }
 
 }

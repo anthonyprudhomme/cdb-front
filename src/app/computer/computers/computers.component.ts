@@ -20,6 +20,9 @@ export class ComputersComponent implements OnInit {
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
 
+  searchType: string;
+  searchOptions = ['Computer name', 'Company name'];
+
   constructor(private computerService: ComputerService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
@@ -29,6 +32,7 @@ export class ComputersComponent implements OnInit {
     }, err => {console.log(err); });
     this.computerService.countComputers().subscribe(length => this.pageEvent.length = length);
     window.onscroll = () => this.onScroll();
+    this.searchType = this.searchOptions[0];
   }
 
   onScroll() {
@@ -75,10 +79,10 @@ export class ComputersComponent implements OnInit {
       });
       this.computerService.countComputers().subscribe(length => this.pageEvent.length = length);
     } else {
-      this.computerService.searchComputers(this.searchValue, event.pageIndex + 1, event.pageSize).subscribe(computers => {
+      this.computerService.searchComputers(this.searchValue, event.pageIndex + 1, event.pageSize, this.searchType).subscribe(computers => {
         this.computers = computers;
       });
-      this.computerService.countSearchedComputers(this.searchValue).subscribe(length => this.pageEvent.length = length);
+      this.computerService.countSearchedComputers(this.searchValue, this.searchType).subscribe(length => this.pageEvent.length = length);
     }
     this.scrollToTop();
     return event;
