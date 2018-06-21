@@ -35,11 +35,13 @@ export class CompanyComponent implements OnInit {
   }
 
   showImage(image) {
-    document.getElementsByClassName(image)[0].style.opacity = 1;
+    const img: HTMLElement = document.getElementsByClassName(image)[0] as HTMLElement;
+    img.style.opacity = '1';
   }
 
   hideImage(image) {
-    document.getElementsByClassName(image)[0].style.opacity = 0;
+    const img: HTMLElement = document.getElementsByClassName(image)[0] as HTMLElement;
+    img.style.opacity = '0';
   }
 
 }
