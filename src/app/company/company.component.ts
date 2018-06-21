@@ -15,7 +15,8 @@ export class CompanyComponent implements OnInit {
   @Output() delete: EventEmitter<Company> = new EventEmitter();
   deleteDialogRef: MatDialogRef<CompanyDeleteComponent, any>;
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog) {
+  }
 
   ngOnInit() {
   }
@@ -31,6 +32,10 @@ export class CompanyComponent implements OnInit {
 
   updateCompany() {
     this.dialog.open(CompanyUpdateComponent, {data: this.company});
+  }
+
+  showImage() {
+
   }
 
 }

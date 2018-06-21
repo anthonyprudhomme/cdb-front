@@ -1,5 +1,4 @@
 <div class="container" *ngIf="companies" @staggerAnim>
-
   <div class="row align-items-center controlBar shadow">
       <mat-form-field class="col-md-3 col-sm-12">
           <mat-icon *ngIf="searchValue"
@@ -14,17 +13,16 @@
 
           <input matInput placeholder="Search" [(ngModel)]="searchValue">
       </mat-form-field>
-
       <button class="col-md-1" mat-raised-button color="primary" (click)="search()">Search</button>
       <span class="col-md-3"></span>
       <button class="col-md-3 col-lg-2" mat-raised-button color="primary" (click)="create()">Create a new company</button>
   </div>
 
-  <table class="customTable table table-bordered shadow">
+  <table class="table table-bordered customTable shadow">
     <thead>
-    <th style="width: 66.6%">Name</th>
-    <th style="width: 16.6%">See computers</th>
-    <th style="width: 16.6%">Delete</th>
+      <th style="width: 66.6%">Company</th>
+      <th style="width: 16.6%">See computers</th>
+      <th style="width: 16.6%">Delete</th>
     </thead>
     <tr *ngFor=" let company of companies" app-company [company]="company" (delete)="companyDeleted(company)">
     </tr>
