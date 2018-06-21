@@ -46,7 +46,7 @@ export class CompaniesComponent implements OnInit {
 
   ngOnInit() {
     this.pageEvent = new PageEvent();
-    this.companyService.getCompaniesAtPage(1, 10).subscribe(companies => {
+    this.companyService.getCompaniesAtPage(1, this.pageSizeOptions[0]).subscribe(companies => {
       this.companies = companies;
       this.resetPaginator();
     }, err => {console.log(err); });

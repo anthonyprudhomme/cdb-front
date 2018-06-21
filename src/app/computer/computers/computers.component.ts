@@ -24,7 +24,7 @@ export class ComputersComponent implements OnInit {
 
   ngOnInit() {
     this.pageEvent = new PageEvent();
-    this.computerService.getComputersAtPage(12, 1).subscribe(computers => {
+    this.computerService.getComputersAtPage(1, this.pageSizeOptions[0]).subscribe(computers => {
       this.computers = computers;
     }, err => {console.log(err); });
     this.computerService.countComputers().subscribe(length => this.pageEvent.length = length);
@@ -97,7 +97,7 @@ export class ComputersComponent implements OnInit {
 
   resetPaginator() {
     this.pageEvent.pageIndex = 0;
-    this.pageEvent.pageSize = 10;
+    this.pageEvent.pageSize = this.pageSizeOptions[0];
 
     // To bypass pageEvent.pageindex api bug
     if (null != this.paginator) {

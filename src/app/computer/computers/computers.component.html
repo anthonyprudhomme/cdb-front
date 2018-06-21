@@ -1,5 +1,4 @@
-<!-- <div class="container" *ngIf="computers"> -->
-<div class="container" >
+<div class="container" *ngIf="computers">
 
   <div class="row align-items-center controlBar shadow">
       <mat-form-field class="col-md-3 col-sm-12">
@@ -26,22 +25,29 @@
       <button class="col-md-3 col-lg-2" mat-raised-button color="primary" (click)="create()">Create a new company</button>
   </div>
 
-  <!-- TODO : change everything above according to company version -->
-
-
     <table class="customTable table table-bordered shadow">
       <thead>
-        <th style="width: 66.6%">Name</th>
-        <th style="width: 16.6%">Company</th>
-        <th style="width: 16.6%">Introduced</th>
-        <th style="width: 16.6%">Discontinued</th>
-        <th style="width: 16.6%">Delete</th>
+        <th style="width: 50%">Name</th>
+        <th>Company</th>
+        <th>Introduced</th>
+        <th>Discontinued</th>
+        <th>Delete</th>
       </thead>
       <tr *ngFor="let computer of computers" app-computer [computer]="computer" (delete)="computerDeleted(computer)">
       </tr>
     </table>
 
+    <button (click)="scrollToTop()" id="scrollButton" title="Go to top">
+        <mat-icon>arrow_upward</mat-icon>
+    </button>
 
+    <mat-paginator #paginator *ngIf="pageEvent" color="primary" [length]="pageEvent.length"
+    [pageSize]="pageEvent.pageSize"
+    [pageSizeOptions]="pageSizeOptions"
+    (page)="pageEvent = changePage($event)"
+    [showFirstLastButtons]="true"
+    class="shadow">
+    </mat-paginator>
 
 
 </div>
