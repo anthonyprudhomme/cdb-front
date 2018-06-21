@@ -4,7 +4,7 @@ import { CompanyService } from '../company.service';
 import { trigger, style, transition, animate, query, stagger } from '@angular/animations';
 import { MatPaginator, PageEvent, MatDialog, MatSnackBar, MatSnackBarConfig } from '@angular/material';
 import { CompanyCreateComponent } from '../company-create/company-create.component';
-import { isUndefined } from 'util';
+import {isNullOrUndefined, isUndefined} from 'util';
 
 
 @Component({
@@ -39,6 +39,15 @@ export class CompaniesComponent implements OnInit {
   pageEvent: PageEvent;
   pageSizeOptions = [10, 25, 100];
 
+  sortOptions = [
+    {viewValue: '--'},
+    {value: 'name_asc', viewValue: 'Name asc'},
+    {value: 'name_desc', viewValue: 'Name desc'},
+    {value: 'number_of_computers_asc', viewValue: 'Increasing number of computers'},
+    {value: 'number_of_computers_desc', viewValue: 'Decreasing number of computers'}];
+
+  sortSelected: string;
+
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
 
@@ -46,7 +55,7 @@ export class CompaniesComponent implements OnInit {
 
   ngOnInit() {
     this.pageEvent = new PageEvent();
-    this.companyService.getCompaniesAtPage(1, 10).subscribe(companies => {
+    this.companyService.getCompaniesAtPage(1, this.pageSizeOptions[0]).subscribe(companies => {
       this.companies = companies;
       this.resetPaginator();
     }, err => {console.log(err); console.log('ICI'); });
@@ -94,17 +103,39 @@ export class CompaniesComponent implements OnInit {
   }
 
   changePage(event?: PageEvent): PageEvent {
-    if (!this.searchValue || 0 === this.searchValue.length) {
+
+    // If there is no search and no sort
+    if (isNullOrUndefined(this.searchValue) && isNullOrUndefined(this.sortSelected)) {
       this.companyService.getCompaniesAtPage(event.pageIndex + 1, event.pageSize).subscribe(companies => {
         this.companies = companies;
       });
       this.companyService.countCompanies().subscribe(length => this.pageEvent.length = length);
-    } else {
+    }
+
+    // If there is a search and no sort
+    if (!isNullOrUndefined(this.searchValue) && isNullOrUndefined(this.sortSelected)) {
       this.companyService.searchCompanies(this.searchValue, event.pageIndex + 1, event.pageSize).subscribe(companies => {
         this.companies = companies;
       });
       this.companyService.countSearchedCompanies(this.searchValue).subscribe(length => this.pageEvent.length = length);
     }
+
+    // If there is no search and a sort
+    if (isNullOrUndefined(this.searchValue) && !isNullOrUndefined(this.sortSelected)) {
+      this.companyService.sortCompanies(this.sortSelected, event.pageIndex + 1, event.pageSize).subscribe(companies => {
+        this.companies = companies;
+      });
+      this.companyService.countCompanies().subscribe(length => this.pageEvent.length = length);
+    }
+
+    // If there is a search and a sort
+    if (!isNullOrUndefined(this.searchValue) && !isNullOrUndefined(this.sortSelected)) {
+      this.companyService.sortSearchedCompanies(this.searchValue, this.sortSelected, event.pageIndex + 1, event.pageSize).subscribe(companies => {
+        this.companies = companies;
+      });
+      this.companyService.countSearchedCompanies(this.searchValue).subscribe(length => this.pageEvent.length = length);
+    }
+
     this.scrollToTop();
     return event;
   }
@@ -115,7 +146,7 @@ export class CompaniesComponent implements OnInit {
   }
 
   clearSearch() {
-    this.searchValue = '';
+    this.searchValue = null;
     this.resetPaginator();
     this.changePage(this.pageEvent);
   }
@@ -138,4 +169,8 @@ export class CompaniesComponent implements OnInit {
     this.snackBar.open(message, 'OK', config);
   }
 
+  sort() {
+    this.resetPaginator();
+    this.changePage(this.pageEvent);
+  }
 }
