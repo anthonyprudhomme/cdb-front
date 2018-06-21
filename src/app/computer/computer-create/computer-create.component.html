@@ -1,3 +1,39 @@
-<p>
-  computer-create works!
-</p>
+<div class="cardContainer">
+  <div>
+    <h1>Create a new computer</h1>
+
+    <mat-divider></mat-divider>
+
+    <form [formGroup]=computerAddForm>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Computer name" required formControlName="name" name="name" />
+        <mat-error>
+          Name of computer is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <input matInput [max]="computer.discontinued" [matDatepicker]="computer.introduced" placeholder="Introduction date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <input matInput [min]="computer.introduced" [matDatepicker]="computer.discontinued" placeholder="Discontinuation date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="full-width"  >
+          <mat-select [(value)]="selected">
+            <mat-option value="-1">None</mat-option>
+            <mat-option *ngFor="let company of companies" value="company.id">{{company.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      <div>
+        <button mat-raised-button color="primary" (click)=submit()>Confirmer</button>
+      </div>
+    </form>
+  </div>
+</div>
