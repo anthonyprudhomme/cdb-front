@@ -17,7 +17,6 @@ export class AppComponent {
   }
 
   useLanguage(language: string) {
-    console.log(language);
     this.translate.use(language);
   }
 }

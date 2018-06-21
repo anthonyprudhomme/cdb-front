@@ -11,7 +11,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSidenavModule, MatListModule } from '@angular/material';
 import { MatSnackBarModule } from '@angular/material';
 
-
 @NgModule({
   imports: [
     CommonModule,
