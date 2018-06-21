@@ -34,8 +34,12 @@ export class CompanyComponent implements OnInit {
     this.dialog.open(CompanyUpdateComponent, {data: this.company});
   }
 
-  showImage() {
+  showImage(image) {
+    document.getElementsByClassName(image)[0].style.opacity = 1;
+  }
 
+  hideImage(image) {
+    document.getElementsByClassName(image)[0].style.opacity = 0;
   }
 
 }
