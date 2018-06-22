@@ -1,18 +1,19 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Company } from './company.model';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { CompanyUpdateComponent } from './company-update/company-update.component';
 import { CompanyDeleteComponent } from './company-delete/company-delete.component';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-company, [app-company]',
   templateUrl: './company.component.html',
   styleUrls: ['./company.component.scss']
 })
+
 export class CompanyComponent {
 
-  @Input() company: Company;
+  @Input('company') company: Company;
+  @Input('isAdmin') isAdmin: boolean;
   @Output() delete: EventEmitter<Company> = new EventEmitter();
   deleteDialogRef: MatDialogRef<CompanyDeleteComponent, any>;
 
@@ -20,12 +21,14 @@ export class CompanyComponent {
   }
 
   deleteCompany() {
-    this.deleteDialogRef = this.dialog.open(CompanyDeleteComponent, {data: this.company});
-    this.deleteDialogRef.afterClosed().subscribe((success) => {
-      if (success) {
-        this.delete.emit();
-      }
-    });
+    if (this.isAdmin) {
+      this.deleteDialogRef = this.dialog.open(CompanyDeleteComponent, {data: this.company});
+      this.deleteDialogRef.afterClosed().subscribe((success) => {
+        if (success) {
+          this.delete.emit();
+        }
+      });
+    }
   }
 
   updateCompany() {
@@ -42,6 +45,10 @@ export class CompanyComponent {
     const img: HTMLElement = document.getElementsByClassName(image)[0] as HTMLElement;
     img.style.opacity = '0';
     img.style.zIndex = '-1';
+  }
+
+  setDefaultImage() {
+    this.company.imageUrl = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg';
   }
 
 }

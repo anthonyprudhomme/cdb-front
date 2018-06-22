@@ -209,8 +209,10 @@ $theme: (
 .img-hover img:first-child {
   position: fixed;
   opacity: 0;
-  width: 400px;
-  height: 400px;
+  max-width:70%;
+  max-height:70%;
+  width: auto;
+  height: auto;
   left: 50%;
   top: 50%;
   z-index: -10;

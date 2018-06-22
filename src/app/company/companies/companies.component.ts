@@ -6,6 +6,7 @@ import { MatPaginator, PageEvent, MatDialog, MatSnackBar, MatSnackBarConfig } fr
 import { CompanyCreateComponent } from '../company-create/company-create.component';
 import { TranslateService } from '@ngx-translate/core';
 import { isNullOrUndefined, isUndefined } from 'util';
+import { LoginService } from '../../login/login.service';
 
 @Component({
   selector: 'app-companies',
@@ -39,6 +40,8 @@ export class CompaniesComponent implements OnInit {
   pageEvent: PageEvent;
   pageSizeOptions = [10, 25, 100];
 
+  isAdmin = false;
+
   sortOptions = [
     {viewValue: '--'},
     {value: 'name_asc', viewValue: this.translate.instant('SELECT.NAME_ASC')},
@@ -54,8 +57,8 @@ export class CompaniesComponent implements OnInit {
   constructor(private companyService: CompanyService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
-    private translate: TranslateService) {
-    }
+    private translate: TranslateService,
+    private loginService: LoginService) { }
 
   ngOnInit() {
     this.pageEvent = new PageEvent();
@@ -65,6 +68,13 @@ export class CompaniesComponent implements OnInit {
     }, err => {console.log(err); console.log('ICI'); });
     this.companyService.countCompanies().subscribe(length => this.pageEvent.length = length);
     window.onscroll = () => this.onScroll();
+
+    const user = sessionStorage.getItem('user');
+    this.loginService.getRolesOfUser(user).toPromise().then(res => {
+      if (res.includes('ADMIN')) {
+        this.isAdmin = true;
+      }
+    });
   }
 
   onScroll() {

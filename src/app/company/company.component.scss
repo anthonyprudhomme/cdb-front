@@ -2,7 +2,8 @@ td:first-child {
   padding-left: 24px !important;
 }
 
-.squared {
+.rounded-image {
+  border-radius: 50%;
   object-fit: cover;
   margin: 2px;
   width: 40px;
