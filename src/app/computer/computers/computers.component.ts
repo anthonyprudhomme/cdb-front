@@ -117,7 +117,12 @@ export class ComputersComponent implements OnInit {
       this.computerService.searchComputers(this.searchValue, event.pageIndex + 1, event.pageSize, this.searchType).subscribe(computers => {
         this.computers = computers;
       });
-      this.computerService.countSearchedComputers(this.searchValue, this.searchType).subscribe(length => this.pageEvent.length = length);
+      this.computerService.countSearchedComputers(this.searchValue, this.searchType).subscribe(length => {
+        this.pageEvent.length = length;
+        if (length === 0 ) {
+          this.openSnackBar('Aucun résultat trouvés', 'warn-snackbar');
+        }
+      });
     }
 
     // If there is no search and a sort
@@ -134,7 +139,12 @@ export class ComputersComponent implements OnInit {
         this.searchValue, this.sortSelected, event.pageIndex + 1, event.pageSize, this.searchType).subscribe(computers => {
         this.computers = computers;
       });
-      this.computerService.countSearchedComputers(this.searchValue, this.searchType).subscribe(length => this.pageEvent.length = length);
+      this.computerService.countSearchedComputers(this.searchValue, this.searchType).subscribe(length => {
+        this.pageEvent.length = length;
+        if (length === 0 ) {
+          this.openSnackBar('Aucun résultat trouvés', 'warn-snackbar');
+        }
+      });
     }
 
     this.scrollToTop();

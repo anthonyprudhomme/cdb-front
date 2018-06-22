@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class LoginService {
 
+  private base_url = 'http://localhost:8080/webservice/';
+
   constructor(private http: HttpClient) { }
 
   login(username: string, password: string) {
@@ -15,16 +17,22 @@ export class LoginService {
     body.append('password', password);
      const options = { headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded'),
      withCredentials: true};
-    return this.http.post('http://localhost:8080/webservice/login', body.toString(), options);
+    return this.http.post(this.base_url + 'login', body.toString(), options);
   }
 
   logout() {
      const options = { withCredentials: true};
      sessionStorage.clear();
-     return this.http.get('http://localhost:8080/webservice/logout', options); //  { }, options
+     return this.http.get(this.base_url + 'logout', options); //  { }, options
   }
 
-  getRolesOfUser(name: string): Observable<string[]> {
-    return this.http.get<string[]>('http://localhost:8080/webservice/user/' + name + '/roles');
+  getRolesOfUser(): Observable<string[]> {
+    return this.http.get<string[]>(this.base_url + 'user/roles', {withCredentials: true});
+  }
+
+  signUp(username: string , password: string) {
+    const user = { 'username': username, 'password': password, 'enabled': true};
+    JSON.stringify(user);
+    return this.http.post(this.base_url + 'user', user);
   }
 }
