@@ -16,13 +16,13 @@
         <mat-form-field class="full-width">
           <input matInput placeholder="{{ 'LOGIN.USERNAME' | translate }}" formControlName="username" required>
           <mat-error>
-            Username is required
+              {{ 'LOGIN.ERROR.USERNAME_REQUIRED' | translate }}
           </mat-error>
         </mat-form-field>
         <mat-form-field class="full-width">
           <input matInput placeholder="{{ 'LOGIN.PASSWORD' | translate }}" type="password" formControlName="password" required>
           <mat-error>
-            Password is required
+              {{ 'LOGIN.ERROR.PASSWORD_REQUIRED' | translate }}
           </mat-error>
         </mat-form-field>
         <div id="loginButtonContainer" class="center">

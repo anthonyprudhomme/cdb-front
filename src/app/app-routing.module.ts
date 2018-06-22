@@ -39,6 +39,11 @@ const routes: Routes = [
     canActivate: [AuthenticationFilterComponent]
   },
   {
+    path: 'computer/search/:search',
+    component: ComputersComponent,
+    canActivate: [AuthenticationFilterComponent]
+  },
+  {
     path: 'computer/add',
     component: ComputerCreateComponent
   },

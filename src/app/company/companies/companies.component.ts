@@ -41,10 +41,10 @@ export class CompaniesComponent implements OnInit {
 
   sortOptions = [
     {viewValue: '--'},
-    {value: 'name_asc', viewValue: 'Name asc'},
-    {value: 'name_desc', viewValue: 'Name desc'},
-    {value: 'number_of_computers_asc', viewValue: 'Increasing number of computers'},
-    {value: 'number_of_computers_desc', viewValue: 'Decreasing number of computers'}];
+    {value: 'name_asc', viewValue: this.translate.instant('SELECT.NAME_ASC')},
+    {value: 'name_desc', viewValue: this.translate.instant('SELECT.NAME_DESC')},
+    {value: 'number_of_computers_asc', viewValue: this.translate.instant('SELECT.INC_COMPUTER')},
+    {value: 'number_of_computers_desc', viewValue: this.translate.instant('SELECT.DEC_COMPUTER')}];
 
   sortSelected: string;
 

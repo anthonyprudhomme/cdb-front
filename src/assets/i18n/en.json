@@ -35,6 +35,7 @@
     "DISCONTINUED": "Discontinued",
     "COMPANY": "Company",
     "DEL_COMPUTER": "Delete computer",
+    "DELETE": "Delete",
     "DELETE_COMPUTER": "Delete a computer",
     "CONFIRM_DELETION": "Are you sure you want to delete {{name}} ?",
     "DELETE_SUCCESS": "Computer successfully deleted",
@@ -52,6 +53,9 @@
     "REGISTER": "Register",
     "NEW": "New to CDB ?",
     "ERROR": {
+      "USERNAME_REQUIRED": "Username is required.",
+      "PASSWORD_REQUIRED": "Password is required.",
+      "INCORRECT": "Username and/or password is/are incorrect.",
       "USERNAME": "Username must be at least 5 characters long and musn't contain whitespaces.",
       "PASSWORD": "Password must be at least 8 characters long and contain at least one digit, one lowercase and one uppercase.",
       "PASSWORD_CONFIRM": "Password confirmation doesn't match the password"
@@ -71,5 +75,20 @@
     "OF": "of",
     "FIRST": "First page",
     "LAST": "Last page"
+  },
+  "SELECT":{
+    "NAME_ASC":"Name",
+    "NAME_DESC":"Name reversed",
+    "INC_COMPUTER":"Increasing number of computers",
+    "DEC_COMPUTER":"Decreasing number of computers",
+    "COMPUTER_NAME": "Computer name",
+    "COMPANY_NAME": "Company name",
+    "INC_INTRODUCED": "Increasing introduced date",
+    "DEC_INTRODUCED": "Decreasing introduced date",
+    "INC_DISCONTINUED": "Increasing discontinued date",
+    "DEC_DISCONTINUED": "Decreasing discontinued date",
+    "COMPANY_ASC": "Company name",
+    "COMPANY_DESC": "Company name reversed",
+    "SORTING_OPTIONS": "Sorting options"
   }
 }

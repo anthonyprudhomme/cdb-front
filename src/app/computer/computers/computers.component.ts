@@ -5,6 +5,8 @@ import { ComputerService } from '../computer.service';
 import { ComputerCreateComponent } from '../computer-create/computer-create.component';
 import { TranslateService } from '@ngx-translate/core';
 import { isNullOrUndefined, isUndefined } from 'util';
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-computers',
@@ -24,21 +26,23 @@ export class ComputersComponent implements OnInit {
   constructor(private computerService: ComputerService,
      private dialog: MatDialog,
      private snackBar: MatSnackBar,
-     private translate: TranslateService) { }
+     private translate: TranslateService,
+     private route: ActivatedRoute,
+     private router: Router) { }
   searchType: string;
-  searchOptions = ['Computer name', 'Company name'];
+  searchOptions = [this.translate.instant('SELECT.COMPUTER_NAME'), this.translate.instant('SELECT.COMPANY_NAME')];
 
   sortOptions = [
     {viewValue: '--'},
-    {value: 'name_asc', viewValue: 'Name asc'},
-    {value: 'name_desc', viewValue: 'Name desc'},
+    {value: 'name_asc', viewValue: this.translate.instant('SELECT.NAME_ASC')},
+    {value: 'name_desc', viewValue: this.translate.instant('SELECT.NAME_DESC')},
 
-    {value: 'introduced_asc', viewValue: 'Increasing introduced date'},
-    {value: 'introduced_desc', viewValue: 'Decreasing introduced date'},
-    {value: 'discontinued_asc', viewValue: 'Increasing discontinued date'},
-    {value: 'discontinued_desc', viewValue: 'Decreasing discontinued date'},
-    {value: 'company_asc', viewValue: 'Company name asc'},
-    {value: 'company_desc', viewValue: 'Company name desc'}];
+    {value: 'introduced_asc', viewValue: this.translate.instant('SELECT.INC_INTRODUCED')},
+    {value: 'introduced_desc', viewValue: this.translate.instant('SELECT.DEC_INTRODUCED')},
+    {value: 'discontinued_asc', viewValue: this.translate.instant('SELECT.INC_DISCONTINUED')},
+    {value: 'discontinued_desc', viewValue: this.translate.instant('SELECT.DEC_DISCONTINUED')},
+    {value: 'company_asc', viewValue: this.translate.instant('SELECT.COMPANY_ASC')},
+    {value: 'company_desc', viewValue: this.translate.instant('SELECT.COMPANY_DESC')}];
 
   sortSelected: string;
 
@@ -49,6 +53,13 @@ export class ComputersComponent implements OnInit {
     }, err => {console.log(err); });
     this.computerService.countComputers().subscribe(length => this.pageEvent.length = length);
     window.onscroll = () => this.onScroll();
+    this.route.queryParams.subscribe(params => {
+      console.log(params); // {order: "popular"}
+
+      this.searchValue = params.search;
+      console.log(this.searchValue); // popular
+      this.search();
+    });
   }
 
   onScroll() {
@@ -78,6 +89,7 @@ export class ComputersComponent implements OnInit {
   search() {
     this.resetPaginator();
     this.changePage(this.pageEvent);
+    this.router.navigate(['/computer']);
   }
 
   create() {

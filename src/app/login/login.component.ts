@@ -4,6 +4,7 @@ import { LoginService } from './login.service';
 import { Router } from '@angular/router';
 import { isNullOrUndefined } from 'util';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,11 @@ export class LoginComponent implements OnInit {
   password: string;
 
   loginForm: FormGroup;
-  constructor(private formBuilder: FormBuilder, private service: LoginService, private route: Router,  private snackBar: MatSnackBar) {
+  constructor(private formBuilder: FormBuilder,
+    private service: LoginService,
+    private route: Router,
+    private snackBar: MatSnackBar,
+    private translate: TranslateService) {
   }
 
   ngOnInit() {
@@ -44,7 +49,7 @@ export class LoginComponent implements OnInit {
             this.route.navigate([url]);
           }
         } else {
-          this.openSnackBar('Login / Password error', 'fail-snackbar');
+          this.openSnackBar(this.translate.instant('LOGIN.ERROR.INCORRECT'), 'fail-snackbar');
         }
       });
     }

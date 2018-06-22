@@ -34,6 +34,7 @@
     "INTRODUCED": "Introduit",
     "DISCONTINUED": "Retiré",
     "COMPANY": "Entreprise",
+    "DELETE": "Supprimer",
     "DEL_COMPUTER": "Suprimmer l'ordinateur",
     "DELETE_COMPUTER": "Supprimer un ordinateur",
     "CONFIRM_DELETION": "Êtes-vous sûr de vouloir supprimer {{name}} ?",
@@ -53,6 +54,9 @@
     "NEW": "Nouveau sur CDB ?",
     "ERROR": {
       "USERNAME": "L'identifiant doit être long d'au moins 5 caractères et ne doit pas contenir d'espaces.",
+      "USERNAME_REQUIRED": "L'identifiant est requis.",
+      "PASSWORD_REQUIRED": "Le mot de passe est requis.",
+      "INCORRECT": "L'identifiant et/ou le mot de passe est/sont incorrect(s).",
       "PASSWORD": "Le mot de passe doit contenir au moins 8 caractères et avoir au moins une minuscule, une majuscule et un chiffre.",
       "PASSWORD_CONFIRM": "La confirmation du mot de passe ne correspond pas au mot de passe."
     }
@@ -71,5 +75,20 @@
     "OF": "sur",
     "FIRST": "Première page",
     "LAST": "Dernière page"
+  },
+  "SELECT":{
+    "NAME_ASC":"Nom",
+    "NAME_DESC":"Nom inversé",
+    "INC_COMPUTER":"Nombre d'ordinateur croissant",
+    "DEC_COMPUTER":"Nombre d'ordinateur décroissant",
+    "COMPUTER_NAME": "Nom d'ordinateur",
+    "COMPANY_NAME": "Nom d'entreprise",
+    "INC_INTRODUCED": "Introduction chronologique",
+    "DEC_INTRODUCED": "Introduction anti-chronologique",
+    "INC_DISCONTINUED": "Retrait chronologique",
+    "DEC_DISCONTINUED": "Retrait anti-chronologique",
+    "COMPANY_ASC": "Nom d'entreprise",
+    "COMPANY_DESC": "Nom d'entreprise inversé",
+    "SORTING_OPTIONS": "Options de tri"
   }
 }
