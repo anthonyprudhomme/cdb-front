@@ -178,4 +178,10 @@ export class CompaniesComponent implements OnInit {
     this.resetPaginator();
     this.changePage(this.pageEvent);
   }
+
+  triggerSearch(event) {
+    if (event.keyCode === 13) {
+      this.search();
+    }
+  }
 }

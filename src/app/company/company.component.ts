@@ -35,11 +35,13 @@ export class CompanyComponent {
   showImage(image) {
     const img: HTMLElement = document.getElementsByClassName(image)[0] as HTMLElement;
     img.style.opacity = '1';
+    img.style.zIndex = '1';
   }
 
   hideImage(image) {
     const img: HTMLElement = document.getElementsByClassName(image)[0] as HTMLElement;
     img.style.opacity = '0';
+    img.style.zIndex = '-1';
   }
 
 }

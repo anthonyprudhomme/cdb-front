@@ -152,6 +152,12 @@ export class ComputersComponent implements OnInit {
     this.changePage(this.pageEvent);
   }
 
+  triggerSearch(event) {
+    if (event.keyCode === 13) {
+      this.search();
+    }
+  }
+
   resetPaginator() {
     this.pageEvent.pageIndex = 0;
     this.pageEvent.pageSize = this.pageSizeOptions[0];

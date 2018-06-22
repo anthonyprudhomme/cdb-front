@@ -2,7 +2,7 @@
   <div class="row align-items-center controlBar shadow">
     <div class="col-md-5">
       <div class="row align-items-center">
-        <mat-form-field class="col-md-6">
+        <mat-form-field class="col-md-6" (keydown)="triggerSearch($event)">
           <mat-icon *ngIf="searchValue"
                     matPrefix
                     class="clearSearchIcon"
