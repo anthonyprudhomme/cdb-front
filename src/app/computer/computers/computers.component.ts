@@ -54,12 +54,10 @@ export class ComputersComponent implements OnInit {
     this.computerService.countComputers().subscribe(length => this.pageEvent.length = length);
     window.onscroll = () => this.onScroll();
     this.route.queryParams.subscribe(params => {
-      console.log(params); // {order: "popular"}
-
       this.searchValue = params.search;
-      console.log(this.searchValue); // popular
       this.search();
     });
+    this.searchType = this.translate.instant('SELECT.COMPUTER_NAME');
   }
 
   onScroll() {
