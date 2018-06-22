@@ -8,13 +8,15 @@ import { CustomMaterialModule } from '../custom-material/custom-material.module'
 import { ReactiveFormsModule } from '@angular/forms';
 import { CompanyDeleteComponent } from './company-delete/company-delete.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
     CustomMaterialModule,
     ReactiveFormsModule,
-    TranslateModule
+    TranslateModule,
+    RouterModule
   ],
   declarations: [
     CompanyComponent,

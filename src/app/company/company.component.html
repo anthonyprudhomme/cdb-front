@@ -7,6 +7,8 @@
 </td>
 <td class="text-center aligned-td" >
   <button mat-raised-button color="primary"
+          [routerLink]="['/computer']"
+          [queryParams]="{search: company.name}"
           matBadge="{{company.numberOfComputers}}" matBadgePosition="after"
           matBadgeColor="{{company.numberOfComputers == 0 ? 'warn' : 'accent'}}">
     <mat-icon>computer</mat-icon>

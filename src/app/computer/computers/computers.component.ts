@@ -5,6 +5,8 @@ import { ComputerService } from '../computer.service';
 import { ComputerCreateComponent } from '../computer-create/computer-create.component';
 import { TranslateService } from '@ngx-translate/core';
 import { isNullOrUndefined, isUndefined } from 'util';
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-computers',
@@ -24,7 +26,9 @@ export class ComputersComponent implements OnInit {
   constructor(private computerService: ComputerService,
      private dialog: MatDialog,
      private snackBar: MatSnackBar,
-     private translate: TranslateService) { }
+     private translate: TranslateService,
+     private route: ActivatedRoute,
+     private router: Router) { }
   searchType: string;
   searchOptions = [this.translate.instant('SELECT.COMPUTER_NAME'), this.translate.instant('SELECT.COMPANY_NAME')];
 
@@ -49,6 +53,13 @@ export class ComputersComponent implements OnInit {
     }, err => {console.log(err); });
     this.computerService.countComputers().subscribe(length => this.pageEvent.length = length);
     window.onscroll = () => this.onScroll();
+    this.route.queryParams.subscribe(params => {
+      console.log(params); // {order: "popular"}
+
+      this.searchValue = params.search;
+      console.log(this.searchValue); // popular
+      this.search();
+    });
   }
 
   onScroll() {
@@ -78,6 +89,7 @@ export class ComputersComponent implements OnInit {
   search() {
     this.resetPaginator();
     this.changePage(this.pageEvent);
+    this.router.navigate(['/computer']);
   }
 
   create() {

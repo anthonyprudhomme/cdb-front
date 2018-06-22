@@ -3,6 +3,7 @@ import { Company } from './company.model';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { CompanyUpdateComponent } from './company-update/company-update.component';
 import { CompanyDeleteComponent } from './company-delete/company-delete.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-company, [app-company]',
