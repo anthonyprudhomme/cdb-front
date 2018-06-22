@@ -31,7 +31,7 @@ export class AuthenticationFilterComponent implements CanActivate {
       this.route.navigate(['/login']);
     }
   }).catch(error =>
-    console.log('Cette utilisateur n"existe pas')
+    console.log('username requis')
   );
   return valid;
   }
