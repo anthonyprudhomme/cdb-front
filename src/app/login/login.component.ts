@@ -43,7 +43,6 @@ export class LoginComponent implements OnInit {
           } else {
             this.route.navigate([url]);
           }
-          sessionStorage.setItem('user', this.username);
         } else {
           this.openSnackBar('Login / Password error', 'fail-snackbar');
         }

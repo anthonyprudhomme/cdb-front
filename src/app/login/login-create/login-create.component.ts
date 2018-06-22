@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
+import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { LoginService } from '../login.service';
 import { Router } from '@angular/router';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
 
 @Component({
   selector: 'app-login-create',
@@ -14,7 +15,7 @@ export class LoginCreateComponent implements OnInit {
   passwordConfirmation: string;
 
   loginForm: FormGroup;
-  constructor(private formBuilder: FormBuilder, private service: LoginService, private route: Router) {
+  constructor(private formBuilder: FormBuilder, private service: LoginService, private route: Router, private snackBar: MatSnackBar) {
     this.createForm();
   }
 
@@ -43,7 +44,6 @@ export class LoginCreateComponent implements OnInit {
 
   createAccount() {
     if (this.loginForm.valid) {
-      console.log("connard");
      this.service.signUp(
        this.loginForm.value.username,
        this.loginForm.value.password).toPromise().then(
@@ -51,18 +51,24 @@ export class LoginCreateComponent implements OnInit {
        ).catch(
          res => { if (res.status === 200) {
           this.route.navigate(['/login']);
+          this.openSnackBar('Compte crée veuillez vous connecter', 'success-snackbar');
          } else {
-          console.log(res);
+          this.openSnackBar('Username déjà existant', 'warn-snackbar');
          }
        });
     }
   }
 
   submit(event) {
-    if (event.keyCode === 13) {
-      this.createAccount();
-    }
+    this.createAccount();
   }
 
+  openSnackBar(message: string, className: string) {
+    const config = new MatSnackBarConfig();
+    config.duration = 2000;
+    config.panelClass = [className];
+    config.horizontalPosition = 'end';
+    this.snackBar.open(message, 'OK', config);
+  }
 
 }

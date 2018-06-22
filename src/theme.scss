@@ -197,12 +197,21 @@ $theme: (
 
 .fail-snackbar {
   background: #ff7d7d;
- // color: #24292f;
   color: #2b3037;
 
 }
 
 .fail-snackbar .mat-simple-snackbar-action {
+  color: #2b3037;
+}
+
+.warn-snackbar {
+  background: #fae6a7;
+  color: #2b3037;
+
+}
+
+.warn-snackbar .mat-simple-snackbar-action {
   color: #2b3037;
 }
 

@@ -13,26 +13,15 @@ export class AuthenticationFilterComponent implements CanActivate {
   constructor(private service: LoginService, private route: Router) {}
 
   async canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const user = sessionStorage.getItem('user');
-    if (isNullOrUndefined(user)) {
-      sessionStorage.setItem('url', state.url);
-      this.route.navigate(['/login']);
-      return false;
-    }
-   if (user.length === 0) {
-     console.log('username requis');
-     return false;
-   }
    let valid = false;
-   await this.service.getRolesOfUser(user).toPromise().then(res => {
+   await this.service.getRolesOfUser().toPromise().then(res => {
     if (res.includes('USER')) {
       valid = true;
     } else {
+      sessionStorage.setItem('url', state.url);
       this.route.navigate(['/login']);
     }
-  }).catch(error =>
-    console.log('username requis')
-  );
+  }).catch(error => console.log(error));
   return valid;
   }
 }

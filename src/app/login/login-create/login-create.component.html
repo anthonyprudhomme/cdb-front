@@ -7,7 +7,7 @@
     <mat-divider></mat-divider>
 
     <div class="width-85">
-      <form class="example-form" [formGroup]="loginForm">
+      <form [formGroup]="loginForm" (submit)="submit($event)">
 
         <mat-form-field class="full-width">
           <input matInput placeholder="{{ 'LOGIN.USERNAME' | translate }}" formControlName="username" required>
@@ -27,13 +27,13 @@
               {{ 'LOGIN.ERROR.PASSWORD_CONFIRM' | translate }}
           </mat-error>
         </mat-form-field>
-
+        <div id="createAccount" class="center">
+          <button id="registerButton" mat-raised-button type="submit" color="primary">{{ 'LOGIN.REGISTER' | translate }}</button> <!-- (click)="createAccount()" -->
+        </div>
       </form>
     </div>
 
-    <div class="center">
-      <button id="registerButton" mat-raised-button (click)="createAccount()" color="primary">{{ 'LOGIN.REGISTER' | translate }}</button>
-    </div>
+
 
   </mat-card>
 </div>

@@ -62,7 +62,7 @@ export class CompaniesComponent implements OnInit {
     this.companyService.getCompaniesAtPage(1, this.pageSizeOptions[0]).subscribe(companies => {
       this.companies = companies;
       this.resetPaginator();
-    }, err => {console.log(err); console.log('ICI'); });
+    }, err => {console.log(err); });
     this.companyService.countCompanies().subscribe(length => this.pageEvent.length = length);
     window.onscroll = () => this.onScroll();
   }

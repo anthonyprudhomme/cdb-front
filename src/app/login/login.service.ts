@@ -26,8 +26,8 @@ export class LoginService {
      return this.http.get(this.base_url + 'logout', options); //  { }, options
   }
 
-  getRolesOfUser(name: string): Observable<string[]> {
-    return this.http.get<string[]>(this.base_url + 'user/' + name + '/roles');
+  getRolesOfUser(): Observable<string[]> {
+    return this.http.get<string[]>(this.base_url + 'user/roles', {withCredentials: true});
   }
 
   signUp(username: string , password: string) {
