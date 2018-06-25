@@ -1,7 +1,7 @@
 <td class="aligned-td" (click)="updateCompany()">
   <span class="img-hover">
-    <img class="squared {{company.id}}" src={{company.imageUrl}} />
-    <img class="squared" (mouseenter)='showImage(company.id)' (mouseleave)='hideImage(company.id)' src={{company.imageUrl}} />
+    <img class="{{company.id}}" [src]=company.imageUrl (error)="setDefaultImage()" />
+    <img class="rounded-image" (mouseenter)='showImage(company.id)' (mouseleave)='hideImage(company.id)' src={{company.imageUrl}} />
   </span>
   <span>{{company.name}}</span>
 </td>
@@ -14,7 +14,7 @@
     <mat-icon>computer</mat-icon>
   </button>
 </td>
-<td class="text-center aligned-td">
+<td class="text-center aligned-td" *ngIf="isAdmin">
   <button mat-raised-button color="warn" (click)="deleteCompany()">
     <mat-icon>delete</mat-icon>
   </button>

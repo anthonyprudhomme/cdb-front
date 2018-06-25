@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
+import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { LoginService } from '../login.service';
+import { Router } from '@angular/router';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login-create',
@@ -12,7 +16,11 @@ export class LoginCreateComponent implements OnInit {
   passwordConfirmation: string;
 
   loginForm: FormGroup;
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+    private service: LoginService,
+    private route: Router,
+    private snackBar: MatSnackBar,
+    private translate: TranslateService) {
     this.createForm();
   }
 
@@ -21,7 +29,7 @@ export class LoginCreateComponent implements OnInit {
 
   createForm() {
     this.loginForm = this.formBuilder.group({
-      username: ['', [Validators.pattern(/^\S+[a-zA-Z0-9]{5,}$/), Validators.required]],
+      username: ['', [Validators.pattern(/^\S+[a-zA-Z0-9]{4,}$/), Validators.required]],
       password: ['', [Validators.pattern(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9!@#$%^&*]{8,}$/), Validators.required]],
       passwordConfirmation: ['', Validators.required]
     }, {validator: this.checkIfMatchingPasswords('password', 'passwordConfirmation')});
@@ -40,7 +48,32 @@ export class LoginCreateComponent implements OnInit {
   }
 
   createAccount() {
+    if (this.loginForm.valid) {
+     this.service.signUp(
+       this.loginForm.value.username,
+       this.loginForm.value.password).toPromise().then(
+         res => this.route.navigate(['/login'])
+       ).catch(
+         res => { if (res.status === 200) {
+          this.route.navigate(['/login']);
+          this.openSnackBar(this.translate.instant('LOGIN.ACCOUNT_CREATED'), 'success-snackbar');
+         } else {
+          this.openSnackBar(this.translate.instant('LOGIN.USERNAME_EXISTS'), 'warn-snackbar');
+         }
+       });
+    }
+  }
 
+  submit(event) {
+    this.createAccount();
+  }
+
+  openSnackBar(message: string, className: string) {
+    const config = new MatSnackBarConfig();
+    config.duration = 2000;
+    config.panelClass = [className];
+    config.horizontalPosition = 'end';
+    this.snackBar.open(message, 'OK', config);
   }
 
 }

@@ -52,6 +52,8 @@
     "CONFIRM_PASSWORD": "Confirm your password",
     "REGISTER": "Register",
     "NEW": "New to CDB ?",
+    "ACCOUNT_CREATED": "Account created, please log in.",
+    "USERNAME_EXISTS": "Username already exists.",
     "ERROR": {
       "USERNAME_REQUIRED": "Username is required.",
       "PASSWORD_REQUIRED": "Password is required.",
@@ -66,7 +68,8 @@
     "CANCEL": "Cancel",
     "CONFIRM": "Confirm",
     "NO": "No",
-    "YES": "Yes"
+    "YES": "Yes",
+    "NO_RESULT": "No results found"
   },
   "PAGINATOR": {
     "ITEMS":"Items per page",

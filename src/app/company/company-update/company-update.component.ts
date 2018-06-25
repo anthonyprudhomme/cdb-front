@@ -41,7 +41,6 @@ export class CompanyUpdateComponent implements OnInit {
       this.companyService.updateCompany(this.company).subscribe();
       this.dialog.close({'send': 'OK'});
       this.openSnackBar(this.translate.instant('COMPANY.UPDATE_SUCCESS'), 'success-snackbar');
-      this.openSnackBar('Company successfully updated', 'success-snackbar');
     }
   }
 

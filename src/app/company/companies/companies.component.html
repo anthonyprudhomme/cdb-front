@@ -2,7 +2,7 @@
   <div class="row align-items-center controlBar shadow">
     <div class="col-md-5">
       <div class="row align-items-center">
-        <mat-form-field class="col-md-6">
+        <mat-form-field class="col-md-6" (keydown)="triggerSearch($event)">
           <mat-icon *ngIf="searchValue"
                     matPrefix
                     class="clearSearchIcon"
@@ -37,9 +37,9 @@
     <thead>
       <th style="width: 66.6%">{{ 'COMPANY.COMPANY' | translate }}</th>
       <th style="width: 16.6%">{{ 'COMPANY.SEE' | translate }}</th>
-      <th style="width: 16.6%">{{ 'COMPANY.DELETE' | translate }}</th>
+      <th *ngIf="isAdmin" style="width: 16.6%">{{ 'COMPANY.DELETE' | translate }}</th>
     </thead>
-    <tr *ngFor=" let company of companies" app-company [company]="company" (delete)="companyDeleted(company)">
+    <tr *ngFor=" let company of companies" app-company [company]="company" [isAdmin]="isAdmin" (delete)="companyDeleted(company)">
     </tr>
   </table>
 

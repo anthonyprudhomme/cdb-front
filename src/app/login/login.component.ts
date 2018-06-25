@@ -48,7 +48,6 @@ export class LoginComponent implements OnInit {
           } else {
             this.route.navigate([url]);
           }
-          sessionStorage.setItem('user', this.username);
         } else {
           this.openSnackBar(this.translate.instant('LOGIN.ERROR.INCORRECT'), 'fail-snackbar');
         }

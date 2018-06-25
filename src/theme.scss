@@ -197,7 +197,6 @@ $theme: (
 
 .fail-snackbar {
   background: #ff7d7d;
- // color: #24292f;
   color: #2b3037;
 
 }
@@ -206,15 +205,27 @@ $theme: (
   color: #2b3037;
 }
 
+.warn-snackbar {
+  background: #fae6a7;
+  color: #2b3037;
+
+}
+
+.warn-snackbar .mat-simple-snackbar-action {
+  color: #2b3037;
+}
+
 .img-hover img:first-child {
   position: fixed;
   opacity: 0;
-  width: 400px;
-  height: 400px;
+  max-width:70%;
+  max-height:70%;
+  width: auto;
+  height: auto;
   left: 50%;
   top: 50%;
-  z-index: -1;
-  transition: opacity .5s, top .5s;
+  z-index: -10;
+  // transition: opacity .5s, top .5s;
   transform: translate(-50%, -50%);
 }
 

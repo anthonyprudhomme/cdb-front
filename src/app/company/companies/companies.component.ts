@@ -6,6 +6,7 @@ import { MatPaginator, PageEvent, MatDialog, MatSnackBar, MatSnackBarConfig } fr
 import { CompanyCreateComponent } from '../company-create/company-create.component';
 import { TranslateService } from '@ngx-translate/core';
 import { isNullOrUndefined, isUndefined } from 'util';
+import { LoginService } from '../../login/login.service';
 
 @Component({
   selector: 'app-companies',
@@ -39,6 +40,8 @@ export class CompaniesComponent implements OnInit {
   pageEvent: PageEvent;
   pageSizeOptions = [10, 25, 100];
 
+  isAdmin = false;
+
   sortOptions = [
     {viewValue: '--'},
     {value: 'name_asc', viewValue: this.translate.instant('SELECT.NAME_ASC')},
@@ -54,17 +57,23 @@ export class CompaniesComponent implements OnInit {
   constructor(private companyService: CompanyService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
-    private translate: TranslateService) {
-    }
+    private translate: TranslateService,
+    private loginService: LoginService) { }
 
   ngOnInit() {
     this.pageEvent = new PageEvent();
     this.companyService.getCompaniesAtPage(1, this.pageSizeOptions[0]).subscribe(companies => {
       this.companies = companies;
       this.resetPaginator();
-    }, err => {console.log(err); console.log('ICI'); });
+    }, err => {console.log(err); });
     this.companyService.countCompanies().subscribe(length => this.pageEvent.length = length);
     window.onscroll = () => this.onScroll();
+
+    this.loginService.getRolesOfUser().toPromise().then(res => {
+      if (res.includes('ADMIN')) {
+        this.isAdmin = true;
+      }
+    });
   }
 
   onScroll() {
@@ -121,7 +130,12 @@ export class CompaniesComponent implements OnInit {
       this.companyService.searchCompanies(this.searchValue, event.pageIndex + 1, event.pageSize).subscribe(companies => {
         this.companies = companies;
       });
-      this.companyService.countSearchedCompanies(this.searchValue).subscribe(length => this.pageEvent.length = length);
+      this.companyService.countSearchedCompanies(this.searchValue).subscribe(length => {
+        this.pageEvent.length = length;
+        if (length === 0 ) {
+          this.openSnackBar(this.translate.instant('GENERAL.NO_RESULT'), 'warn-snackbar');
+        }
+      });
     }
 
     // If there is no search and a sort
@@ -138,7 +152,12 @@ export class CompaniesComponent implements OnInit {
         this.searchValue, this.sortSelected, event.pageIndex + 1, event.pageSize).subscribe(companies => {
         this.companies = companies;
       });
-      this.companyService.countSearchedCompanies(this.searchValue).subscribe(length => this.pageEvent.length = length);
+      this.companyService.countSearchedCompanies(this.searchValue).subscribe(length => {
+        this.pageEvent.length = length;
+        if (length === 0 ) {
+          this.openSnackBar(this.translate.instant('GENERAL.NO_RESULT'), 'success-snackbar');
+        }
+      });
     }
 
     this.scrollToTop();
@@ -177,5 +196,11 @@ export class CompaniesComponent implements OnInit {
   sort() {
     this.resetPaginator();
     this.changePage(this.pageEvent);
+  }
+
+  triggerSearch(event) {
+    if (event.keyCode === 13) {
+      this.search();
+    }
   }
 }

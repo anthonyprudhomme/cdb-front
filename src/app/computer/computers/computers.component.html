@@ -1,6 +1,6 @@
 <div class="container" *ngIf="computers">
   <div class="row align-items-center controlBar shadow">
-    <mat-form-field class="col-md-3 col-sm-12">
+    <mat-form-field class="col-md-3 col-sm-12" (keydown)="triggerSearch($event)">
       <mat-icon *ngIf="searchValue"
                 matPrefix
                 class="clearSearchIcon"

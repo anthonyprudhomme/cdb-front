@@ -115,7 +115,12 @@ export class ComputersComponent implements OnInit {
       this.computerService.searchComputers(this.searchValue, event.pageIndex + 1, event.pageSize, this.searchType).subscribe(computers => {
         this.computers = computers;
       });
-      this.computerService.countSearchedComputers(this.searchValue, this.searchType).subscribe(length => this.pageEvent.length = length);
+      this.computerService.countSearchedComputers(this.searchValue, this.searchType).subscribe(length => {
+        this.pageEvent.length = length;
+        if (length === 0 ) {
+          this.openSnackBar(this.translate.instant('GENERAL.NO_RESULT'), 'warn-snackbar');
+        }
+      });
     }
 
     // If there is no search and a sort
@@ -132,7 +137,12 @@ export class ComputersComponent implements OnInit {
         this.searchValue, this.sortSelected, event.pageIndex + 1, event.pageSize, this.searchType).subscribe(computers => {
         this.computers = computers;
       });
-      this.computerService.countSearchedComputers(this.searchValue, this.searchType).subscribe(length => this.pageEvent.length = length);
+      this.computerService.countSearchedComputers(this.searchValue, this.searchType).subscribe(length => {
+        this.pageEvent.length = length;
+        if (length === 0 ) {
+          this.openSnackBar(this.translate.instant('GENERAL.NO_RESULT'), 'success-snackbar');
+        }
+      });
     }
 
     this.scrollToTop();
@@ -148,6 +158,12 @@ export class ComputersComponent implements OnInit {
     this.searchValue = '';
     this.resetPaginator();
     this.changePage(this.pageEvent);
+  }
+
+  triggerSearch(event) {
+    if (event.keyCode === 13) {
+      this.search();
+    }
   }
 
   resetPaginator() {
