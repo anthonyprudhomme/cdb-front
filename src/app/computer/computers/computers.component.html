@@ -39,9 +39,9 @@
     <th>{{ 'COMPUTER.COMPANY' | translate }}</th>
     <th>{{ 'COMPUTER.INTRODUCED' | translate }}</th>
     <th>{{ 'COMPUTER.DISCONTINUED' | translate }}</th>
-    <th>{{ 'COMPUTER.DELETE' | translate }}</th>
+    <th *ngIf="isAdmin">{{ 'COMPUTER.DELETE' | translate }}</th>
     </thead>
-    <tr *ngFor="let computer of computers" app-computer [computer]="computer" (delete)="computerDeleted(computer)">
+    <tr *ngFor="let computer of computers" app-computer [computer]="computer" [isAdmin]="isAdmin" (delete)="computerDeleted(computer)">
     </tr>
   </table>
 

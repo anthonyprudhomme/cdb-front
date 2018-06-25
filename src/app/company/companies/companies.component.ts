@@ -68,7 +68,6 @@ export class CompaniesComponent implements OnInit {
     }, err => {console.log(err); });
     this.companyService.countCompanies().subscribe(length => this.pageEvent.length = length);
     window.onscroll = () => this.onScroll();
-
     this.loginService.getRolesOfUser().toPromise().then(res => {
       if (res.includes('ADMIN')) {
         this.isAdmin = true;
