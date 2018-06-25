@@ -3,6 +3,7 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { LoginService } from '../login.service';
 import { Router } from '@angular/router';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login-create',
@@ -15,7 +16,11 @@ export class LoginCreateComponent implements OnInit {
   passwordConfirmation: string;
 
   loginForm: FormGroup;
-  constructor(private formBuilder: FormBuilder, private service: LoginService, private route: Router, private snackBar: MatSnackBar) {
+  constructor(private formBuilder: FormBuilder,
+    private service: LoginService,
+    private route: Router,
+    private snackBar: MatSnackBar,
+    private translate: TranslateService) {
     this.createForm();
   }
 
@@ -51,9 +56,9 @@ export class LoginCreateComponent implements OnInit {
        ).catch(
          res => { if (res.status === 200) {
           this.route.navigate(['/login']);
-          this.openSnackBar('Compte crée veuillez vous connecter', 'success-snackbar');
+          this.openSnackBar(this.translate.instant('LOGIN.ACCOUNT_CREATED'), 'success-snackbar');
          } else {
-          this.openSnackBar('Username déjà existant', 'warn-snackbar');
+          this.openSnackBar(this.translate.instant('LOGIN.USERNAME_EXISTS'), 'warn-snackbar');
          }
        });
     }

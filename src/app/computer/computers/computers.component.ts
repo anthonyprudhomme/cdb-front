@@ -120,7 +120,7 @@ export class ComputersComponent implements OnInit {
       this.computerService.countSearchedComputers(this.searchValue, this.searchType).subscribe(length => {
         this.pageEvent.length = length;
         if (length === 0 ) {
-          this.openSnackBar('Aucun résultat trouvés', 'warn-snackbar');
+          this.openSnackBar(this.translate.instant('GENERAL.NO_RESULT'), 'warn-snackbar');
         }
       });
     }
@@ -142,7 +142,7 @@ export class ComputersComponent implements OnInit {
       this.computerService.countSearchedComputers(this.searchValue, this.searchType).subscribe(length => {
         this.pageEvent.length = length;
         if (length === 0 ) {
-          this.openSnackBar('Aucun résultat trouvés', 'warn-snackbar');
+          this.openSnackBar(this.translate.instant('GENERAL.NO_RESULT'), 'success-snackbar');
         }
       });
     }

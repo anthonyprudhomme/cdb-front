@@ -52,6 +52,8 @@
     "USERNAME": "Identifiant",
     "REGISTER": "S'enregistrer",
     "NEW": "Nouveau sur CDB ?",
+    "ACCOUNT_CREATED": "Compte crée veuillez vous connecter",
+    "USERNAME_EXISTS": "Identifiant déjà existant",
     "ERROR": {
       "USERNAME": "L'identifiant doit être long d'au moins 5 caractères et ne doit pas contenir d'espaces.",
       "USERNAME_REQUIRED": "L'identifiant est requis.",
@@ -66,7 +68,8 @@
     "CANCEL": "Annuler",
     "CONFIRM": "Confirmer",
     "NO": "Non",
-    "YES": "Oui"
+    "YES": "Oui",
+    "NO_RESULT": "Aucuns résultats trouvés"
   },
   "PAGINATOR": {
     "ITEMS":"Lignes par page",

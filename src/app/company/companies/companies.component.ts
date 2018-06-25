@@ -69,8 +69,7 @@ export class CompaniesComponent implements OnInit {
     this.companyService.countCompanies().subscribe(length => this.pageEvent.length = length);
     window.onscroll = () => this.onScroll();
 
-    const user = sessionStorage.getItem('user');
-    this.loginService.getRolesOfUser(user).toPromise().then(res => {
+    this.loginService.getRolesOfUser().toPromise().then(res => {
       if (res.includes('ADMIN')) {
         this.isAdmin = true;
       }
@@ -131,7 +130,12 @@ export class CompaniesComponent implements OnInit {
       this.companyService.searchCompanies(this.searchValue, event.pageIndex + 1, event.pageSize).subscribe(companies => {
         this.companies = companies;
       });
-      this.companyService.countSearchedCompanies(this.searchValue).subscribe(length => this.pageEvent.length = length);
+      this.companyService.countSearchedCompanies(this.searchValue).subscribe(length => {
+        this.pageEvent.length = length;
+        if (length === 0 ) {
+          this.openSnackBar(this.translate.instant('GENERAL.NO_RESULT'), 'warn-snackbar');
+        }
+      });
     }
 
     // If there is no search and a sort
@@ -148,7 +152,12 @@ export class CompaniesComponent implements OnInit {
         this.searchValue, this.sortSelected, event.pageIndex + 1, event.pageSize).subscribe(companies => {
         this.companies = companies;
       });
-      this.companyService.countSearchedCompanies(this.searchValue).subscribe(length => this.pageEvent.length = length);
+      this.companyService.countSearchedCompanies(this.searchValue).subscribe(length => {
+        this.pageEvent.length = length;
+        if (length === 0 ) {
+          this.openSnackBar(this.translate.instant('GENERAL.NO_RESULT'), 'success-snackbar');
+        }
+      });
     }
 
     this.scrollToTop();
