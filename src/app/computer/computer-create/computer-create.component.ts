@@ -1,11 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component, OnInit, Input, Directive } from '@angular/core';
+import { MatDialogRef, ErrorStateMatcher } from '@angular/material';
+import { FormGroup, FormControl, Validators, FormBuilder, ValidatorFn, AbstractControl,
+Validator, NG_VALIDATORS, ValidationErrors, FormGroupDirective, NgForm } from '@angular/forms';
 import { Computer } from '../computer.model';
 import { ComputerService } from '../computer.service';
 import { Router } from '@angular/router';
 import { CompanyService } from '../../company/company.service';
 import { Company } from '../../company/company.model';
+import { isUndefined, isNullOrUndefined } from 'util';
+import { DateErrorStateMatcher } from './dateErrorStateMatcher';
 
 @Component({
   selector: 'app-computer-create',
@@ -14,16 +17,23 @@ import { Company } from '../../company/company.model';
 })
 export class ComputerCreateComponent implements OnInit {
 
-  computerAddForm: FormGroup;
+  @Input()
+  introduced: Date;
+  @Input()
+  discontinued: Date;
+
   computer: Computer;
-  selected: number;
+  manufacturer_id: number;
   companies: Company[];
+  computerAddForm: FormGroup;
+  matcher = new DateErrorStateMatcher();
 
   constructor(
     private computerService: ComputerService,
     private companyService: CompanyService,
     private dialog: MatDialogRef<ComputerCreateComponent>,
-    private router: Router
+    private router: Router,
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit() {
@@ -32,11 +42,12 @@ export class ComputerCreateComponent implements OnInit {
       this.companies = companies;
     }, err => {console.log(err); });
 
-    this.computerAddForm = new FormGroup({
-      name : new FormControl('', [Validators.required]),
-      introduced : new FormControl(),
-      description: new FormControl()
-    });
+    this.computerAddForm = this.formBuilder.group({
+      name : ['', Validators.required],
+      introduced : [''],
+      discontinued : [''],
+      manufacturer_id : ['']
+    },  { validator: this.checkDates });
   }
 
   submit() {
@@ -45,10 +56,28 @@ export class ComputerCreateComponent implements OnInit {
       computer.name = this.computerAddForm.value.name;
       computer.introduced = this.computerAddForm.value.introduced;
       computer.discontinued = this.computerAddForm.value.discontinued;
-      computer.manufacturer = this.computerAddForm.value.manufacturer;
+      computer.manufacturer_id = this.computerAddForm.value.manufacturer_id;
       this.computerService.postComputer(computer).subscribe();
       this.dialog.close({'send': 'OK'});
     }
   }
+
+
+  checkDates(group: FormGroup) {
+    const introduced = group.controls.introduced.value;
+    const discontinued = group.controls.discontinued.value;
+
+    const isBlank = (s) => (isNullOrUndefined(s) || s === '');
+
+    if (isBlank(introduced) || isBlank(discontinued)) {
+      return null;
+    }
+
+    if (discontinued < introduced) {
+      return { introducedAfterDiscontinued: true };
+    }
+    return null;
+  }
+
 
 }

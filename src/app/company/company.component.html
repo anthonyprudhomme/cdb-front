@@ -3,7 +3,7 @@
     <img class="{{company.id}}" [src]=company.imageUrl (error)="setDefaultImage()" />
     <img class="rounded-image" (mouseenter)='showImage(company.id)' (mouseleave)='hideImage(company.id)' src={{company.imageUrl}} />
   </span>
-  <span>{{company.name}}</span>
+  <span class="text-company">{{company.name}}</span>
 </td>
 <td class="text-center aligned-td" >
   <button mat-raised-button color="primary"
