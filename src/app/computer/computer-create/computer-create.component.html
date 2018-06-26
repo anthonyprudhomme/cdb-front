@@ -4,32 +4,34 @@
 
     <mat-divider></mat-divider>
 
-    <form [formGroup]=computerAddForm>
+    <form [formGroup]="computerAddForm">
       <mat-form-field class="full-width">
-        <input matInput placeholder="Computer name" required formControlName="name" name="name" />
-        <mat-error>
-          Name of computer is required
-        </mat-error>
+        <input matInput placeholder="Computer name" required formControlName="name" name="name" #name/>
+        <div *ngIf="!name" class="alert alert-danger">ERROR</div>
+        <mat-error>Name of computer is required</mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <input matInput [max]="computer.discontinued" [matDatepicker]="computer.introduced" placeholder="Introduction date">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+        <input matInput formControlName="introduced" [matDatepicker]="introduced" [errorStateMatcher]="matcher"
+                placeholder="Introduction date" name="introduced">
+        <mat-datepicker-toggle matSuffix [for]="introduced"></mat-datepicker-toggle>
+        <mat-datepicker #introduced></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <input matInput [min]="computer.introduced" [matDatepicker]="computer.discontinued" placeholder="Discontinuation date">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+        <input  matInput formControlName="discontinued" [matDatepicker]="discontinued" [errorStateMatcher]="matcher"
+                placeholder="Discontinuation date" name="discontinued">
+        <mat-datepicker-toggle matSuffix [for]="discontinued"></mat-datepicker-toggle>
+        <mat-datepicker #discontinued></mat-datepicker>
+        <mat-error *ngIf="computerAddForm.hasError('introducedAfterDiscontinued')">Discontinuation date cannot be earlier than introduction date</mat-error>
       </mat-form-field>
 
-      <mat-form-field class="full-width"  >
-          <mat-select [(value)]="selected">
-            <mat-option value="-1">None</mat-option>
-            <mat-option *ngFor="let company of companies" value="company.id">{{company.name}}</mat-option>
-          </mat-select>
-        </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-select [(value)]="manufacturer_id" formControlName="manufacturer_id">
+          <mat-option value="-1">None</mat-option>
+          <mat-option *ngFor="let company of companies" value="{{company.id}}">{{company.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
 
       <div>
         <button mat-raised-button color="primary" (click)=submit()>Confirmer</button>

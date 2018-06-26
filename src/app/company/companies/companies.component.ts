@@ -38,7 +38,7 @@ export class CompaniesComponent implements OnInit {
   searchValue: string;
 
   pageEvent: PageEvent;
-  pageSizeOptions = [10, 25, 100];
+  pageSizeOptions = [10, 25, 50];
 
   isAdmin = false;
   sortOptions;
@@ -87,7 +87,12 @@ export class CompaniesComponent implements OnInit {
 
   onScroll() {
     const scrolledFromTop = document.body.scrollTop > 20 || document.documentElement.scrollTop > 20;
-    const isOnLargePage = this.paginator.pageSize > this.pageSizeOptions[0];
+    let isOnLargePage: boolean;
+    if (isNullOrUndefined(this.paginator)) {
+      isOnLargePage = false;
+    } else {
+      isOnLargePage = this.paginator.pageSize > this.pageSizeOptions[0];
+    }
     const scroll = document.getElementById('scrollButton');
     if (scroll != null) {
       if (scrolledFromTop && isOnLargePage) {

@@ -31,14 +31,12 @@ export class CompanyService {
   }
 
   postCompany(company: Company): Observable<Company> {
-    const options = { headers: new HttpHeaders().set('Content-Type', 'application/json'),
-    withCredentials: true};
-    const options3 = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.http.post<Company>(this._baseUrl, JSON.stringify(company), {headers: options3 });
+    const options = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.post<Company>(this._baseUrl, JSON.stringify(company), {headers: options, withCredentials: true });
   }
 
   updateCompany(company: Company): Observable<Company> {
-    return this.http.put<Company>(this._baseUrl + '/' + company.id, company);
+    return this.http.put<Company>(this._baseUrl + '/' + company.id, company, {withCredentials: true});
   }
 
   deleteCompany(company: Company): Observable<Company> {
@@ -54,7 +52,7 @@ export class CompanyService {
     params = params.append('search', search);
     params = params.append('page', String(page));
     params = params.append('results', String(results));
-    return this.http.get<Company[]>(this._baseUrl + '/search', {params: params});
+    return this.http.get<Company[]>(this._baseUrl + '/search', {params: params, withCredentials: true});
   }
 
   countSearchedCompanies(search: string): Observable<number> {
@@ -67,7 +65,7 @@ export class CompanyService {
     let params = this.constructParams(sort);
     params = params.append('page', String(page));
     params = params.append('results', String(results));
-    return this.http.get<Company[]>(this._baseUrl + '/sort', {params: params});
+    return this.http.get<Company[]>(this._baseUrl + '/sort', {params: params, withCredentials: true});
   }
 
   sortSearchedCompanies(search: string, sort: string, page: number, results: number): Observable<Company[]> {
