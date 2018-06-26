@@ -24,7 +24,7 @@
         <mat-form-field class="col-md-6">
           <mat-select placeholder="{{ 'SELECT.SORTING_OPTIONS' | translate }}" [(value)]="sortSelected" (selectionChange)="sort()">
             <mat-option *ngFor="let sort of sortOptions as any" [value]="sort.value">
-              {{ sort.viewValue }}
+                <div>{{ sort.viewValue }}<mat-icon *ngIf="sort.value" style="margin-left:2%" fontSet="fas" fontIcon="{{sort.iconValue}}"></mat-icon></div>
             </mat-option>
           </mat-select>
         </mat-form-field>

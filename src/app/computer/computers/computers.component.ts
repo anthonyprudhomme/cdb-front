@@ -27,31 +27,22 @@ export class ComputersComponent implements OnInit {
   paginator: MatPaginator;
 
   constructor(private computerService: ComputerService,
-     private dialog: MatDialog,
-     private snackBar: MatSnackBar,
-     private translate: TranslateService,
-     private route: ActivatedRoute,
-     private router: Router,
-     private loginService: LoginService) { }
+      private dialog: MatDialog,
+      private snackBar: MatSnackBar,
+      private translate: TranslateService,
+      private route: ActivatedRoute,
+      private router: Router,
+      private loginService: LoginService) {
+  }
 
   searchType: string;
   searchOptions = [this.translate.instant('SELECT.COMPUTER_NAME'), this.translate.instant('SELECT.COMPANY_NAME')];
 
-  sortOptions = [
-    {viewValue: '--'},
-    {value: 'name_asc', viewValue: this.translate.instant('SELECT.NAME_ASC')},
-    {value: 'name_desc', viewValue: this.translate.instant('SELECT.NAME_DESC')},
-
-    {value: 'introduced_asc', viewValue: this.translate.instant('SELECT.INC_INTRODUCED')},
-    {value: 'introduced_desc', viewValue: this.translate.instant('SELECT.DEC_INTRODUCED')},
-    {value: 'discontinued_asc', viewValue: this.translate.instant('SELECT.INC_DISCONTINUED')},
-    {value: 'discontinued_desc', viewValue: this.translate.instant('SELECT.DEC_DISCONTINUED')},
-    {value: 'company_asc', viewValue: this.translate.instant('SELECT.COMPANY_ASC')},
-    {value: 'company_desc', viewValue: this.translate.instant('SELECT.COMPANY_DESC')}];
-
+  sortOptions;
   sortSelected: string;
 
   ngOnInit() {
+    this.setSortOptions();
     this.pageEvent = new PageEvent();
     this.route.queryParams.subscribe(params => {
       if (!isNullOrUndefined(params.search)) {
@@ -69,6 +60,9 @@ export class ComputersComponent implements OnInit {
         }
       }
     });
+    this.translate.onLangChange.subscribe( () => {
+      this.setSortOptions();
+    });
     this.computerService.countComputers().subscribe(length => this.pageEvent.length = length);
     window.onscroll = () => this.onScroll();
     this.loginService.getRolesOfUser().toPromise().then(res => {
@@ -76,6 +70,22 @@ export class ComputersComponent implements OnInit {
         this.isAdmin = true;
       }
     });
+  }
+
+  setSortOptions() {
+    const upClass = 'fa-angle-up';
+    const downClass = 'fa-angle-down';
+    this.sortOptions = [
+      {viewValue: '--'},
+      {value: 'name_asc', viewValue: this.translate.instant('SELECT.NAME'), iconValue: upClass},
+      {value: 'name_desc', viewValue: this.translate.instant('SELECT.NAME'), iconValue: downClass},
+
+      {value: 'introduced_asc', viewValue: this.translate.instant('SELECT.INTRODUCED'), iconValue: upClass},
+      {value: 'introduced_desc', viewValue: this.translate.instant('SELECT.INTRODUCED'), iconValue: downClass},
+      {value: 'discontinued_asc', viewValue: this.translate.instant('SELECT.DISCONTINUED'), iconValue: upClass},
+      {value: 'discontinued_desc', viewValue: this.translate.instant('SELECT.DISCONTINUED'), iconValue: downClass},
+      {value: 'company_asc', viewValue: this.translate.instant('SELECT.COMPANY'), iconValue: upClass},
+      {value: 'company_desc', viewValue: this.translate.instant('SELECT.COMPANY'), iconValue: downClass}];
   }
 
   onScroll() {

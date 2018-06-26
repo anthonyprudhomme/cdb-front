@@ -80,18 +80,13 @@
     "LAST": "Dernière page"
   },
   "SELECT":{
-    "NAME_ASC":"Nom",
-    "NAME_DESC":"Nom inversé",
-    "INC_COMPUTER":"Nombre d'ordinateur croissant",
-    "DEC_COMPUTER":"Nombre d'ordinateur décroissant",
+    "NAME":"Nom",
+    "COMPUTER":"Nombre d'ordinateurs",
     "COMPUTER_NAME": "Nom d'ordinateur",
     "COMPANY_NAME": "Nom d'entreprise",
-    "INC_INTRODUCED": "Introduction chronologique",
-    "DEC_INTRODUCED": "Introduction anti-chronologique",
-    "INC_DISCONTINUED": "Retrait chronologique",
-    "DEC_DISCONTINUED": "Retrait anti-chronologique",
-    "COMPANY_ASC": "Nom d'entreprise",
-    "COMPANY_DESC": "Nom d'entreprise inversé",
+    "INTRODUCED": "Introduction",
+    "DISCONTINUED": "Retrait",
+    "COMPANY": "Nom d'entreprise",
     "SORTING_OPTIONS": "Options de tri"
   }
 }

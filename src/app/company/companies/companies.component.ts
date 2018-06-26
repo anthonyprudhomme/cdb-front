@@ -41,13 +41,8 @@ export class CompaniesComponent implements OnInit {
   pageSizeOptions = [10, 25, 100];
 
   isAdmin = false;
+  sortOptions;
 
-  sortOptions = [
-    {viewValue: '--'},
-    {value: 'name_asc', viewValue: this.translate.instant('SELECT.NAME_ASC')},
-    {value: 'name_desc', viewValue: this.translate.instant('SELECT.NAME_DESC')},
-    {value: 'number_of_computers_asc', viewValue: this.translate.instant('SELECT.INC_COMPUTER')},
-    {value: 'number_of_computers_desc', viewValue: this.translate.instant('SELECT.DEC_COMPUTER')}];
 
   sortSelected: string;
 
@@ -61,6 +56,7 @@ export class CompaniesComponent implements OnInit {
     private loginService: LoginService) { }
 
   ngOnInit() {
+    this.setSortOptions();
     this.pageEvent = new PageEvent();
     this.companyService.getCompaniesAtPage(1, this.pageSizeOptions[0]).subscribe(companies => {
       this.companies = companies;
@@ -73,6 +69,20 @@ export class CompaniesComponent implements OnInit {
         this.isAdmin = true;
       }
     });
+    this.translate.onLangChange.subscribe(() => {
+      this.setSortOptions();
+    });
+  }
+
+  setSortOptions() {
+    const upClass = 'fa-angle-up';
+    const downClass = 'fa-angle-down';
+    this.sortOptions = [
+      {viewValue: '--'},
+      {value: 'name_asc', viewValue: this.translate.instant('SELECT.NAME'), iconValue: upClass},
+      {value: 'name_desc', viewValue: this.translate.instant('SELECT.NAME'), iconValue: downClass},
+      {value: 'number_of_computers_asc', viewValue: this.translate.instant('SELECT.COMPUTER'), iconValue: upClass},
+      {value: 'number_of_computers_desc', viewValue: this.translate.instant('SELECT.COMPUTER'), iconValue: downClass}];
   }
 
   onScroll() {
