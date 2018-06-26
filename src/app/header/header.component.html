@@ -10,8 +10,8 @@
         <mat-icon class="logo" >computer</mat-icon>
       </button>
 
-      <button mat-button [routerLink]="['/company']">{{ 'HEADER.COMPANIES' | translate }}</button>
-      <button mat-button [routerLink]="['/computer']">{{ 'HEADER.COMPUTERS' | translate }}</button>
+      <button mat-button *ngIf="isLoggedIn" [routerLink]="['/company']">{{ 'HEADER.COMPANIES' | translate }}</button>
+      <button mat-button *ngIf="isLoggedIn" [routerLink]="['/computer']">{{ 'HEADER.COMPUTERS' | translate }}</button>
     </div>
     <span class="spacer"></span>
     <div fxShow="true" fxHide.lt-md="true">
@@ -25,8 +25,8 @@
 <mat-sidenav-container>
   <mat-sidenav #sidenav>
     <mat-nav-list>
-      <div><button mat-button [routerLink]="['/company']">{{ 'HEADER.COMPANIES' | translate }}</button></div>
-      <div><button mat-button [routerLink]="['/computer']">{{ 'HEADER.COMPUTERS' | translate }}</button></div>
+      <div><button mat-button *ngIf="isLoggedIn" [routerLink]="['/company']">{{ 'HEADER.COMPANIES' | translate }}</button></div>
+      <div><button mat-button *ngIf="isLoggedIn" [routerLink]="['/computer']">{{ 'HEADER.COMPUTERS' | translate }}</button></div>
       <span class="spacer"></span>
       <div><button (click)=logout() mat-button *ngIf="isLoggedIn">{{ 'HEADER.LOG_OUT' | translate }}</button></div>
       <div>

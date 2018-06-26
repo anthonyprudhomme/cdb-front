@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { isNullOrUndefined, isUndefined } from 'util';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { LoginService } from '../../login/login.service';
 
 @Component({
   selector: 'app-computers',
@@ -20,6 +21,8 @@ export class ComputersComponent implements OnInit {
   pageEvent: PageEvent;
   pageSizeOptions = [10, 25, 100];
 
+  isAdmin = false;
+
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
 
@@ -28,7 +31,9 @@ export class ComputersComponent implements OnInit {
      private snackBar: MatSnackBar,
      private translate: TranslateService,
      private route: ActivatedRoute,
-     private router: Router) { }
+     private router: Router,
+     private loginService: LoginService) { }
+
   searchType: string;
   searchOptions = [this.translate.instant('SELECT.COMPUTER_NAME'), this.translate.instant('SELECT.COMPANY_NAME')];
 
@@ -47,17 +52,30 @@ export class ComputersComponent implements OnInit {
   sortSelected: string;
 
   ngOnInit() {
+    console.log('init');
     this.pageEvent = new PageEvent();
     this.computerService.getComputersAtPage(1, this.pageSizeOptions[0]).subscribe(computers => {
       this.computers = computers;
     }, err => {console.log(err); });
     this.computerService.countComputers().subscribe(length => this.pageEvent.length = length);
     window.onscroll = () => this.onScroll();
-    this.route.queryParams.subscribe(params => {
-      this.searchValue = params.search;
-      this.search();
+    this.loginService.getRolesOfUser().toPromise().then(res => {
+      if (res.includes('ADMIN')) {
+        this.isAdmin = true;
+      }
     });
     this.searchType = this.translate.instant('SELECT.COMPUTER_NAME');
+    this.route.queryParams.subscribe(params => {
+
+      if (!isNullOrUndefined(params.search)) {
+        console.log('is not null');
+        this.searchValue = params.search;
+        this.searchType = this.translate.instant('SELECT.COMPANY_NAME');
+      } else {
+        console.log('is null');
+      }
+      this.search();
+    });
   }
 
   onScroll() {

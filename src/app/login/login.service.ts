@@ -15,15 +15,15 @@ export class LoginService {
     const body = new URLSearchParams();
     body.append('username', username);
     body.append('password', password);
-     const options = { headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded'),
-     withCredentials: true};
+    const options = { headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded'),
+    withCredentials: true};
     return this.http.post(this.base_url + 'login', body.toString(), options);
   }
 
   logout() {
-     const options = { withCredentials: true};
-     sessionStorage.clear();
-     return this.http.get(this.base_url + 'logout', options); //  { }, options
+    const options = { withCredentials: true};
+    sessionStorage.clear();
+    return this.http.get(this.base_url + 'logout', options); //  { }, options
   }
 
   getRolesOfUser(): Observable<string[]> {

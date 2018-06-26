@@ -27,9 +27,6 @@
         <mat-option *ngFor="let sort of sortOptions" [value]="sort.value">
           {{ sort.viewValue }}
         </mat-option>
-        <mat-option *ngFor="let sort of sortOptions" [value]="sort.value">
-          {{ sort.viewValue }}
-        </mat-option>
       </mat-select>
     </mat-form-field>
 
@@ -42,9 +39,9 @@
     <th>{{ 'COMPUTER.COMPANY' | translate }}</th>
     <th>{{ 'COMPUTER.INTRODUCED' | translate }}</th>
     <th>{{ 'COMPUTER.DISCONTINUED' | translate }}</th>
-    <th>{{ 'COMPUTER.DELETE' | translate }}</th>
+    <th *ngIf="isAdmin">{{ 'COMPUTER.DELETE' | translate }}</th>
     </thead>
-    <tr *ngFor="let computer of computers" app-computer [computer]="computer" (delete)="computerDeleted(computer)">
+    <tr *ngFor="let computer of computers" app-computer [computer]="computer" [isAdmin]="isAdmin" (delete)="computerDeleted(computer)">
     </tr>
   </table>
 

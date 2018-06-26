@@ -10,19 +10,22 @@ import { ComputerDeleteComponent } from './computer-delete/computer-delete.compo
 })
 export class ComputerComponent {
 
-  @Input() computer: Computer;
+  @Input('computer') computer: Computer;
+  @Input('isAdmin') isAdmin: boolean;
   @Output() delete: EventEmitter<Computer> = new EventEmitter();
   deleteDialogRef: MatDialogRef<ComputerDeleteComponent, any>;
 
   constructor(private dialog: MatDialog) { }
 
   deleteComputer() {
-    this.deleteDialogRef = this.dialog.open(ComputerDeleteComponent, {data: this.computer});
-    this.deleteDialogRef.afterClosed().subscribe((success) => {
-      if (success) {
-        this.delete.emit();
-      }
-    });
+    if (this.isAdmin) {
+      this.deleteDialogRef = this.dialog.open(ComputerDeleteComponent, {data: this.computer});
+      this.deleteDialogRef.afterClosed().subscribe((success) => {
+        if (success) {
+          this.delete.emit();
+        }
+      });
+    }
   }
 
   updateComputer() {
