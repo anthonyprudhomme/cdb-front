@@ -23,8 +23,7 @@ export class CompanyCreateComponent implements OnInit {
     this.companyAddForm = new FormGroup({
       name : new FormControl('', [Validators.required]),
       imageUrl: new FormControl('',
-        [Validators.pattern('(https|http).\/\/(.)*'), Validators.required, Validators.maxLength(255)]),
-      description: new FormControl()
+        [Validators.pattern('(https|http).\/\/(.)*'), Validators.required, Validators.maxLength(255)])
     });
   }
 

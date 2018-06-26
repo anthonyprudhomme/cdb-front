@@ -19,7 +19,7 @@ export class ComputersComponent implements OnInit {
   computers: Computer[];
   searchValue: string;
   pageEvent: PageEvent;
-  pageSizeOptions = [10, 25, 100];
+  pageSizeOptions = [10, 25, 50];
 
   isAdmin = false;
 
