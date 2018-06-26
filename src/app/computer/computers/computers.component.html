@@ -1,6 +1,6 @@
 <div class="container" *ngIf="computers">
-  <div class="row align-items-center controlBar shadow">
-    <mat-form-field class="col-md-3 col-sm-12" (keydown)="triggerSearch($event)">
+  <div class="row row-no-padding align-items-center controlBar shadow">
+    <mat-form-field class="col-md-2" (keydown)="triggerSearch($event)">
       <mat-icon *ngIf="searchValue"
                 matPrefix
                 class="clearSearchIcon"
@@ -16,13 +16,13 @@
 
     <mat-radio-group class="example-radio-group" [(ngModel)]="searchType">
       <mat-radio-button class="example-radio-button" *ngFor="let searchOption of searchOptions" [value]="searchOption">
-        {{ searchOption }}
+        <span style='font-size: 0.9em'>{{ searchOption }}</span>
       </mat-radio-button>
     </mat-radio-group>
 
-    <button class="col-md-1" mat-raised-button color="primary" (click)="search()">{{ 'COMPUTER.SEARCH' | translate }}</button>
+    <button class="col-md-1" style="padding: 0%" mat-raised-button color="primary" (click)="search()">{{ 'COMPUTER.SEARCH' | translate }}</button>
 
-    <mat-form-field class="col-md-2 ">
+    <mat-form-field class="col-md-2">
       <mat-select placeholder="{{ 'SELECT.SORTING_OPTIONS' | translate }}" [(value)]="sortSelected" (selectionChange)="sort()">
         <mat-option *ngFor="let sort of sortOptions" [value]="sort.value">
           {{ sort.viewValue }}
@@ -33,7 +33,7 @@
     <button class="col-md-3 col-lg-2" mat-raised-button color="primary" (click)="create()">{{ 'COMPUTER.CREATE' | translate }}</button>
   </div>
 
-  <table class="customTable table table-bordered shadow">
+  <table class="customTable table table-bordered shadow table-resp">
     <thead>
     <th style="width: 50%">{{ 'COMPUTER.NAME' | translate }}</th>
     <th>{{ 'COMPUTER.COMPANY' | translate }}</th>

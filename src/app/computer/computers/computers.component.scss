@@ -2,6 +2,13 @@
   font-size: small;
 }
 
+.row-no-padding {
+  [class*="col-"]:first-child {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
 .button-row {
   display: flex;
   align-items: center;

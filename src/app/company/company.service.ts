@@ -8,7 +8,7 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 })
 export class CompanyService {
 
-  private _baseUrl = 'http://localhost:8080/webservice/company';
+  private _baseUrl = 'http://10.0.1.81:8080/webservice/company';
 
   constructor(private http: HttpClient) {}
 
@@ -40,7 +40,7 @@ export class CompanyService {
   }
 
   deleteCompany(company: Company): Observable<Company> {
-    return this.http.delete<Company>(`${ this._baseUrl }/${ company.id }`);
+    return this.http.delete<Company>(`${ this._baseUrl }/${ company.id }`, {withCredentials: true});
   }
 
   countCompanies(): Observable<number> {

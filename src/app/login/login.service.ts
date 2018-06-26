@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class LoginService {
 
-  private base_url = 'http://localhost:8080/webservice/';
+  private base_url = 'http://10.0.1.81:8080/webservice/';
 
   constructor(private http: HttpClient) { }
 

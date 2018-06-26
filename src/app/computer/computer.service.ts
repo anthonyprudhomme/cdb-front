@@ -9,7 +9,7 @@ import {Company} from '../company/company.model';
 })
 export class ComputerService {
 
-  private _baseUrl = 'http://localhost:8080/webservice/computer';
+  private _baseUrl = 'http://10.0.1.81:8080/webservice/computer';
 
   constructor(private http: HttpClient) { }
 
