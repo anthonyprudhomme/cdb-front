@@ -88,7 +88,6 @@ export class ComputerCreateComponent implements OnInit {
 
   updateDate() {
     this.introduced = this.computerAddForm.value.introduced;
-    console.log('introduced : ' + this.introduced);
     const elem = document.getElementById('discontinued') as HTMLInputElement;
     elem.min = this.introduced.toString();
   }
