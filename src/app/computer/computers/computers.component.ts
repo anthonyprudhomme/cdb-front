@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Computer } from '../computer.model';
 import { PageEvent, MatPaginator, MatDialog, MatSnackBar, MatSnackBarConfig } from '@angular/material';
+import { trigger, style, transition, animate, query, stagger } from '@angular/animations';
 import { ComputerService } from '../computer.service';
 import { ComputerCreateComponent } from '../computer-create/computer-create.component';
 import { TranslateService } from '@ngx-translate/core';
@@ -12,7 +13,27 @@ import { LoginService } from '../../login/login.service';
 @Component({
   selector: 'app-computers',
   templateUrl: './computers.component.html',
-  styleUrls: ['./computers.component.scss']
+  styleUrls: ['./computers.component.scss'],
+  animations: [
+
+    trigger('staggerAnim', [
+      transition('void => *', [
+        query('mat-card, tr',
+          style({ opacity: 0, transform: 'translateX(0px)' })
+        ),
+
+        query('mat-card, tr', stagger('200ms', [
+          animate('200ms 0.4s ease-out', style({ opacity: 1, transform: 'translateX(0px)' })),
+          animate('200ms 0.4s ease-out', style({ opacity: 1, transform: 'translateX(-10px)' })),
+          animate('200ms 0.4s ease-out', style({ opacity: 1, transform: 'translateX(0px)' })),
+        ])),
+
+        query('mat-card, tr', [
+          animate(100, style('*'))
+        ])
+      ])
+    ])
+  ]
 })
 export class ComputersComponent implements OnInit {
 

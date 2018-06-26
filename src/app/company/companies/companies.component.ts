@@ -16,17 +16,17 @@ import { LoginService } from '../../login/login.service';
 
     trigger('staggerAnim', [
       transition('void => *', [
-        query('mat-card, td',
+        query('mat-card, tr',
           style({ opacity: 0, transform: 'translateX(0px)' })
         ),
 
-        query('mat-card, td', stagger('100ms', [
-          animate('100ms 0.2s ease-out', style({ opacity: 1, transform: 'translateX(0px)' })),
-          animate('100ms 0.2s ease-out', style({ opacity: 1, transform: 'translateX(-10px)' })),
-          animate('100ms 0.2s ease-out', style({ opacity: 1, transform: 'translateX(0px)' })),
+        query('mat-card, tr', stagger('200ms', [
+          animate('200ms 0.4s ease-out', style({ opacity: 1, transform: 'translateX(0px)' })),
+          animate('200ms 0.4s ease-out', style({ opacity: 1, transform: 'translateX(-10px)' })),
+          animate('200ms 0.4s ease-out', style({ opacity: 1, transform: 'translateX(0px)' })),
         ])),
 
-        query('mat-card, td', [
+        query('mat-card, tr', [
           animate(100, style('*'))
         ])
       ])
@@ -42,8 +42,6 @@ export class CompaniesComponent implements OnInit {
 
   isAdmin = false;
   sortOptions;
-
-
   sortSelected: string;
 
   @ViewChild(MatPaginator)
