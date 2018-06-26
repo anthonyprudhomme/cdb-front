@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Directive } from '@angular/core';
-import { MatDialogRef, ErrorStateMatcher } from '@angular/material';
+import { MatDialogRef, ErrorStateMatcher, NativeDateAdapter, DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
 import { FormGroup, FormControl, Validators, FormBuilder, ValidatorFn, AbstractControl,
 Validator, NG_VALIDATORS, ValidationErrors, FormGroupDirective, NgForm } from '@angular/forms';
 import { Computer } from '../computer.model';
@@ -21,12 +21,11 @@ export class ComputerCreateComponent implements OnInit {
   introduced: Date;
   @Input()
   discontinued: Date;
-
-  minDate = new Date(1900, 0, 1);
+  manufacturer_id: number;
 
   computer: Computer;
-  manufacturer_id: number;
   companies: Company[];
+
   computerAddForm: FormGroup;
   matcher = new DateErrorStateMatcher();
 
@@ -45,11 +44,17 @@ export class ComputerCreateComponent implements OnInit {
     }, err => {console.log(err); });
 
     this.computerAddForm = this.formBuilder.group({
-      name : ['', Validators.required],
-      introduced : [''],
-      discontinued : [''],
-      manufacturer_id : ['']
-    },  { validator: this.checkDates });
+        name : ['', Validators.required],
+        introduced : [''],
+        discontinued : [''],
+        manufacturer_id : ['']
+      },
+      {
+        validator: Validators.compose([
+          this.checkIntroducedBeforeDiscontinued
+        ])
+      }
+    );
   }
 
   submit() {
@@ -65,7 +70,7 @@ export class ComputerCreateComponent implements OnInit {
   }
 
 
-  checkDates(group: FormGroup) {
+  checkIntroducedBeforeDiscontinued(group: FormGroup) {
     const introduced = group.controls.introduced.value;
     const discontinued = group.controls.discontinued.value;
 
@@ -81,5 +86,11 @@ export class ComputerCreateComponent implements OnInit {
     return null;
   }
 
+  updateDate() {
+    this.introduced = this.computerAddForm.value.introduced;
+    console.log('introduced : ' + this.introduced);
+    const elem = document.getElementById('discontinued') as HTMLInputElement;
+    elem.min = this.introduced.toString();
+  }
 
 }
