@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  private base_url = 'http://10.0.1.81:8080/webservice/';
+  private base_url = environment.adresseIP + 'webservice/';
 
   constructor(private http: HttpClient) { }
 
