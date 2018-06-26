@@ -11,7 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { RouterModule} from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTableModule, MatPaginatorIntl } from '@angular/material';
+import { MatTableModule, MatPaginatorIntl, DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
