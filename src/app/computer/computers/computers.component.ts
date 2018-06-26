@@ -22,7 +22,7 @@ export class ComputersComponent implements OnInit {
   pageSizeOptions = [10, 25, 100];
 
   isAdmin = false;
-
+  isFromSeeComputers = false;
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
 
@@ -52,29 +52,29 @@ export class ComputersComponent implements OnInit {
   sortSelected: string;
 
   ngOnInit() {
-    console.log('init');
     this.pageEvent = new PageEvent();
-    this.computerService.getComputersAtPage(1, this.pageSizeOptions[0]).subscribe(computers => {
-      this.computers = computers;
-    }, err => {console.log(err); });
+    this.route.queryParams.subscribe(params => {
+      if (!isNullOrUndefined(params.search)) {
+        this.searchType = this.translate.instant('SELECT.COMPANY_NAME');
+        this.searchValue = params.search;
+        this.search();
+        this.isFromSeeComputers = true;
+      } else {
+        if (!this.isFromSeeComputers) {
+          this.searchType = this.translate.instant('SELECT.COMPUTER_NAME');
+          this.computerService.getComputersAtPage(1, this.pageSizeOptions[0]).subscribe(computers => {
+            this.computers = computers;
+            }, err => {console.log(err);
+          });
+        }
+      }
+    });
     this.computerService.countComputers().subscribe(length => this.pageEvent.length = length);
     window.onscroll = () => this.onScroll();
     this.loginService.getRolesOfUser().toPromise().then(res => {
       if (res.includes('ADMIN')) {
         this.isAdmin = true;
       }
-    });
-    this.searchType = this.translate.instant('SELECT.COMPUTER_NAME');
-    this.route.queryParams.subscribe(params => {
-
-      if (!isNullOrUndefined(params.search)) {
-        console.log('is not null');
-        this.searchValue = params.search;
-        this.searchType = this.translate.instant('SELECT.COMPANY_NAME');
-      } else {
-        console.log('is null');
-      }
-      this.search();
     });
   }
 
