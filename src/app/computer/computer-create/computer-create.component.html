@@ -12,7 +12,7 @@
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <input matInput formControlName="introduced" [matDatepicker]="introduced" [errorStateMatcher]="matcher"
+        <input [min]="minDate" matInput formControlName="introduced" [matDatepicker]="introduced" [errorStateMatcher]="matcher"
                 placeholder="Introduction date" name="introduced">
         <mat-datepicker-toggle matSuffix [for]="introduced"></mat-datepicker-toggle>
         <mat-datepicker #introduced></mat-datepicker>

@@ -22,6 +22,8 @@ export class ComputerCreateComponent implements OnInit {
   @Input()
   discontinued: Date;
 
+  minDate = new Date(1900, 0, 1);
+
   computer: Computer;
   manufacturer_id: number;
   companies: Company[];
