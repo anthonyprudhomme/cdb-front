@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Company } from './company.model';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CompanyService {
 
-  private _baseUrl = 'http://localhost:8080/webservice/company';
+  private _baseUrl = environment.adresseIP + 'webservice/company';
 
   constructor(private http: HttpClient) {}
 
@@ -40,7 +41,7 @@ export class CompanyService {
   }
 
   deleteCompany(company: Company): Observable<Company> {
-    return this.http.delete<Company>(`${ this._baseUrl }/${ company.id }`);
+    return this.http.delete<Company>(`${ this._baseUrl }/${ company.id }`, {withCredentials: true});
   }
 
   countCompanies(): Observable<number> {

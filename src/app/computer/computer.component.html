@@ -9,7 +9,7 @@
 <td class="text-center" *ngIf="computer.discontinued">{{computer.discontinued}}</td>
 <td class="text-center" *ngIf="!computer.discontinued">-</td>
 
-<td class="text-center" *ngIf="isAdmin">
+<td class="text-center" style="width: 10%" *ngIf="isAdmin">
   <button mat-raised-button color="warn" (click)="deleteComputer()">
     <mat-icon>delete</mat-icon>
   </button>
