@@ -50,7 +50,7 @@ export class ComputerService {
     params = params.append('page', String(page));
     params = params.append('results', String(results));
     params = this.setupSearchType(searchType, params);
-    return this.http.get<Computer[]>(this._baseUrl, {params: params});
+    return this.http.get<Computer[]>(this._baseUrl, {params: params, withCredentials: true});
   }
 
   countSearchedComputers(search: string, searchType: string): Observable<number> {
