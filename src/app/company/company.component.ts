@@ -48,7 +48,7 @@ export class CompanyComponent {
   }
 
   setDefaultImage() {
-    this.company.imageUrl = 'assets/images/No_image_available';
+    this.company.imageUrl = 'assets/images/No_image_available.svg';
   }
 
 }

@@ -12,7 +12,7 @@
     "CREATE": "Créer une entreprise",
     "NAME": "Nom",
     "URL": "URL de l'image",
-    "SEE": "Voir les ordinateurs",
+    "SEE": "Ordinateurs",
     "DELETE": "Supprimer",
     "DELETE_COMPANY": "Supprimer une entreprise",
     "CONFIRM_DELETION": "Êtes-vous sûr de vouloir supprimer {{name}} ? Cela va aussi supprimer ses {{number}} ordinateurs.",
