@@ -62,7 +62,6 @@ export class ComputerService {
   }
 
   setupSearchType(searchType: string, params: HttpParams): HttpParams {
-    console.log(searchType);
     if (searchType === this.translate.instant('SELECT.COMPUTER_NAME')) {
       params = params.append('searchByComputerName', 'true');
     } else {
