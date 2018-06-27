@@ -142,7 +142,6 @@ export class ComputersComponent implements OnInit {
 
   search() {
     this.resetPaginator();
-    console.log(this.searchValue);
     this.changePage(this.pageEvent);
     this.router.navigate(['/computer']);
   }
