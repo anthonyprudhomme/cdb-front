@@ -80,18 +80,13 @@
     "LAST": "Last page"
   },
   "SELECT":{
-    "NAME_ASC":"Name",
-    "NAME_DESC":"Name reversed",
-    "INC_COMPUTER":"Increasing number of computers",
-    "DEC_COMPUTER":"Decreasing number of computers",
+    "NAME":"Name",
+    "COMPUTER":"Number of computers",
     "COMPUTER_NAME": "Computer name",
     "COMPANY_NAME": "Company name",
-    "INC_INTRODUCED": "Increasing introduced date",
-    "DEC_INTRODUCED": "Decreasing introduced date",
-    "INC_DISCONTINUED": "Increasing discontinued date",
-    "DEC_DISCONTINUED": "Decreasing discontinued date",
-    "COMPANY_ASC": "Company name",
-    "COMPANY_DESC": "Company name reversed",
+    "INTRODUCED": "Introduced date",
+    "DISCONTINUED": "Discontinued date",
+    "COMPANY": "Company name",
     "SORTING_OPTIONS": "Sorting options"
   }
 }
