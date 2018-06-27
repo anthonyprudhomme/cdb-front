@@ -57,13 +57,13 @@ export class ComputersComponent implements OnInit {
   }
 
   searchType: string;
-  searchOptions = [this.translate.instant('SELECT.COMPUTER_NAME'), this.translate.instant('SELECT.COMPANY_NAME')];
-
+  searchOptions;
   sortOptions;
   sortSelected: string;
 
   ngOnInit() {
     this.setSortOptions();
+    this.searchOptions = [this.translate.instant('SELECT.COMPUTER_NAME'), this.translate.instant('SELECT.COMPANY_NAME')];
     this.pageEvent = new PageEvent();
     this.route.queryParams.subscribe(params => {
       if (!isNullOrUndefined(params.search)) {
@@ -83,6 +83,8 @@ export class ComputersComponent implements OnInit {
     });
     this.translate.onLangChange.subscribe( () => {
       this.setSortOptions();
+      this.searchType = this.translate.instant('SELECT.COMPUTER_NAME');
+      this.searchOptions = [this.translate.instant('SELECT.COMPUTER_NAME'), this.translate.instant('SELECT.COMPANY_NAME')];
     });
     this.computerService.countComputers().subscribe(length => this.pageEvent.length = length);
     window.onscroll = () => this.onScroll();

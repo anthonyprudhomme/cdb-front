@@ -80,7 +80,7 @@ export class ComputerCreateComponent implements OnInit {
       return null;
     }
 
-    if (discontinued < introduced) {
+    if (discontinued <= introduced) {
       return { introducedAfterDiscontinued: true };
     }
     return null;

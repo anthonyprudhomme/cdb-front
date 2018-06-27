@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Computer } from './computer.model';
 import { Observable, of } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class ComputerService {
 
   private _baseUrl = environment.adresseIP + 'webservice/computer';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private translate: TranslateService) { }
 
   getComputersAtPage(page: number, results: number): Observable<Computer[]> {
     let params = new HttpParams();
@@ -61,7 +62,8 @@ export class ComputerService {
   }
 
   setupSearchType(searchType: string, params: HttpParams): HttpParams {
-    if (searchType === 'Computer name') {
+    console.log(searchType);
+    if (searchType === this.translate.instant('SELECT.COMPUTER_NAME')) {
       params = params.append('searchByComputerName', 'true');
     } else {
       params = params.append('searchByComputerName', 'false');
