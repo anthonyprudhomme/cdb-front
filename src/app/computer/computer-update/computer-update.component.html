@@ -1,26 +1,26 @@
 <div class="cardContainer">
   <div>
-    <h1>{{ 'COMPUTER.UPDATE' }}</h1>
+    <h1>{{ 'COMPUTER.UPDATE' | translate }}</h1>
 
     <mat-divider></mat-divider>
 
     <form [formGroup]="computerAddForm">
       <mat-form-field class="full-width">
-        <input matInput placeholder="Computer name" required formControlName="name" name="name" #name/>
+        <input matInput placeholder="{{ 'COMPUTER.FORM.NAME' | translate }}" required formControlName="name" name="name" #name/>
         <mat-error>{{ 'COMPUTER.ERROR.NAME' | translate }}</mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width">
         <input matInput id="introduced" formControlName="introduced" [errorStateMatcher]="matcher"
-                placeholder="Introduction date" name="introduced" type="date" [value]="introduced"
+                placeholder="{{ 'COMPUTER.FORM.INTRODUCTION' | translate }}" name="introduced" type="date" [value]="introduced"
                 (change)="updateDate()">
       </mat-form-field>
 
       <mat-form-field class="full-width">
         <input  matInput id="discontinued" formControlName="discontinued" [errorStateMatcher]="matcher"
-                placeholder="Discontinuation date" id="discontinued"
+                placeholder="{{ 'COMPUTER.FORM.DISCONTINUATION' | translate }}" id="discontinued"
                 name="discontinued" type="date" [value]="discontinued">
-        <mat-error *ngIf="computerAddForm.hasError('introducedAfterDiscontinued')">{{ 'COMPUTER.ERROR.INTRODUCED_AFTER_DISCONTINUED' }}</mat-error>
+        <mat-error *ngIf="computerAddForm.hasError('introducedAfterDiscontinued')">{{ 'COMPUTER.ERROR.INTRODUCED_AFTER_DISCONTINUED' | translate }}</mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width">

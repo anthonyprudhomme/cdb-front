@@ -45,7 +45,12 @@
       "NAME": "Name of computer is required",
       "INTRODUCED_AFTER_DISCONTINUED": "Discontinuation date cannot be earlier than introduction date"
     },
-    "UPDATE" : "Update computer"
+    "UPDATE" : "Update computer",
+    "FORM" : {
+      "NAME": "Computer name",
+      "INTRODUCTION": "Introduction date",
+      "DISCONTINUATION": "Discontinuation date"
+    }
   },
   "LOGIN":{
     "CREATE": "Account creation",
