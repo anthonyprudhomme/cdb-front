@@ -16,17 +16,17 @@ import { LoginService } from '../../login/login.service';
 
     trigger('staggerAnim', [
       transition('void => *', [
-        query('mat-card, td',
+        query('mat-card, tr',
           style({ opacity: 0, transform: 'translateX(0px)' })
         ),
 
-        query('mat-card, td', stagger('100ms', [
-          animate('100ms 0.2s ease-out', style({ opacity: 1, transform: 'translateX(0px)' })),
-          animate('100ms 0.2s ease-out', style({ opacity: 1, transform: 'translateX(-10px)' })),
-          animate('100ms 0.2s ease-out', style({ opacity: 1, transform: 'translateX(0px)' })),
+        query('mat-card, tr', stagger('200ms', [
+          animate('200ms 0.4s ease-out', style({ opacity: 1, transform: 'translateX(0px)' })),
+          animate('200ms 0.4s ease-out', style({ opacity: 1, transform: 'translateX(-10px)' })),
+          animate('200ms 0.4s ease-out', style({ opacity: 1, transform: 'translateX(0px)' })),
         ])),
 
-        query('mat-card, td', [
+        query('mat-card, tr', [
           animate(100, style('*'))
         ])
       ])
@@ -41,14 +41,7 @@ export class CompaniesComponent implements OnInit {
   pageSizeOptions = [10, 25, 50];
 
   isAdmin = false;
-
-  sortOptions = [
-    {viewValue: '--'},
-    {value: 'name_asc', viewValue: this.translate.instant('SELECT.NAME_ASC')},
-    {value: 'name_desc', viewValue: this.translate.instant('SELECT.NAME_DESC')},
-    {value: 'number_of_computers_asc', viewValue: this.translate.instant('SELECT.INC_COMPUTER')},
-    {value: 'number_of_computers_desc', viewValue: this.translate.instant('SELECT.DEC_COMPUTER')}];
-
+  sortOptions;
   sortSelected: string;
 
   @ViewChild(MatPaginator)
@@ -61,6 +54,7 @@ export class CompaniesComponent implements OnInit {
     private loginService: LoginService) { }
 
   ngOnInit() {
+    this.setSortOptions();
     this.pageEvent = new PageEvent();
     this.companyService.getCompaniesAtPage(1, this.pageSizeOptions[0]).subscribe(companies => {
       this.companies = companies;
@@ -73,6 +67,20 @@ export class CompaniesComponent implements OnInit {
         this.isAdmin = true;
       }
     });
+    this.translate.onLangChange.subscribe(() => {
+      this.setSortOptions();
+    });
+  }
+
+  setSortOptions() {
+    const upClass = 'fa-angle-up';
+    const downClass = 'fa-angle-down';
+    this.sortOptions = [
+      {viewValue: '--'},
+      {value: 'name_asc', viewValue: this.translate.instant('SELECT.NAME'), iconValue: upClass},
+      {value: 'name_desc', viewValue: this.translate.instant('SELECT.NAME'), iconValue: downClass},
+      {value: 'number_of_computers_asc', viewValue: this.translate.instant('SELECT.COMPUTER'), iconValue: upClass},
+      {value: 'number_of_computers_desc', viewValue: this.translate.instant('SELECT.COMPUTER'), iconValue: downClass}];
   }
 
   onScroll() {

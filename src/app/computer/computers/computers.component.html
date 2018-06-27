@@ -1,4 +1,4 @@
-<div class="container" *ngIf="computers">
+<div class="container" *ngIf="computers" @staggerAnim>
   <div class="row row-no-padding align-items-center controlBar shadow paddingLeft">
     <mat-form-field class="col-md-2" (keydown)="triggerSearch($event)">
       <mat-icon *ngIf="searchValue"
@@ -25,25 +25,26 @@
     <mat-form-field class="col-md-2">
       <mat-select placeholder="{{ 'SELECT.SORTING_OPTIONS' | translate }}" [(value)]="sortSelected" (selectionChange)="sort()">
         <mat-option *ngFor="let sort of sortOptions" [value]="sort.value">
-          {{ sort.viewValue }}
+          <div>{{ sort.viewValue }}<mat-icon *ngIf="sort.value" style="margin-left:2%" fontSet="fas" fontIcon="{{sort.iconValue}}"></mat-icon></div>
         </mat-option>
       </mat-select>
     </mat-form-field>
 
     <button class="col-md-3 col-lg-2" mat-raised-button color="primary" (click)="create()">{{ 'COMPUTER.CREATE' | translate }}</button>
   </div>
-
+  <div class="table-container">
   <table class="customTable table table-bordered shadow table-resp">
     <thead>
-    <th style="width: 50%">{{ 'COMPUTER.NAME' | translate }}</th>
-    <th>{{ 'COMPUTER.COMPANY' | translate }}</th>
-    <th>{{ 'COMPUTER.INTRODUCED' | translate }}</th>
-    <th>{{ 'COMPUTER.DISCONTINUED' | translate }}</th>
-    <th *ngIf="isAdmin">{{ 'COMPUTER.DELETE' | translate }}</th>
+      <th style="width: 40%">{{ 'COMPUTER.NAME' | translate }}</th>
+      <th style="width: 30%">{{ 'COMPUTER.COMPANY' | translate }}</th>
+      <th style="width: 15%">{{ 'COMPUTER.INTRODUCED' | translate }}</th>
+      <th style="width: 15%">{{ 'COMPUTER.DISCONTINUED' | translate }}</th>
+      <th *ngIf="isAdmin">{{ 'COMPUTER.DELETE' | translate }}</th>
     </thead>
     <tr *ngFor="let computer of computers" app-computer [computer]="computer" [isAdmin]="isAdmin" (delete)="computerDeleted(computer)">
     </tr>
   </table>
+</div>
 
   <button (click)="scrollToTop()" id="scrollButton" title="Go to top">
     <mat-icon>arrow_upward</mat-icon>

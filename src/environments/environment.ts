@@ -4,7 +4,7 @@
 
 export const environment = {
   production: true,
-  adresseIP: 'http://localhost:8080/'
+  adresseIP: 'http://10.0.1.49:8080/'
 };
 
 /*

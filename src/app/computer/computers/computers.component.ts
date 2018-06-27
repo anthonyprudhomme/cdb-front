@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Computer } from '../computer.model';
 import { PageEvent, MatPaginator, MatDialog, MatSnackBar, MatSnackBarConfig } from '@angular/material';
+import { trigger, style, transition, animate, query, stagger } from '@angular/animations';
 import { ComputerService } from '../computer.service';
 import { ComputerCreateComponent } from '../computer-create/computer-create.component';
 import { TranslateService } from '@ngx-translate/core';
@@ -12,7 +13,27 @@ import { LoginService } from '../../login/login.service';
 @Component({
   selector: 'app-computers',
   templateUrl: './computers.component.html',
-  styleUrls: ['./computers.component.scss']
+  styleUrls: ['./computers.component.scss'],
+  animations: [
+
+    trigger('staggerAnim', [
+      transition('void => *', [
+        query('mat-card, tr',
+          style({ opacity: 0, transform: 'translateX(0px)' })
+        ),
+
+        query('mat-card, tr', stagger('200ms', [
+          animate('200ms 0.4s ease-out', style({ opacity: 1, transform: 'translateX(0px)' })),
+          animate('200ms 0.4s ease-out', style({ opacity: 1, transform: 'translateX(-10px)' })),
+          animate('200ms 0.4s ease-out', style({ opacity: 1, transform: 'translateX(0px)' })),
+        ])),
+
+        query('mat-card, tr', [
+          animate(100, style('*'))
+        ])
+      ])
+    ])
+  ]
 })
 export class ComputersComponent implements OnInit {
 
@@ -22,41 +43,49 @@ export class ComputersComponent implements OnInit {
   pageSizeOptions = [10, 25, 50];
 
   isAdmin = false;
-
+  isFromSeeComputers = false;
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
 
   constructor(private computerService: ComputerService,
-     private dialog: MatDialog,
-     private snackBar: MatSnackBar,
-     private translate: TranslateService,
-     private route: ActivatedRoute,
-     private router: Router,
-     private loginService: LoginService) { }
+      private dialog: MatDialog,
+      private snackBar: MatSnackBar,
+      private translate: TranslateService,
+      private route: ActivatedRoute,
+      private router: Router,
+      private loginService: LoginService) {
+  }
 
   searchType: string;
-  searchOptions = [this.translate.instant('SELECT.COMPUTER_NAME'), this.translate.instant('SELECT.COMPANY_NAME')];
-
-  sortOptions = [
-    {viewValue: '--'},
-    {value: 'name_asc', viewValue: this.translate.instant('SELECT.NAME_ASC')},
-    {value: 'name_desc', viewValue: this.translate.instant('SELECT.NAME_DESC')},
-
-    {value: 'introduced_asc', viewValue: this.translate.instant('SELECT.INC_INTRODUCED')},
-    {value: 'introduced_desc', viewValue: this.translate.instant('SELECT.DEC_INTRODUCED')},
-    {value: 'discontinued_asc', viewValue: this.translate.instant('SELECT.INC_DISCONTINUED')},
-    {value: 'discontinued_desc', viewValue: this.translate.instant('SELECT.DEC_DISCONTINUED')},
-    {value: 'company_asc', viewValue: this.translate.instant('SELECT.COMPANY_ASC')},
-    {value: 'company_desc', viewValue: this.translate.instant('SELECT.COMPANY_DESC')}];
-
+  searchOptions;
+  sortOptions;
   sortSelected: string;
 
   ngOnInit() {
-    console.log('init');
+    this.setSortOptions();
+    this.searchOptions = [this.translate.instant('SELECT.COMPUTER_NAME'), this.translate.instant('SELECT.COMPANY_NAME')];
     this.pageEvent = new PageEvent();
-    this.computerService.getComputersAtPage(1, this.pageSizeOptions[0]).subscribe(computers => {
-      this.computers = computers;
-    }, err => {console.log(err); });
+    this.route.queryParams.subscribe(params => {
+      if (!isNullOrUndefined(params.search)) {
+        this.searchType = this.translate.instant('SELECT.COMPANY_NAME');
+        this.searchValue = params.search;
+        this.search();
+        this.isFromSeeComputers = true;
+      } else {
+        if (!this.isFromSeeComputers) {
+          this.searchType = this.translate.instant('SELECT.COMPUTER_NAME');
+          this.computerService.getComputersAtPage(1, this.pageSizeOptions[0]).subscribe(computers => {
+            this.computers = computers;
+            }, err => {console.log(err);
+          });
+        }
+      }
+    });
+    this.translate.onLangChange.subscribe( () => {
+      this.setSortOptions();
+      this.searchType = this.translate.instant('SELECT.COMPUTER_NAME');
+      this.searchOptions = [this.translate.instant('SELECT.COMPUTER_NAME'), this.translate.instant('SELECT.COMPANY_NAME')];
+    });
     this.computerService.countComputers().subscribe(length => this.pageEvent.length = length);
     window.onscroll = () => this.onScroll();
     this.loginService.getRolesOfUser().toPromise().then(res => {
@@ -64,18 +93,22 @@ export class ComputersComponent implements OnInit {
         this.isAdmin = true;
       }
     });
-    this.searchType = this.translate.instant('SELECT.COMPUTER_NAME');
-    this.route.queryParams.subscribe(params => {
+  }
 
-      if (!isNullOrUndefined(params.search)) {
-        console.log('is not null');
-        this.searchValue = params.search;
-        this.searchType = this.translate.instant('SELECT.COMPANY_NAME');
-      } else {
-        console.log('is null');
-      }
-      this.search();
-    });
+  setSortOptions() {
+    const upClass = 'fa-angle-up';
+    const downClass = 'fa-angle-down';
+    this.sortOptions = [
+      {viewValue: '--'},
+      {value: 'name_asc', viewValue: this.translate.instant('SELECT.NAME'), iconValue: upClass},
+      {value: 'name_desc', viewValue: this.translate.instant('SELECT.NAME'), iconValue: downClass},
+
+      {value: 'introduced_asc', viewValue: this.translate.instant('SELECT.INTRODUCED'), iconValue: upClass},
+      {value: 'introduced_desc', viewValue: this.translate.instant('SELECT.INTRODUCED'), iconValue: downClass},
+      {value: 'discontinued_asc', viewValue: this.translate.instant('SELECT.DISCONTINUED'), iconValue: upClass},
+      {value: 'discontinued_desc', viewValue: this.translate.instant('SELECT.DISCONTINUED'), iconValue: downClass},
+      {value: 'company_asc', viewValue: this.translate.instant('SELECT.COMPANY'), iconValue: upClass},
+      {value: 'company_desc', viewValue: this.translate.instant('SELECT.COMPANY'), iconValue: downClass}];
   }
 
   onScroll() {
