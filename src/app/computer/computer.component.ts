@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Computer } from './computer.model';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { ComputerDeleteComponent } from './computer-delete/computer-delete.component';
+import { ComputerUpdateComponent } from './computer-update/computer-update.component';
 
 @Component({
   selector: 'app-computer, [app-computer]',
@@ -29,7 +30,7 @@ export class ComputerComponent {
   }
 
   updateComputer() {
-    this.dialog.open(ComputerDeleteComponent, {data: this.computer});
+    this.dialog.open(ComputerUpdateComponent, {data: this.computer});
   }
 
 }
