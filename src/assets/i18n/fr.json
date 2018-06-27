@@ -40,7 +40,12 @@
     "CONFIRM_DELETION": "Êtes-vous sûr de vouloir supprimer {{name}} ?",
     "DELETE_SUCCESS": "Ordinateur supprimé avec succès",
     "CREATE_SUCCESS": "Ordinateur créé avec succès",
-    "UPDATE_SUCCESS": "Ordinateur édité avec succès"
+    "UPDATE_SUCCESS": "Ordinateur édité avec succès",
+    "ERROR" : {
+      "NAME": "Le nom de l'ordinateur est requis",
+      "INTRODUCED_AFTER_DISCONTINUED": "La date de retrait ne peut pas être avant la date de lancement"
+    },
+    "UPDATE": "Update computer"
   },
   "LOGIN":{
     "CREATE": "Création de compte",

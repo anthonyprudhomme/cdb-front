@@ -40,7 +40,12 @@
     "CONFIRM_DELETION": "Are you sure you want to delete {{name}} ?",
     "DELETE_SUCCESS": "Computer successfully deleted",
     "CREATE_SUCCESS": "Computer successfully created",
-    "UPDATE_SUCCESS": "Computer successfully updated"
+    "UPDATE_SUCCESS": "Computer successfully updated",
+    "ERROR" : {
+      "NAME": "Name of computer is required",
+      "INTRODUCED_AFTER_DISCONTINUED": "Discontinuation date cannot be earlier than introduction date"
+    },
+    "UPDATE" : "Update computer"
   },
   "LOGIN":{
     "CREATE": "Account creation",
