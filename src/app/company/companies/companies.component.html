@@ -31,7 +31,7 @@
       </div>
     </div>
   </div>
-
+  <div class="table-container">
   <table class="table table-bordered customTable shadow table-resp">
     <thead>
       <th style='width: 38%' >{{ 'COMPANY.COMPANY' | translate }}</th>
@@ -41,6 +41,7 @@
     <tr *ngFor=" let company of companies" app-company [company]="company" [isAdmin]="isAdmin" (delete)="companyDeleted(company)">
     </tr>
   </table>
+</div>
 
   <button (click)="scrollToTop()" id="scrollButton" title="Go to top">
     <mat-icon>arrow_upward</mat-icon>
