@@ -34,9 +34,9 @@
 
   <table class="table table-bordered customTable shadow table-resp">
     <thead>
-      <th style="width: 66.6%">{{ 'COMPANY.COMPANY' | translate }}</th>
-      <th style="width: 16.6%">{{ 'COMPANY.SEE' | translate }}</th>
-      <th *ngIf="isAdmin" style="width: 16.6%">{{ 'COMPANY.DELETE' | translate }}</th>
+      <th style='width: 38%' >{{ 'COMPANY.COMPANY' | translate }}</th>
+      <th style='width: 10%' >{{ 'COMPANY.SEE' | translate }}</th>
+      <th style='width: 10%' *ngIf="isAdmin" >{{ 'COMPANY.DELETE' | translate }}</th>
     </thead>
     <tr *ngFor=" let company of companies" app-company [company]="company" [isAdmin]="isAdmin" (delete)="companyDeleted(company)">
     </tr>
