@@ -67,9 +67,14 @@ export class ComputerUpdateComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-
-    document.getElementById('introduced').valueAsDate = new Date(this.computer.introduced);
-    document.getElementById('discontinued').valueAsDate = new Date(this.computer.discontinued);
+    const introduced = document.getElementById('introduced') as HTMLInputElement;
+    const discontinued = document.getElementById('discontinued') as HTMLInputElement;
+    if (!isNullOrUndefined(this.computer.introduced)) {
+      introduced.valueAsDate = new Date(this.computer.introduced);
+    }
+    if (!isNullOrUndefined(this.computer.discontinued)) {
+      discontinued.valueAsDate = new Date(this.computer.discontinued);
+    }
   }
 
   submit() {
@@ -78,7 +83,13 @@ export class ComputerUpdateComponent implements OnInit, AfterViewInit {
       this.computer.introduced = this.computerAddForm.value.introduced;
       this.computer.discontinued = this.computerAddForm.value.discontinued;
       this.computer.manufacturer_id = this.selectedCompany_id;
-      this.computer.manufacturer = this.companies.find( (c) => c.id === this.selectedCompany_id ).name;
+      const result = this.companies.find( (c) => c.id === this.selectedCompany_id );
+      if (!isNullOrUndefined(result)) {
+        this.computer.manufacturer = result.name;
+      }
+      if (this.selectedCompany_id.toString() === '') {
+        this.computer.manufacturer = '-';
+      }
       this.computerService.updateComputer(this.computer).subscribe();
 
       this.dialog.close({'send': 'OK'});
