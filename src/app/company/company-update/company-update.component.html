@@ -1,3 +1,28 @@
-<p>
-  company-update works!
-</p>
+<div class="cardContainer">
+  <div>
+    <h1>{{ 'COMPANY.UPDATE_COMPANY' | translate }}</h1>
+
+    <mat-divider></mat-divider>
+
+    <form [formGroup]=companyAddForm>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="{{ 'COMPANY.NAME' | translate }}" required formControlName="name" name="name" />
+        <mat-error>
+            {{ 'COMPANY.ERROR.NAME' | translate }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width" hintLabel="Max 255 characters">
+        <input matInput #input placeholder="{{ 'COMPANY.URL' | translate }}" formControlName="imageUrl" name="imageUrl">
+        <mat-hint align="end">{{input.value?.length || 0}}/255</mat-hint>
+        <mat-error>
+            {{ 'COMPANY.ERROR.URL' | translate }} [http(s):// (...) .(img|...|png)]
+        </mat-error>
+      </mat-form-field>
+
+      <div>
+        <button mat-raised-button color="primary" (click)=submit()>{{ 'GENERAL.CONFIRM' | translate }}</button>
+      </div>
+    </form>
+  </div>
+</div>

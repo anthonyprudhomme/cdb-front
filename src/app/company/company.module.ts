@@ -5,12 +5,26 @@ import { CompaniesComponent } from './companies/companies.component';
 import { CompanyCreateComponent } from './company-create/company-create.component';
 import { CompanyUpdateComponent } from './company-update/company-update.component';
 import { CustomMaterialModule } from '../custom-material/custom-material.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CompanyDeleteComponent } from './company-delete/company-delete.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
-    CustomMaterialModule
+    CustomMaterialModule,
+    ReactiveFormsModule,
+    TranslateModule,
+    RouterModule
   ],
-  declarations: [CompanyComponent, CompaniesComponent, CompanyCreateComponent, CompanyUpdateComponent]
+  declarations: [
+    CompanyComponent,
+    CompaniesComponent,
+    CompanyCreateComponent,
+    CompanyUpdateComponent,
+    CompanyDeleteComponent
+  ],
+  entryComponents: [CompanyDeleteComponent]
 })
 export class CompanyModule { }

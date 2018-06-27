@@ -1,0 +1,38 @@
+.cardContainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 148px)
+}
+
+.card {
+  max-width: 800px;
+  width: 800px;
+  margin-bottom: 20px;
+}
+
+.center {
+  text-align: center;
+}
+
+.width-85 {
+  margin:0 auto;
+  width: 85%;
+}
+
+form {
+  margin-top:50px;
+}
+
+.full-width {
+  width:100%;
+}
+
+#registerButton {
+  margin-top:30px;
+  margin-bottom:30px;
+}
+
+.vertical-space{
+  margin-top: 3%;
+}

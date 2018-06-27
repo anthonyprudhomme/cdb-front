@@ -1,0 +1,19 @@
+td:first-child {
+  padding-left: 24px !important;
+}
+
+.rounded-image {
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 2px;
+  width: 40px;
+  height: 40px;
+}
+
+.aligned-td {
+  vertical-align: middle;
+}
+
+.text-company {
+  margin-left: 15px;
+}

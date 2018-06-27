@@ -1,0 +1,102 @@
+{
+  "HEADER": {
+    "COMPANIES": "Entreprises",
+    "COMPUTERS": "Ordinateurs",
+    "LOG_OUT": "Se déconnecter"
+  },
+  "COMPANY":{
+    "SEARCH": "Rechercher",
+    "COMPANIES": "Entreprises",
+    "COMPANY": "Entreprise",
+    "COMPUTERS": "Ordinateurs",
+    "CREATE": "Créer une entreprise",
+    "NAME": "Nom",
+    "URL": "URL de l'image",
+    "SEE": "Ordinateurs",
+    "DELETE": "Supprimer",
+    "DELETE_COMPANY": "Supprimer une entreprise",
+    "CONFIRM_DELETION": "Êtes-vous sûr de vouloir supprimer {{name}} ? Cela va aussi supprimer ses {{number}} ordinateurs.",
+    "UPDATE_COMPANY": "Éditer l'entreprise",
+    "DELETE_SUCCESS": "Entreprise supprimée avec succès",
+    "CREATE_SUCCESS": "Entreprise créée avec succès",
+    "UPDATE_SUCCESS": "Entreprise éditée avec succès",
+    "ERROR":{
+      "NAME": "Le nom de l'entreprise est requis",
+      "URL": "L'URL doit être correct "
+    }
+  },
+  "COMPUTER":{
+    "SEARCH": "Rechercher",
+    "COMPUTERS": "Ordinateurs",
+    "COMPUTER": "Ordinateur",
+    "CREATE": "Créer un ordinateur",
+    "NAME": "Nom",
+    "INTRODUCED": "Lancement",
+    "DISCONTINUED": "Retrait",
+    "COMPANY": "Entreprise",
+    "DELETE": "Supprimer",
+    "DEL_COMPUTER": "Suprimmer l'ordinateur",
+    "DELETE_COMPUTER": "Supprimer un ordinateur",
+    "CONFIRM_DELETION": "Êtes-vous sûr de vouloir supprimer {{name}} ?",
+    "DELETE_SUCCESS": "Ordinateur supprimé avec succès",
+    "CREATE_SUCCESS": "Ordinateur créé avec succès",
+    "UPDATE_SUCCESS": "Ordinateur édité avec succès",
+    "ERROR" : {
+      "NAME": "Le nom de l'ordinateur est requis",
+      "INTRODUCED_AFTER_DISCONTINUED": "La date de retrait ne peut pas être avant la date de lancement"
+    },
+    "UPDATE": "Éditer l'ordinateur ",
+    "FORM" : {
+      "NAME": "Nom de l'ordinateur",
+      "INTRODUCTION": "Date de lancement",
+      "DISCONTINUATION": "Date de retrait"
+    }
+  },
+  "LOGIN":{
+    "CREATE": "Création de compte",
+    "CREATE_ACCOUNT": "Créer un compte",
+    "LOGIN": "Se connecter",
+    "LOG_IN": "Se connecter",
+    "PASSWORD": "Mot de passe",
+    "CONFIRM_PASSWORD": "Confirmation du mot de passe",
+    "USERNAME": "Identifiant",
+    "REGISTER": "S'enregistrer",
+    "NEW": "Nouveau sur CDB ?",
+    "ACCOUNT_CREATED": "Compte crée veuillez vous connecter",
+    "USERNAME_EXISTS": "Identifiant déjà existant",
+    "ERROR": {
+      "USERNAME": "L'identifiant doit être long d'au moins 5 caractères et ne doit pas contenir d'espaces.",
+      "USERNAME_REQUIRED": "L'identifiant est requis.",
+      "PASSWORD_REQUIRED": "Le mot de passe est requis.",
+      "INCORRECT": "L'identifiant et/ou le mot de passe est/sont incorrect(s).",
+      "PASSWORD": "Le mot de passe doit contenir au moins 8 caractères et avoir au moins une minuscule, une majuscule et un chiffre.",
+      "PASSWORD_CONFIRM": "La confirmation du mot de passe ne correspond pas au mot de passe."
+    }
+  },
+  "GENERAL":{
+    "CREATE": "Créer",
+    "CANCEL": "Annuler",
+    "CONFIRM": "Confirmer",
+    "NO": "Non",
+    "YES": "Oui",
+    "NO_RESULT": "Aucuns résultats trouvés"
+  },
+  "PAGINATOR": {
+    "ITEMS":"Lignes par page",
+    "NEXT": "Page suivante",
+    "PREVIOUS": "Page précédente",
+    "OF": "sur",
+    "FIRST": "Première page",
+    "LAST": "Dernière page"
+  },
+  "SELECT":{
+    "NAME":"Nom",
+    "COMPUTER":"Nombre d'ordinateurs",
+    "COMPUTER_NAME": "Nom d'ordinateur",
+    "COMPANY_NAME": "Nom d'entreprise",
+    "INTRODUCED": "Lancement",
+    "DISCONTINUED": "Retrait",
+    "COMPANY": "Nom d'entreprise",
+    "SORTING_OPTIONS": "Options de tri"
+  }
+}

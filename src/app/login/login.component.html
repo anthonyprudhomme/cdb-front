@@ -1,0 +1,41 @@
+<div class="cardContainer">
+  <mat-card class="card">
+    <div class="row margin-bottom">
+      <div class="col-2">
+        <img src="assets/computer_database.png" alt="Login">
+      </div>
+      <div class="col-8 offset-2">
+        <h1>{{ 'LOGIN.LOGIN' | translate }}</h1>
+      </div>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="width-75">
+      <form [formGroup]="loginForm" (keydown)="submit($event)">
+        <mat-form-field class="full-width">
+          <input matInput placeholder="{{ 'LOGIN.USERNAME' | translate }}" formControlName="username" required>
+          <mat-error>
+              {{ 'LOGIN.ERROR.USERNAME_REQUIRED' | translate }}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input matInput placeholder="{{ 'LOGIN.PASSWORD' | translate }}" type="password" formControlName="password" required>
+          <mat-error>
+              {{ 'LOGIN.ERROR.PASSWORD_REQUIRED' | translate }}
+          </mat-error>
+        </mat-form-field>
+        <div id="loginButtonContainer" class="center">
+          <button id="loginButton" mat-raised-button (click)="login()" color="primary">{{ 'LOGIN.LOGIN' | translate }}</button>
+        </div>
+      </form>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div id="accountButtonContainer" class="right">
+        {{ 'LOGIN.NEW' | translate }}
+      <button id="accountButton" mat-raised-button [routerLink]="['/login/add']" color="primary">{{ 'LOGIN.CREATE_ACCOUNT' | translate }}</button>
+    </div>
+  </mat-card>
+</div>

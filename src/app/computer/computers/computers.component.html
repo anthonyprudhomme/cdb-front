@@ -1,3 +1,62 @@
-<p>
-  computers works!
-</p>
+<div class="container" *ngIf="computers" @staggerAnim>
+  <div class="row row-no-padding align-items-center controlBar shadow paddingLeft">
+    <mat-form-field class="col-md-2" (keydown)="triggerSearch($event)">
+      <mat-icon *ngIf="searchValue"
+                matPrefix
+                class="clearSearchIcon"
+                aria-label="Clear search"
+                (click)="clearSearch()"
+                color="warn">clear</mat-icon>
+
+      <mat-icon *ngIf="!searchValue"
+                matPrefix>search</mat-icon>
+
+      <input matInput placeholder="{{ 'COMPUTER.SEARCH' | translate }}" [(ngModel)]="searchValue">
+    </mat-form-field>
+
+    <mat-radio-group class="example-radio-group" [(ngModel)]="searchType">
+      <mat-radio-button class="example-radio-button" *ngFor="let searchOption of searchOptions" [value]="searchOption">
+        <span style='font-size: 0.9em'>{{ searchOption }}</span>
+      </mat-radio-button>
+    </mat-radio-group>
+
+    <button class="col-md-1" style="padding: 0%" mat-raised-button color="primary" (click)="search()">{{ 'COMPUTER.SEARCH' | translate }}</button>
+
+    <mat-form-field class="col-md-2">
+      <mat-select placeholder="{{ 'SELECT.SORTING_OPTIONS' | translate }}" [(value)]="sortSelected" (selectionChange)="sort()">
+        <mat-option *ngFor="let sort of sortOptions" [value]="sort.value">
+          <div>{{ sort.viewValue }}<mat-icon *ngIf="sort.value" style="margin-left:2%" fontSet="fas" fontIcon="{{sort.iconValue}}"></mat-icon></div>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button class="col-md-3 col-lg-2" mat-raised-button color="primary" (click)="create()">{{ 'COMPUTER.CREATE' | translate }}</button>
+  </div>
+  <div class="table-container">
+  <table class="customTable table table-bordered shadow table-resp">
+    <thead>
+      <th style="width: 40%">{{ 'COMPUTER.NAME' | translate }}</th>
+      <th style="width: 30%">{{ 'COMPUTER.COMPANY' | translate }}</th>
+      <th style="width: 15%">{{ 'COMPUTER.INTRODUCED' | translate }}</th>
+      <th style="width: 15%">{{ 'COMPUTER.DISCONTINUED' | translate }}</th>
+      <th *ngIf="isAdmin">{{ 'COMPUTER.DELETE' | translate }}</th>
+    </thead>
+    <tr *ngFor="let computer of computers" app-computer [computer]="computer" [isAdmin]="isAdmin" (delete)="computerDeleted(computer)">
+    </tr>
+  </table>
+</div>
+
+  <button (click)="scrollToTop()" id="scrollButton" title="Go to top">
+    <mat-icon>arrow_upward</mat-icon>
+  </button>
+
+  <mat-paginator #paginator *ngIf="pageEvent" color="primary" [length]="pageEvent.length"
+                 [pageSize]="pageEvent.pageSize"
+                 [pageSizeOptions]="pageSizeOptions"
+                 (page)="pageEvent = changePage($event)"
+                 [showFirstLastButtons]="true"
+                 class="shadow">
+  </mat-paginator>
+
+
+</div>

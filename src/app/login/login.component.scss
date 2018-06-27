@@ -1,0 +1,56 @@
+.card {
+  max-width: 600;
+  width: 600px;
+  margin-bottom: 20px;
+}
+
+img {
+  width: 100px;
+}
+
+.margin-bottom {
+  margin-bottom: 24px;;
+}
+
+.width-75 {
+  margin:0 auto;
+  width: 75%;
+}
+
+.full-width {
+  width:100%;
+}
+
+.cardContainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 148px)
+}
+
+form {
+  margin-top:50px;
+}
+
+#loginButtonContainer {
+  align-items: center;
+  justify-content: center;
+}
+
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+}
+
+#loginButton {
+  margin:10px;
+  margin-bottom:40px;
+}
+
+#accountButton {
+  margin-top:20px;
+  margin-left:10px;
+}

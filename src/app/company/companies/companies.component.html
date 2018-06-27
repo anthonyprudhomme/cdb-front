@@ -1,3 +1,57 @@
-<p>
-  companies works!
-</p>
+<div class="container" *ngIf="companies" @staggerAnim>
+  <div class="row align-items-center controlBar shadow">
+    <div class="col-md-6">
+      <div class="row align-items-center">
+        <mat-form-field class="col-md-6" (keydown)="triggerSearch($event)">
+          <mat-icon *ngIf="searchValue"
+                    matPrefix
+                    class="clearSearchIcon"
+                    aria-label="Clear search"
+                    (click)="clearSearch()"
+                    color="warn">clear</mat-icon>
+
+          <mat-icon *ngIf="!searchValue"
+                    matPrefix>search</mat-icon>
+
+          <input matInput placeholder="{{ 'COMPANY.SEARCH' | translate }}" [(ngModel)]="searchValue">
+        </mat-form-field>
+        <button class="col-md-5" mat-raised-button color="primary" (click)="search()">{{ 'COMPANY.SEARCH' | translate }}</button>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="row align-items-center">
+        <mat-form-field class="col-md-6">
+          <mat-select placeholder="{{ 'SELECT.SORTING_OPTIONS' | translate }}" [(value)]="sortSelected" (selectionChange)="sort()">
+            <mat-option *ngFor="let sort of sortOptions as any" [value]="sort.value">
+                <div>{{ sort.viewValue }}<mat-icon *ngIf="sort.value" style="margin-left:2%" fontSet="fas" fontIcon="{{sort.iconValue}}"></mat-icon></div>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button class="col-md-5" mat-raised-button color="primary" (click)="create()">{{ 'COMPANY.CREATE' | translate }}</button>
+      </div>
+    </div>
+  </div>
+  <div class="table-container">
+  <table class="table table-bordered customTable shadow table-resp">
+    <thead>
+      <th style='width: 38%' >{{ 'COMPANY.COMPANY' | translate }}</th>
+      <th style='width: 10%' >{{ 'COMPANY.SEE' | translate }}</th>
+      <th style='width: 10%' *ngIf="isAdmin" >{{ 'COMPANY.DELETE' | translate }}</th>
+    </thead>
+    <tr *ngFor=" let company of companies" app-company [company]="company" [isAdmin]="isAdmin" (delete)="companyDeleted(company)">
+    </tr>
+  </table>
+</div>
+
+  <button (click)="scrollToTop()" id="scrollButton" title="Go to top">
+    <mat-icon>arrow_upward</mat-icon>
+  </button>
+
+  <mat-paginator *ngIf="pageEvent" #paginator color="primary" [length]="pageEvent.length"
+                 [pageSize]="pageEvent.pageSize"
+                 [pageSizeOptions]="pageSizeOptions"
+                 (page)="pageEvent = changePage($event)"
+                 [showFirstLastButtons]="true"
+                 class="shadow">
+  </mat-paginator>
+</div>

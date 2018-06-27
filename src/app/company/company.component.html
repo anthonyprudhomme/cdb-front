@@ -1,1 +1,23 @@
-sdfsdf
+<td class="aligned-td" (click)="updateCompany()">
+  <span class="img-hover">
+    <img class="{{company.id}}" [src]=company.imageUrl (error)="setDefaultImage()" />
+    <img class="rounded-image" (mouseenter)='showImage(company.id)' (mouseleave)='hideImage(company.id)' src={{company.imageUrl}} />
+  </span>
+  <span class="text-company">{{company.name}}</span>
+</td>
+<td class="text-center aligned-td" >
+  <button mat-raised-button color="primary"
+          [routerLink]="['/computer']"
+          [queryParams]="{search: company.name}"
+          matBadge="{{company.numberOfComputers}}" matBadgePosition="after"
+          matBadgeColor="{{company.numberOfComputers == 0 ? 'warn' : 'accent'}}">
+    <mat-icon>computer</mat-icon>
+  </button>
+</td>
+<td class="text-center aligned-td" *ngIf="isAdmin">
+  <button mat-raised-button color="warn" (click)="deleteCompany(company)">
+    <mat-icon>delete</mat-icon>
+  </button>
+</td>
+
+

@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="example-container">
+    <h2 mat-dialog-title>{{ 'COMPUTER.DELETE_COMPUTER' | translate }}</h2>
+    <mat-dialog-content>{{ 'COMPUTER.CONFIRM_DELETION' | translate :{'name': computer.name} }}</mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <button mat-button mat-dialog-close>{{ 'GENERAL.NO' | translate }}</button>
+      <button mat-raised-button [mat-dialog-close]="true" (click)="delete(computer)" color="warn">{{ 'GENERAL.YES' | translate }}</button>
+    </mat-dialog-actions>
+  </div>
+</div>
