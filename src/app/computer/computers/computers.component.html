@@ -32,18 +32,19 @@
 
     <button class="col-md-3 col-lg-2" mat-raised-button color="primary" (click)="create()">{{ 'COMPUTER.CREATE' | translate }}</button>
   </div>
-
+  <div class="table-container">
   <table class="customTable table table-bordered shadow table-resp">
     <thead>
-    <th style="width: 50%">{{ 'COMPUTER.NAME' | translate }}</th>
-    <th>{{ 'COMPUTER.COMPANY' | translate }}</th>
-    <th>{{ 'COMPUTER.INTRODUCED' | translate }}</th>
-    <th>{{ 'COMPUTER.DISCONTINUED' | translate }}</th>
-    <th *ngIf="isAdmin">{{ 'COMPUTER.DELETE' | translate }}</th>
+      <th style="width: 40%">{{ 'COMPUTER.NAME' | translate }}</th>
+      <th style="width: 30%">{{ 'COMPUTER.COMPANY' | translate }}</th>
+      <th style="width: 15%">{{ 'COMPUTER.INTRODUCED' | translate }}</th>
+      <th style="width: 15%">{{ 'COMPUTER.DISCONTINUED' | translate }}</th>
+      <th *ngIf="isAdmin">{{ 'COMPUTER.DELETE' | translate }}</th>
     </thead>
     <tr *ngFor="let computer of computers" app-computer [computer]="computer" [isAdmin]="isAdmin" (delete)="computerDeleted(computer)">
     </tr>
   </table>
+</div>
 
   <button (click)="scrollToTop()" id="scrollButton" title="Go to top">
     <mat-icon>arrow_upward</mat-icon>
