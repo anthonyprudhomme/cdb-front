@@ -16,7 +16,7 @@
     "DELETE": "Supprimer",
     "DELETE_COMPANY": "Supprimer une entreprise",
     "CONFIRM_DELETION": "Êtes-vous sûr de vouloir supprimer {{name}} ? Cela va aussi supprimer ses {{number}} ordinateurs.",
-    "UPDATE_COMPANY": "Éditer une entreprise",
+    "UPDATE_COMPANY": "Éditer l'entreprise",
     "DELETE_SUCCESS": "Entreprise supprimée avec succès",
     "CREATE_SUCCESS": "Entreprise créée avec succès",
     "UPDATE_SUCCESS": "Entreprise éditée avec succès",
@@ -45,7 +45,12 @@
       "NAME": "Le nom de l'ordinateur est requis",
       "INTRODUCED_AFTER_DISCONTINUED": "La date de retrait ne peut pas être avant la date de lancement"
     },
-    "UPDATE": "Update computer"
+    "UPDATE": "Éditer l'ordinateur ",
+    "FORM" : {
+      "NAME": "Nom de l'ordinateur",
+      "INTRODUCTION": "Date de lancement",
+      "DISCONTINUATION": "Date de retrait"
+    }
   },
   "LOGIN":{
     "CREATE": "Création de compte",
